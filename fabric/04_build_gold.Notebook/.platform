@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "04_build_gold",
+    "description": "Calendar publication; analytical gold models remain pending."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c0bb6b21-c3de-434c-80bc-e555414e852f"
+  }
+}

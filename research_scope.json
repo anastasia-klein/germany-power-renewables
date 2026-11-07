@@ -1,6 +1,6 @@
 {
   "project": "Germany Power & Renewables",
-  "updated_on": "2026-11-07",
+  "updated_on": "2026-11-08",
   "format": "Research case study with analysis, methodology, findings, pipelines and Fabric execution evidence; no reproduction tutorial",
   "questions": [
     {
@@ -23,11 +23,11 @@
   "deliverables": [
     {
       "item": "Research notebooks and portable outputs",
-      "status": "Source profiling notebook confirmed running in Fabric; refactored silver/EDA/gold not yet confirmed"
+      "status": "Source profiling and initial refactored silver build confirmed in Fabric; streamlined silver revision and separate EDA/gold notebooks await execution"
     },
     {
       "item": "Versioned Fabric notebook and pipeline definitions",
-      "status": "Planned; no Data Factory pipeline has been created"
+      "status": "Workspace Git integration connected; notebook and lakehouse definitions versioned in fabric/; Data Factory pipeline not yet created"
     },
     {
       "item": "Gold tables, semantic model and DAX measures",
@@ -65,7 +65,7 @@
     "repository_url": "https://github.com/anastasia-klein/germany-power-renewables",
     "visibility": "public",
     "fabric_sync_folder": "fabric",
-    "status": "Public main branch published; Fabric workspace Git integration remains to be connected"
+    "status": "Workspace connected to GitHub; initial source profiling, silver notebook and lakehouse definitions committed from Fabric"
   },
   "api_sources": {
     "tibber_reference": "https://developer.tibber.com/api/reference.md",

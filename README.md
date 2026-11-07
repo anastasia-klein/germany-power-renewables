@@ -30,7 +30,9 @@ The [execution snapshot](evidence/03_explore_power_market_snapshot.ipynb) preser
 
 The implemented flow is raw CSV files in OneLake → validated silver Delta tables → notebook analysis. Silver contains `consumption_hour`, `generation_hour` and `price_hour`. The refactored silver build also publishes a shared UTC calendar. A reporting calendar exists in gold; analytical gold tables await the exploratory findings.
 
-The notebook collection separates source profiling, silver preparation, exploration and gold publication. The refactored profiling notebook has passed in Fabric according to the project author's confirmation. The remaining refactored notebooks await execution validation. The original combined notebook produced the preserved results.
+The notebook collection separates source profiling, silver preparation, exploration and gold publication. Source profiling and the initial refactored silver build have passed in Fabric according to the project author's confirmation. The silver build has since been streamlined to remove intermediate previews and redundant reads; this revision awaits a Fabric run. Exploration and calendar publication also await execution of their separate notebooks. The original combined notebook produced the preserved results.
+
+The workspace is connected to GitHub. The `fabric/` directory contains the authoritative Fabric item definitions; `notebooks/` contains portable, output-free exports derived from that source. Captured outputs remain in `evidence/`, because Fabric Git integration versions source rather than notebook outputs. Source profiling and exploration are separate from the build flow. The silver build contains only input validation, transformation, quality gates and table publication; every code cell is part of the job.
 
 Data Factory orchestration, analytical gold models, DAX measures, the Power BI connection, public report and video are planned deliverables. No pipeline execution, published dashboard or semantic-model connection is claimed at this stage. Definitions and execution evidence will accompany these components as they are completed.
 

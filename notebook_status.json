@@ -1,5 +1,5 @@
 {
-  "refactored_on": "2026-11-07",
+  "refactored_on": "2026-11-08",
   "gold_scope": "Calendar only; analytical gold design follows EDA",
   "calendar_dependency": "02 writes silver.dim_time_hour; 03 reads silver; 04 publishes gold",
   "notebooks": [
@@ -16,10 +16,13 @@
   "fabric_execution_by_notebook": {
     "01_profile_sources": {
       "status": "passed",
-      "evidence": "User reported Source checks passed on 2026-11-07"
+      "evidence": "User reported Source checks passed on 2026-11-07",
+      "revision": "Research narrative updated; executed code unchanged"
     },
     "02_build_silver": {
-      "status": "pending refactored run"
+      "status": "streamlined revision pending Fabric run",
+      "previous_execution": "User confirmed the initial refactored build completed without errors on 2026-11-08",
+      "revision": "Removed exploratory previews and redundant CSV reads; mandatory checks retained; seven build code cells"
     },
     "03_explore_power_market": {
       "status": "pending refactored run"
@@ -28,5 +31,6 @@
       "status": "pending refactored run; calendar-only implementation"
     }
   },
-  "all_refactored_notebooks_validated_in_fabric": false
+  "all_refactored_notebooks_validated_in_fabric": false,
+  "source_of_truth": "Fabric item definitions in fabric/; notebooks/ are derived portable exports"
 }

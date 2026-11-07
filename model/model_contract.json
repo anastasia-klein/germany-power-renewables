@@ -1,5 +1,5 @@
 {
-  "status": "Original silver tables and gold calendar executed in Fabric and confirmed by user; refactored notebook 01 passed; analytical gold model remains a design",
+  "status": "Silver tables and gold calendar executed in Fabric; source profiling and initial refactored silver build confirmed by user; streamlined build revision awaits validation; analytical gold model remains a design",
   "time_key": {
     "format": "BIGINT YYYYMMDDHH in UTC",
     "example": 2025102600,
@@ -90,7 +90,7 @@
         "day_ahead_price_eur_mwh"
       ],
       "expected_rows": 8760,
-      "source_column": "Germany/Luxembourg [\u20ac/MWh] Calculated resolutions"
+      "source_column": "Germany/Luxembourg [€/MWh] Calculated resolutions"
     }
   ],
   "semantic_model": {
@@ -117,7 +117,7 @@
     "consumption": "silver.consumption_hour",
     "generation": "silver.generation_hour",
     "price": "silver.price_hour",
-    "technical_calendar": "silver.dim_time_hour (written by refactored notebook 02; run pending)",
+    "technical_calendar": "silver.dim_time_hour",
     "reporting_calendar": "gold.dim_time_hour"
   }
 }

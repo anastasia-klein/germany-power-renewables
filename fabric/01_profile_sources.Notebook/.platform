@@ -3,7 +3,7 @@
   "metadata": {
     "type": "Notebook",
     "displayName": "01_profile_sources",
-    "description": "New notebook"
+    "description": "Read-only assessment of SMARD source coverage and quality."
   },
   "config": {
     "version": "2.0",

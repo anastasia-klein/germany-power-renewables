@@ -23,15 +23,14 @@
 # MARKDOWN ********************
 
 # # 01 — Profile source files
-# 
-# Attach `lh_power_renewables` as the default Lakehouse. Run cells from top to bottom in a fresh PySpark session. Inputs are the three complete hourly SMARD CSV exports for local calendar year 2025 in `Files/raw/smard`. No notebook depends on another notebook's Python variables.
-# 
-# The refactored code has been checked locally for syntax and raw-source consistency, but has not yet been executed in Fabric. Original execution evidence is preserved separately in `evidence`.
-# 
-# This notebook is read-only. It checks structure, numeric parsing, missing markers, full-year coverage and DST ordering. Profiling informs the source contract; build-time checks must still run in notebook 02. Nuclear and obsolete DE/AT/LU prices are expected to contain missing markers in this dataset.
-# 
-# Times: https://www.smard.de/en/change-from-summer-to-winter-time-218202
-# Data and attribution: Bundesnetzagentur | SMARD.de, CC BY 4.0, https://www.smard.de/en/downloadcenter/download-market-data/
+#
+# Source assessment for the three hourly SMARD exports covering the local calendar year 2025. The profile records file hashes, dimensions, numeric coverage, missing markers and the chronological CET/CEST sequence.
+#
+# The spring transition has 23 physical hours and the autumn transition has 25. Repeated local labels remain separate observations. Nuclear generation and the obsolete DE/AT/LU price series contain expected missing markers; missing values are distinct from zero.
+#
+# This notebook reads raw files without writing lakehouse tables. The silver build enforces its own input contract independently of this profile.
+#
+# Data: Bundesnetzagentur | SMARD.de, CC BY 4.0. [Source](https://www.smard.de/en/downloadcenter/download-market-data/) · [Time conventions](https://www.smard.de/en/change-from-summer-to-winter-time-218202)
 
 # CELL ********************
 

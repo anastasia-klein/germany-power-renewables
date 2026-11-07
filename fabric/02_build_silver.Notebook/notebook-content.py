@@ -23,20 +23,21 @@
 # MARKDOWN ********************
 
 # # 02 — Build silver
-# 
-# The research uses three complete hourly SMARD CSV exports for local calendar year 2025. Computation takes place in Microsoft Fabric against `lh_power_renewables`. Notebook boundaries are persisted data contracts rather than shared Python session variables.
-# 
-# Original Fabric execution results are preserved separately in `evidence`. The current execution status of each refactored notebook is recorded in `notebook_status.json`.
-# 
-# Inputs: raw CSV files. Outputs: `silver.consumption_hour`, `silver.generation_hour`, `silver.price_hour`, `silver.dim_time_hour`.
-# 
-# The calendar belongs in silver as a reusable technical input; notebook 04 publishes the reporting copy in gold. Validation precedes writes. Each full-year table is replaced on rerun; the four writes are not a multi-table transaction. This small-data implementation reads ordered CSV records on the driver to disambiguate the repeated autumn hour. It intentionally rejects partial or unordered exports.
+#
+# Deterministic transformation of the complete 2025 SMARD exports into four Delta tables: `silver.consumption_hour`, `silver.generation_hour`, `silver.price_hour` and `silver.dim_time_hour`.
+#
+# The build validates raw structure, numeric precision, chronological coverage, business keys and energy reconciliation before publishing any table. Ordered CSV records distinguish the repeated autumn hour; incomplete or reordered inputs are rejected. Missing nuclear generation remains null, and negative prices are retained.
+#
+# Every code cell belongs to the build. There are no exploratory previews or analytical outputs. Each table is fully replaced on a successful rerun; publication across the four tables is not a single transaction. The driver-based CSV reader is appropriate for these small annual source files.
+
+# MARKDOWN ********************
+
+# ## Input contract
 
 # CELL ********************
 
 import csv
 import hashlib
-import json
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal, InvalidOperation
@@ -98,21 +99,12 @@ def profile_sources(raw_root, year):
     return {"year": year, "expected_hours": len(expected), "sources": reports,
             "non_24_hour_days": {day: count for day, count in day_counts.items() if count != 24}}
 
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
 from pyspark.sql import functions as F
-from pyspark.sql.types import StructType, StructField, LongType
+from pyspark.sql.types import StructType, StructField, LongType, StringType
 
 spark.conf.set("spark.sql.session.timeZone", "UTC")
 profile = profile_sources(Path("/lakehouse/default/Files/raw/smard"), 2025)
-print("Raw-source checks passed")
+expected_hours = profile["expected_hours"]
 
 # METADATA ********************
 
@@ -123,90 +115,9 @@ print("Raw-source checks passed")
 
 # MARKDOWN ********************
 
-# ## Read consumption and normalize column names
+# ## UTC calendar
 
 # CELL ********************
-
-path = (
-    "Files/raw/smard/"
-    "Actual_consumption_202501010000_202601010000_Hour.csv"
-)
-
-consumption_raw = (
-    spark.read
-    .option("header", True)
-    .option("sep", ";")
-    .option("inferSchema", False)
-    .csv(path)
-)
-
-print("Rows:", consumption_raw.count())
-print("Columns:", len(consumption_raw.columns))
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-expected_columns = [
-    "Start date",
-    "End date",
-    "grid load [MWh] Calculated resolutions",
-    "Grid load incl. hydro pumped storage [MWh] Calculated resolutions",
-    "Hydro pumped storage [MWh] Calculated resolutions",
-    "Residual load [MWh] Calculated resolutions",
-]
-
-assert consumption_raw.columns == expected_columns, "Unexpected CSV columns"
-
-consumption_staging = consumption_raw.toDF(
-    "start_local_raw",
-    "end_local_raw",
-    "grid_load_mwh_raw",
-    "grid_load_including_pumping_mwh_raw",
-    "pumping_consumption_mwh_raw",
-    "residual_load_mwh_raw",
-)
-
-display(consumption_staging.limit(5))
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-from pyspark.sql import functions as F
-
-metric_columns = {
-    "grid_load_mwh_raw": "grid_load_mwh",
-    "grid_load_including_pumping_mwh_raw": "grid_load_including_pumping_mwh",
-    "pumping_consumption_mwh_raw": "pumping_consumption_mwh",
-    "residual_load_mwh_raw": "residual_load_mwh",
-}
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# MARKDOWN ********************
-
-# ## Build the UTC calendar and validate source order
-
-# CELL ********************
-
-from datetime import datetime, timedelta, timezone
-from zoneinfo import ZoneInfo
 
 spark.conf.set("spark.sql.session.timeZone", "UTC")
 
@@ -246,17 +157,6 @@ dim_time_hour = spark.createDataFrame(
     """,
 )
 
-print("Calendar rows:", dim_time_hour.count())
-
-display(
-    dim_time_hour
-    .filter(
-        (F.col("local_date") == F.lit("2025-10-26").cast("date"))
-        & (F.col("local_hour") == 2)
-    )
-    .orderBy("time_key")
-)
-
 # METADATA ********************
 
 # META {
@@ -264,11 +164,36 @@ display(
 # META   "language_group": "synapse_pyspark"
 # META }
 
+# MARKDOWN ********************
+
+# ## Consumption transformation and validation
+
 # CELL ********************
 
-import csv
+path = "Files/raw/smard/Actual_consumption_202501010000_202601010000_Hour.csv"
+raw_column_names = [
+    "start_local_raw", "end_local_raw", "grid_load_mwh_raw",
+    "grid_load_including_pumping_mwh_raw", "pumping_consumption_mwh_raw",
+    "residual_load_mwh_raw",
+]
 
-from pyspark.sql.types import StructType, StructField, LongType
+expected_columns = [
+    "Start date",
+    "End date",
+    "grid load [MWh] Calculated resolutions",
+    "Grid load incl. hydro pumped storage [MWh] Calculated resolutions",
+    "Hydro pumped storage [MWh] Calculated resolutions",
+    "Residual load [MWh] Calculated resolutions",
+]
+
+
+metric_columns = {
+    "grid_load_mwh_raw": "grid_load_mwh",
+    "grid_load_including_pumping_mwh_raw": "grid_load_including_pumping_mwh",
+    "pumping_consumption_mwh_raw": "pumping_consumption_mwh",
+    "residual_load_mwh_raw": "residual_load_mwh",
+}
+
 
 file_path = f"/lakehouse/default/{path}"
 
@@ -308,7 +233,7 @@ for source_row_number, (source_row, time_row) in enumerate(
     )
 
 keyed_schema = StructType(
-    consumption_staging.schema.fields + [
+    [StructField(name, StringType(), True) for name in raw_column_names] + [
         StructField("time_key", LongType(), False),
         StructField("source_row_number", LongType(), False),
     ]
@@ -318,31 +243,6 @@ consumption_keyed_raw = spark.createDataFrame(
     keyed_rows,
     schema=keyed_schema,
 )
-
-print("Rows:", consumption_keyed_raw.count())
-print(
-    "Unique time keys:",
-    consumption_keyed_raw.select("time_key").distinct().count(),
-)
-
-display(
-    consumption_keyed_raw
-    .filter(F.col("time_key").isin(2025102600, 2025102601))
-    .orderBy("time_key")
-)
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# MARKDOWN ********************
-
-# ## Prepare consumption and validate numbers
-
-# CELL ********************
 
 consumption_silver = consumption_keyed_raw
 
@@ -375,24 +275,13 @@ validation = consumption_silver.agg(
     ],
 ).first().asDict()
 
-assert validation["row_count"] == 8760, "Unexpected row count"
-assert validation["unique_time_keys"] == 8760, "Duplicate time keys"
+assert validation["row_count"] == expected_hours, "Unexpected row count"
+assert validation["unique_time_keys"] == expected_hours, "Duplicate time keys"
 
 for column in metric_columns.values():
-    assert validation[f"{column}_valid_count"] == 8760, (
+    assert validation[f"{column}_valid_count"] == expected_hours, (
         f"Missing numeric values in {column}"
     )
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-from decimal import Decimal
 
 balance_error = F.abs(
     F.col("grid_load_including_pumping_mwh")
@@ -411,10 +300,8 @@ checks = consumption_silver.agg(
     F.max(balance_error).alias("max_balance_error_mwh"),
 ).first().asDict()
 
-for name, value in checks.items():
-    print(f"{name}: {value}")
 
-assert checks["row_count"] == 8760, "Unexpected row count"
+assert checks["row_count"] == expected_hours, "Unexpected row count"
 
 for column in metric_columns.values():
     assert checks[f"{column}_null_count"] == 0, (
@@ -434,37 +321,11 @@ assert checks["max_balance_error_mwh"] <= Decimal("0.02"), (
 
 # MARKDOWN ********************
 
-# ## Prepare generation and validate source coverage
+# ## Generation transformation and validation
 
 # CELL ********************
 
-generation_path = (
-    "Files/raw/smard/"
-    "Actual_generation_202501010000_202601010000_Hour.csv"
-)
-
-generation_raw = (
-    spark.read
-    .option("header", True)
-    .option("sep", ";")
-    .option("inferSchema", False)
-    .csv(generation_path)
-)
-
-print("Rows:", generation_raw.count())
-print("Columns:", len(generation_raw.columns))
-
-for column in generation_raw.columns:
-    print(column)
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
+generation_path = "Files/raw/smard/Actual_generation_202501010000_202601010000_Hour.csv"
 
 generation_sources = {
     "biomass": "Biomass",
@@ -581,23 +442,6 @@ generation_typed = generation_long.withColumn(
     .cast("decimal(18,2)"),
 )
 
-print("Rows:", generation_typed.count())
-
-display(
-    generation_typed
-    .filter(F.col("time_key") == 2024123123)
-    .orderBy("generation_source_code")
-)
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
 generation_quality = (
     generation_typed
     .groupBy("generation_source_code")
@@ -612,7 +456,6 @@ generation_quality = (
     )
 )
 
-display(generation_quality.orderBy("generation_source_code"))
 
 duplicate_keys = (
     generation_typed
@@ -632,19 +475,19 @@ assert len(quality_rows) == 12, "Unexpected generation source count"
 for row in quality_rows:
     source = row["generation_source_code"]
 
-    assert row["row_count"] == 8760, (
+    assert row["row_count"] == expected_hours, (
         f"Unexpected row count for {source}"
     )
 
     if source == "nuclear":
-        assert row["missing_marker_count"] == 8760, (
+        assert row["missing_marker_count"] == expected_hours, (
             "Unexpected nuclear source coverage"
         )
         assert row["numeric_count"] == 0, (
             "Unexpected numeric nuclear values"
         )
     else:
-        assert row["numeric_count"] == 8760, (
+        assert row["numeric_count"] == expected_hours, (
             f"Missing or invalid numeric values for {source}"
         )
 
@@ -666,37 +509,11 @@ generation_silver = generation_typed.select(
 
 # MARKDOWN ********************
 
-# ## Prepare prices and validate coverage
+# ## Day-ahead price transformation and validation
 
 # CELL ********************
 
-price_path = (
-    "Files/raw/smard/"
-    "Day-ahead_prices_202501010000_202601010000_Hour.csv"
-)
-
-price_raw = (
-    spark.read
-    .option("header", True)
-    .option("sep", ";")
-    .option("inferSchema", False)
-    .csv(price_path)
-)
-
-print("Rows:", price_raw.count())
-print("Columns:", len(price_raw.columns))
-
-for column in price_raw.columns:
-    print(column)
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
+price_path = "Files/raw/smard/Day-ahead_prices_202501010000_202601010000_Hour.csv"
 
 price_column = (
     "Germany/Luxembourg [€/MWh] Calculated resolutions"
@@ -709,9 +526,6 @@ with open(
 ) as file:
     reader = csv.DictReader(file, delimiter=";")
 
-    assert reader.fieldnames == price_raw.columns, (
-        "Unexpected price columns"
-    )
     assert price_column in reader.fieldnames, (
         "Required DE-LU price column is missing"
     )
@@ -785,20 +599,16 @@ price_validation = price_silver.agg(
     F.count("*").alias("row_count"),
     F.countDistinct("time_key").alias("unique_time_keys"),
     F.count("day_ahead_price_eur_mwh").alias("numeric_count"),
-    F.min("day_ahead_price_eur_mwh").alias("min_price"),
-    F.max("day_ahead_price_eur_mwh").alias("max_price"),
 ).first().asDict()
 
-for name, value in price_validation.items():
-    print(f"{name}: {value}")
 
-assert price_validation["row_count"] == 8760, (
+assert price_validation["row_count"] == expected_hours, (
     "Unexpected price row count"
 )
-assert price_validation["unique_time_keys"] == 8760, (
+assert price_validation["unique_time_keys"] == expected_hours, (
     "Duplicate price time keys"
 )
-assert price_validation["numeric_count"] == 8760, (
+assert price_validation["numeric_count"] == expected_hours, (
     "Missing or invalid price values"
 )
 
@@ -811,23 +621,13 @@ assert price_validation["numeric_count"] == 8760, (
 
 # MARKDOWN ********************
 
-# ## Reconcile all three prepared datasets before writing
+# ## Cross-source quality gate
 
 # CELL ********************
 
 consumption_silver.createOrReplaceTempView("check_consumption_hour")
 generation_silver.createOrReplaceTempView("check_generation_hour")
 price_silver.createOrReplaceTempView("check_price_hour")
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
 cross_source_checks = spark.sql("""
     WITH wind_solar AS (
         SELECT
@@ -863,24 +663,21 @@ cross_source_checks = spark.sql("""
     WHERE c.country_code = 'DE'
 """)
 
-display(cross_source_checks)
 
 result = cross_source_checks.first().asDict()
 
-assert result["row_count"] == 8760, (
+assert result["row_count"] == expected_hours, (
     "Unexpected joined row count"
 )
-assert result["matched_price_hours"] == 8760, (
+assert result["matched_price_hours"] == expected_hours, (
     "Missing matching price hours"
 )
-assert result["matched_generation_hours"] == 8760, (
+assert result["matched_generation_hours"] == expected_hours, (
     "Missing matching generation hours"
 )
 assert result["max_residual_error_mwh"] <= Decimal("0.03"), (
     "Residual load reconciliation exceeds rounding tolerance"
 )
-
-print("Cross-source checks passed")
 
 # METADATA ********************
 
@@ -891,7 +688,7 @@ print("Cross-source checks passed")
 
 # MARKDOWN ********************
 
-# ## Publish validated silver tables
+# ## Publish silver Delta tables
 
 # CELL ********************
 

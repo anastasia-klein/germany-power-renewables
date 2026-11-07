@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "03_explore_power_market",
+    "description": "Read-only analysis of monthly market prices and load exposure."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f533bc03-3c3d-4a0d-90f1-6fd0f69e6409"
+  }
+}
