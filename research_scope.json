@@ -16,30 +16,56 @@
     {
       "id": "household_tariff",
       "question": "How would alternative tariff structures price the observed household consumption profile?",
-      "status": "Private extension awaiting tariff and equipment clarification and authorized API access",
+      "status": "Private API access confirmed; history coverage and pricing-regime comparison under investigation",
       "method": "Use actual Tibber consumption and tariff periods, reconcile bills including fixed charges and taxes, compare identical coverage, separate unchanged-load counterfactuals from explicit feasible load-shifting scenarios. No tariff winner is assumed."
     }
   ],
   "deliverables": [
-    {"item": "Research notebooks and portable outputs", "status": "Source profiling notebook confirmed running in Fabric; refactored silver/EDA/gold not yet confirmed"},
-    {"item": "Versioned Fabric notebook and pipeline definitions", "status": "Planned; no Data Factory pipeline has been created"},
-    {"item": "Gold tables, semantic model and DAX measures", "status": "Analytical design pending EDA; calendar exists"},
-    {"item": "Power BI report connected to Fabric", "status": "Planned; connection and model mode must be evidenced"},
-    {"item": "Public interactive Power BI report", "status": "Planned; public-only semantic model, tenant/license compatibility and unauthenticated access require verification"},
-    {"item": "Dashboard walkthrough video and static snapshot", "status": "Planned before trial expiration; live public availability after expiration is not assumed"}
+    {
+      "item": "Research notebooks and portable outputs",
+      "status": "Source profiling notebook confirmed running in Fabric; refactored silver/EDA/gold not yet confirmed"
+    },
+    {
+      "item": "Versioned Fabric notebook and pipeline definitions",
+      "status": "Planned; no Data Factory pipeline has been created"
+    },
+    {
+      "item": "Gold tables, semantic model and DAX measures",
+      "status": "Analytical design pending EDA; calendar exists"
+    },
+    {
+      "item": "Power BI report connected to Fabric",
+      "status": "Planned; connection and model mode must be evidenced"
+    },
+    {
+      "item": "Public interactive Power BI report",
+      "status": "Planned; public-only semantic model, tenant/license compatibility and unauthenticated access require verification"
+    },
+    {
+      "item": "Dashboard walkthrough video and static snapshot",
+      "status": "Planned before trial expiration; live public availability after expiration is not assumed"
+    }
   ],
   "publication": {
     "public_data": "SMARD with attribution; public analysis and reviewed implementation artifacts",
     "private_data": "Tibber tokens, home identifiers, detailed household consumption, bills, private notebook outputs and household semantic model",
     "public_household_case": "Only a separately prepared and reviewed aggregate or synthetic example; detailed personal records never share the public semantic model by default",
-    "evidence": ["Fabric item definitions", "Notebook run evidence", "Pipeline run results", "Lineage view", "Lakehouse and gold schema views", "Power BI semantic model connection", "Report recording"],
+    "evidence": [
+      "Fabric item definitions",
+      "Notebook run evidence",
+      "Pipeline run results",
+      "Lineage view",
+      "Lakehouse and gold schema views",
+      "Power BI semantic model connection",
+      "Report recording"
+    ],
     "claim_rule": "Separate implemented and executed components from planned work; do not manufacture run evidence."
   },
   "github": {
-    "suggested_repository": "germany-power-renewables",
-    "initial_visibility": "private",
+    "repository_url": "https://github.com/anastasia-klein/germany-power-renewables",
+    "visibility": "public",
     "fabric_sync_folder": "fabric",
-    "status": "Not connected; local GitHub CLI authentication reported invalid token. No remote repository has been created."
+    "status": "Remote configured locally; publication pending authentication verification"
   },
   "api_sources": {
     "tibber_reference": "https://developer.tibber.com/api/reference.md",
