@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "01_prepare_smard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "832e59e3-52a2-a876-4f5b-a0ff6d7d8bb2"
+  }
+}
