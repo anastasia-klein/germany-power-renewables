@@ -16,7 +16,7 @@
     {
       "id": "household_tariff",
       "question": "How would alternative tariff structures price the observed household consumption profile?",
-      "status": "Private API access confirmed; history coverage and pricing-regime comparison under investigation",
+      "status": "Private API retrieval completed; tariff classification requires contract or invoice reconciliation",
       "method": "Use actual Tibber consumption and tariff periods, reconcile bills including fixed charges and taxes, compare identical coverage, separate unchanged-load counterfactuals from explicit feasible load-shifting scenarios. No tariff winner is assumed."
     }
   ],
@@ -65,7 +65,7 @@
     "repository_url": "https://github.com/anastasia-klein/germany-power-renewables",
     "visibility": "public",
     "fabric_sync_folder": "fabric",
-    "status": "Remote configured locally; publication pending authentication verification"
+    "status": "Public main branch published; Fabric workspace Git integration remains to be connected"
   },
   "api_sources": {
     "tibber_reference": "https://developer.tibber.com/api/reference.md",
