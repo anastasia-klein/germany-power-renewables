@@ -1,0 +1,37 @@
+{
+  "scope": "Complete chronological hourly SMARD exports for local year 2025",
+  "timezone_source": "https://www.smard.de/en/change-from-summer-to-winter-time-218202",
+  "files": [
+    {
+      "file": "Actual_consumption_202501010000_202601010000_Hour.csv",
+      "rows": 8760,
+      "utc_keys_unique": true,
+      "all_start_labels_match_expected_timeline": true,
+      "missing_or_extra_intervals": 0
+    },
+    {
+      "file": "Actual_generation_202501010000_202601010000_Hour.csv",
+      "rows": 8760,
+      "utc_keys_unique": true,
+      "all_start_labels_match_expected_timeline": true,
+      "missing_or_extra_intervals": 0
+    },
+    {
+      "file": "Day-ahead_prices_202501010000_202601010000_Hour.csv",
+      "rows": 8760,
+      "utc_keys_unique": true,
+      "all_start_labels_match_expected_timeline": true,
+      "missing_or_extra_intervals": 0
+    }
+  ],
+  "utc_start_inclusive": "2024-12-31T23:00:00+00:00",
+  "utc_end_exclusive": "2025-12-31T23:00:00+00:00",
+  "local_days_with_non_24_hours": {
+    "2025-03-30": 23,
+    "2025-10-26": 25
+  },
+  "naive_three_way_join_rows": 8766,
+  "utc_three_way_join_rows": 8760,
+  "end_time_policy": "Derive physical end as UTC start plus 60 minutes; retain original end label in staging",
+  "limitations": "For partial, shuffled or incomplete exports, stop; do not assign keys by row position."
+}

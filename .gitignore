@@ -1,0 +1,23 @@
+# Credentials and private household records
+.env
+.env.*
+*.pem
+*.key
+secrets/
+private/
+data/private/
+data/raw/tibber/
+data/processed/tibber/
+*tibber*private*
+
+# Local execution metadata and unreviewed original exports
+.DS_Store
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+evidence/original_exports/
+fabric_notebooks.zip
+fabric_notebooks/
+
+# Notebook refactoring inputs and workspace-specific helper
+scripts/refactor_notebooks.py

@@ -1,0 +1,123 @@
+{
+  "status": "Original silver tables and gold calendar executed in Fabric and confirmed by user; refactored notebook 01 passed; analytical gold model remains a design",
+  "time_key": {
+    "format": "BIGINT YYYYMMDDHH in UTC",
+    "example": 2025102600,
+    "interval": "[interval_start_utc, interval_end_utc)",
+    "local_timezone": "Europe/Berlin",
+    "rule": "Resolve each source independently against the complete chronological UTC timeline; join on UTC, never displayed local time or row number alone",
+    "end_label": "Keep source End date for provenance. Derive actual end from UTC start + 60 minutes; raw wall-clock end labels are misleading at DST transitions."
+  },
+  "tables": [
+    {
+      "name": "dim_time_hour",
+      "grain": "One physical hour",
+      "key": [
+        "time_key"
+      ],
+      "fields": [
+        "interval_start_utc",
+        "interval_end_utc",
+        "local_date",
+        "local_hour",
+        "utc_offset_minutes",
+        "fold",
+        "duration_minutes"
+      ]
+    },
+    {
+      "name": "dim_country",
+      "key": [
+        "country_code"
+      ],
+      "rows": [
+        "DE"
+      ]
+    },
+    {
+      "name": "dim_bidding_zone",
+      "key": [
+        "bidding_zone_code"
+      ],
+      "rows": [
+        "DE-LU"
+      ]
+    },
+    {
+      "name": "dim_generation_source",
+      "key": [
+        "generation_source_code"
+      ],
+      "note": "Map the 12 generation columns to stable codes; distinguish pumped-storage output from renewable generation."
+    },
+    {
+      "name": "fact_consumption_hour",
+      "grain": "Hour x country",
+      "key": [
+        "time_key",
+        "country_code"
+      ],
+      "measures": [
+        "grid_load_mwh",
+        "grid_load_including_pumping_mwh",
+        "pumping_consumption_mwh",
+        "residual_load_mwh"
+      ],
+      "expected_rows": 8760
+    },
+    {
+      "name": "fact_generation_hour",
+      "grain": "Hour x country x generation source",
+      "key": [
+        "time_key",
+        "country_code",
+        "generation_source_code"
+      ],
+      "measures": [
+        "generation_mwh"
+      ],
+      "expected_rows": 105120,
+      "null_policy": "Retain all 12 source categories, including Nuclear with null values; do not silently replace missing with zero."
+    },
+    {
+      "name": "fact_price_hour",
+      "grain": "Hour x bidding zone",
+      "key": [
+        "time_key",
+        "bidding_zone_code"
+      ],
+      "measures": [
+        "day_ahead_price_eur_mwh"
+      ],
+      "expected_rows": 8760,
+      "source_column": "Germany/Luxembourg [\u20ac/MWh] Calculated resolutions"
+    }
+  ],
+  "semantic_model": {
+    "relationships": "Dimensions filter facts 1-to-many, single direction. No direct fact-to-fact relationships.",
+    "geography": "Country DE and bidding zone DE-LU remain distinct. First release is fixed to this documented pairing; future countries require an explicit effective-dated country-zone mapping.",
+    "date_filters": "Use local_date from dim_time_hour for business calendar filtering; UTC for uniqueness and joins.",
+    "energy_aggregation": "SUM MWh across hours; do not multiply hourly MWh by duration again.",
+    "price_aggregation": "Time-weighted average across hours; never SUM prices.",
+    "weighted_price": "SUM(price * grid_load) / SUM(grid_load), with both sums restricted to the same matched valid hours.",
+    "hourly_cost_limit": "Hourly aggregated prices times hourly energy are an hourly-resolution estimate. They do not reconstruct within-hour price/load covariance or actual settlement costs.",
+    "negative_prices": "Valid observations; retain.",
+    "negative_residual_load": "Valid observations; retain."
+  },
+  "staging_rules": [
+    "Read UTF-8 BOM and semicolon delimiter; English date labels.",
+    "Remove thousands commas, parse decimal point using fixed precision DECIMAL, map '-' to null.",
+    "Preserve source file, SHA256, source row number, raw Start date and raw End date.",
+    "Keep original row order through DST disambiguation; reject unexpected duplicates, gaps or ordering.",
+    "Unpivot generation columns; retain null categories for source fidelity.",
+    "Select DE-LU price column explicitly; exclude neighbours average and obsolete DE/AT/LU from project price fact.",
+    "Rerun loads by business key without accumulating duplicate rows."
+  ],
+  "physical_tables": {
+    "consumption": "silver.consumption_hour",
+    "generation": "silver.generation_hour",
+    "price": "silver.price_hour",
+    "technical_calendar": "silver.dim_time_hour (written by refactored notebook 02; run pending)",
+    "reporting_calendar": "gold.dim_time_hour"
+  }
+}

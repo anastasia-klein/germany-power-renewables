@@ -1,0 +1,50 @@
+{
+  "project": "Germany Power & Renewables",
+  "updated_on": "2026-11-07",
+  "format": "Research case study with analysis, methodology, findings, pipelines and Fabric execution evidence; no reproduction tutorial",
+  "questions": [
+    {
+      "id": "market_association",
+      "question": "How are wind generation, solar generation and residual load associated with day-ahead electricity prices?",
+      "method": "Hourly exploration with within-month, hour-of-day and demand comparisons; association is not a causal effect."
+    },
+    {
+      "id": "profile_value",
+      "question": "How do load-weighted and generation-weighted prices differ from time-average market prices?",
+      "method": "Compute ratios from underlying hourly weighted sums; distinguish wind, solar, load, negative-price exposure and denominator coverage."
+    },
+    {
+      "id": "household_tariff",
+      "question": "How would alternative tariff structures price the observed household consumption profile?",
+      "status": "Private extension awaiting tariff and equipment clarification and authorized API access",
+      "method": "Use actual Tibber consumption and tariff periods, reconcile bills including fixed charges and taxes, compare identical coverage, separate unchanged-load counterfactuals from explicit feasible load-shifting scenarios. No tariff winner is assumed."
+    }
+  ],
+  "deliverables": [
+    {"item": "Research notebooks and portable outputs", "status": "Source profiling notebook confirmed running in Fabric; refactored silver/EDA/gold not yet confirmed"},
+    {"item": "Versioned Fabric notebook and pipeline definitions", "status": "Planned; no Data Factory pipeline has been created"},
+    {"item": "Gold tables, semantic model and DAX measures", "status": "Analytical design pending EDA; calendar exists"},
+    {"item": "Power BI report connected to Fabric", "status": "Planned; connection and model mode must be evidenced"},
+    {"item": "Public interactive Power BI report", "status": "Planned; public-only semantic model, tenant/license compatibility and unauthenticated access require verification"},
+    {"item": "Dashboard walkthrough video and static snapshot", "status": "Planned before trial expiration; live public availability after expiration is not assumed"}
+  ],
+  "publication": {
+    "public_data": "SMARD with attribution; public analysis and reviewed implementation artifacts",
+    "private_data": "Tibber tokens, home identifiers, detailed household consumption, bills, private notebook outputs and household semantic model",
+    "public_household_case": "Only a separately prepared and reviewed aggregate or synthetic example; detailed personal records never share the public semantic model by default",
+    "evidence": ["Fabric item definitions", "Notebook run evidence", "Pipeline run results", "Lineage view", "Lakehouse and gold schema views", "Power BI semantic model connection", "Report recording"],
+    "claim_rule": "Separate implemented and executed components from planned work; do not manufacture run evidence."
+  },
+  "github": {
+    "suggested_repository": "germany-power-renewables",
+    "initial_visibility": "private",
+    "fabric_sync_folder": "fabric",
+    "status": "Not connected; local GitHub CLI authentication reported invalid token. No remote repository has been created."
+  },
+  "api_sources": {
+    "tibber_reference": "https://developer.tibber.com/api/reference.md",
+    "consumption": "Hourly history is paginated, capped at 744 items per request; actual 2025 coverage must be established from the account.",
+    "prices": "Historical subscription prices via priceInfoRange; resolve applicable historical subscription and price resolution, not just currentSubscription.",
+    "cost": "API consumption cost excludes certain fees and rewards; reconcile to invoices rather than equating it with a complete bill."
+  }
+}

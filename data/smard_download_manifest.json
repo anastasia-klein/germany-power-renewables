@@ -1,0 +1,328 @@
+{
+  "datasets": [
+    {
+      "file": "Actual_consumption_202501010000_202601010000_Hour.csv",
+      "source_url": "https://www.smard.de/en/downloadcenter/download-market-data/",
+      "retrieved_on": "2026-11-06",
+      "region_selection": "DE",
+      "resolution": "Hour",
+      "row_count": 8760,
+      "column_count": 6,
+      "first_interval": [
+        "Jan 1, 2025 12:00 AM",
+        "Jan 1, 2025 1:00 AM"
+      ],
+      "last_interval": [
+        "Dec 31, 2025 11:00 PM",
+        "Jan 1, 2026 12:00 AM"
+      ],
+      "duplicate_display_intervals": [
+        {
+          "interval": [
+            "Oct 26, 2025 2:00 AM",
+            "Oct 26, 2025 3:00 AM"
+          ],
+          "count": 2
+        }
+      ],
+      "columns": [
+        {
+          "name": "grid load [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "33233.27",
+          "max": "75635.21"
+        },
+        {
+          "name": "Grid load incl. hydro pumped storage [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "33737.02",
+          "max": "76412.25"
+        },
+        {
+          "name": "Hydro pumped storage [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "0.00",
+          "max": "6240.00"
+        },
+        {
+          "name": "Residual load [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-8443.14",
+          "max": "68275.75"
+        }
+      ],
+      "sha256": "ea504b5a8d807ceb3d06be6accb58b171f2f75e1d90d087e582943b08830a2e8"
+    },
+    {
+      "file": "Actual_generation_202501010000_202601010000_Hour.csv",
+      "source_url": "https://www.smard.de/en/downloadcenter/download-market-data/",
+      "retrieved_on": "2026-11-06",
+      "region_selection": "DE",
+      "resolution": "Hour",
+      "row_count": 8760,
+      "column_count": 14,
+      "first_interval": [
+        "Jan 1, 2025 12:00 AM",
+        "Jan 1, 2025 1:00 AM"
+      ],
+      "last_interval": [
+        "Dec 31, 2025 11:00 PM",
+        "Jan 1, 2026 12:00 AM"
+      ],
+      "duplicate_display_intervals": [
+        {
+          "interval": [
+            "Oct 26, 2025 2:00 AM",
+            "Oct 26, 2025 3:00 AM"
+          ],
+          "count": 2
+        }
+      ],
+      "columns": [
+        {
+          "name": "Biomass [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "3085.63",
+          "max": "5271.25"
+        },
+        {
+          "name": "Hydropower [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "937.35",
+          "max": "3066.43"
+        },
+        {
+          "name": "Wind offshore [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "0.00",
+          "max": "8278.07"
+        },
+        {
+          "name": "Wind onshore [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "197.50",
+          "max": "45767.64"
+        },
+        {
+          "name": "Photovoltaics [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "4.00",
+          "max": "52132.25"
+        },
+        {
+          "name": "Other renewable [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "56.46",
+          "max": "140.50"
+        },
+        {
+          "name": "Nuclear [MWh] Calculated resolutions",
+          "numeric_count": 0,
+          "missing_tokens": {
+            "-": 8760
+          },
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "Lignite [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "1877.75",
+          "max": "13661.82"
+        },
+        {
+          "name": "Hard coal [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "135.50",
+          "max": "8907.50"
+        },
+        {
+          "name": "Fossil gas [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "1307.50",
+          "max": "20146.50"
+        },
+        {
+          "name": "Hydro pumped storage [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "0.00",
+          "max": "6507.00"
+        },
+        {
+          "name": "Other conventional [MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "1105.75",
+          "max": "2669.50"
+        }
+      ],
+      "sha256": "cb5973272179d8466d67a1dacc258909c27c25c9d26dbd6f1f95b14d0dc0d64b"
+    },
+    {
+      "file": "Day-ahead_prices_202501010000_202601010000_Hour.csv",
+      "source_url": "https://www.smard.de/en/downloadcenter/download-market-data/",
+      "retrieved_on": "2026-11-06",
+      "region_selection": "DE-LU",
+      "resolution": "Hour",
+      "row_count": 8760,
+      "column_count": 19,
+      "first_interval": [
+        "Jan 1, 2025 12:00 AM",
+        "Jan 1, 2025 1:00 AM"
+      ],
+      "last_interval": [
+        "Dec 31, 2025 11:00 PM",
+        "Jan 1, 2026 12:00 AM"
+      ],
+      "duplicate_display_intervals": [
+        {
+          "interval": [
+            "Oct 26, 2025 2:00 AM",
+            "Oct 26, 2025 3:00 AM"
+          ],
+          "count": 2
+        }
+      ],
+      "columns": [
+        {
+          "name": "Germany/Luxembourg [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-250.32",
+          "max": "583.40"
+        },
+        {
+          "name": "∅ DE/LU neighbours [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-147.98",
+          "max": "435.61"
+        },
+        {
+          "name": "Belgium [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-462.33",
+          "max": "517.57"
+        },
+        {
+          "name": "Denmark 1 [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-38.14",
+          "max": "583.40"
+        },
+        {
+          "name": "Denmark 2 [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-25.35",
+          "max": "583.40"
+        },
+        {
+          "name": "France [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-118.01",
+          "max": "473.28"
+        },
+        {
+          "name": "Netherlands [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-350.00",
+          "max": "523.47"
+        },
+        {
+          "name": "Norway 2 [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-10.60",
+          "max": "493.32"
+        },
+        {
+          "name": "Austria [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-252.60",
+          "max": "561.75"
+        },
+        {
+          "name": "Poland [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-132.95",
+          "max": "471.29"
+        },
+        {
+          "name": "Sweden 4 [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-25.30",
+          "max": "426.44"
+        },
+        {
+          "name": "Switzerland [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-262.21",
+          "max": "317.97"
+        },
+        {
+          "name": "Czech Republic [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-224.49",
+          "max": "563.13"
+        },
+        {
+          "name": "DE/AT/LU [€/MWh] Calculated resolutions",
+          "numeric_count": 0,
+          "missing_tokens": {
+            "-": 8760
+          },
+          "min": null,
+          "max": null
+        },
+        {
+          "name": "Northern Italy [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "0.00",
+          "max": "289.00"
+        },
+        {
+          "name": "Slovenia [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-126.46",
+          "max": "561.75"
+        },
+        {
+          "name": "Hungary [€/MWh] Calculated resolutions",
+          "numeric_count": 8760,
+          "missing_tokens": {},
+          "min": "-210.05",
+          "max": "615.15"
+        }
+      ],
+      "sha256": "b0edf72fa4aa2b217e10ec92099f50559d57e1b11f1d0929e1039c52caf90aa0"
+    }
+  ],
+  "interval_sequences_identical": true,
+  "note": "Local timestamps have no explicit UTC offset in CSV. Repeated autumn DST interval must be resolved before using timestamps as unique keys. Raw files retained unchanged."
+}

@@ -1,0 +1,32 @@
+{
+  "refactored_on": "2026-11-07",
+  "gold_scope": "Calendar only; analytical gold design follows EDA",
+  "calendar_dependency": "02 writes silver.dim_time_hour; 03 reads silver; 04 publishes gold",
+  "notebooks": [
+    "01_profile_sources.ipynb",
+    "02_build_silver.ipynb",
+    "03_explore_power_market.ipynb",
+    "04_build_gold.ipynb"
+  ],
+  "original_export_sha256": {
+    "01_prepare_smard.ipynb": "0938598a534e145053419fadd449e920c214708f2be6fcc402ce7b30c9e9800f",
+    "01_prepare_smard.html": "5098338f719f1fc143e3998bca8f923849c950c2d493163c9b303ba6ec477617"
+  },
+  "evidence": "Original outputs preserved separately; no fabricated execution outputs",
+  "fabric_execution_by_notebook": {
+    "01_profile_sources": {
+      "status": "passed",
+      "evidence": "User reported Source checks passed on 2026-11-07"
+    },
+    "02_build_silver": {
+      "status": "pending refactored run"
+    },
+    "03_explore_power_market": {
+      "status": "pending refactored run"
+    },
+    "04_build_gold": {
+      "status": "pending refactored run; calendar-only implementation"
+    }
+  },
+  "all_refactored_notebooks_validated_in_fabric": false
+}
