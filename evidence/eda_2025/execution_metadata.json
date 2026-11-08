@@ -1,0 +1,214 @@
+{
+  "executed_on": "2026-11-08",
+  "execution_environment": "Local Python; not Fabric",
+  "analysis_source_sha256": "7a656e904e8883cf8fd26fadc96c453b15be4c9c4569a67c8e6096f1b3a547a9",
+  "source_profile": {
+    "year": 2025,
+    "expected_hours": 8760,
+    "sources": [
+      {
+        "file": "Actual_consumption_202501010000_202601010000_Hour.csv",
+        "row_count": 8760,
+        "column_count": 6,
+        "timeline_verified": true,
+        "sha256": "ea504b5a8d807ceb3d06be6accb58b171f2f75e1d90d087e582943b08830a2e8",
+        "metrics": [
+          {
+            "column": "grid load [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Grid load incl. hydro pumped storage [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Hydro pumped storage [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Residual load [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          }
+        ]
+      },
+      {
+        "file": "Actual_generation_202501010000_202601010000_Hour.csv",
+        "row_count": 8760,
+        "column_count": 14,
+        "timeline_verified": true,
+        "sha256": "cb5973272179d8466d67a1dacc258909c27c25c9d26dbd6f1f95b14d0dc0d64b",
+        "metrics": [
+          {
+            "column": "Biomass [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Hydropower [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Wind offshore [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Wind onshore [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Photovoltaics [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Other renewable [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Nuclear [MWh] Calculated resolutions",
+            "numeric_count": 0,
+            "missing_marker_count": 8760
+          },
+          {
+            "column": "Lignite [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Hard coal [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Fossil gas [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Hydro pumped storage [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Other conventional [MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          }
+        ]
+      },
+      {
+        "file": "Day-ahead_prices_202501010000_202601010000_Hour.csv",
+        "row_count": 8760,
+        "column_count": 19,
+        "timeline_verified": true,
+        "sha256": "b0edf72fa4aa2b217e10ec92099f50559d57e1b11f1d0929e1039c52caf90aa0",
+        "metrics": [
+          {
+            "column": "Germany/Luxembourg [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "\u2205 DE/LU neighbours [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Belgium [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Denmark 1 [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Denmark 2 [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "France [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Netherlands [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Norway 2 [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Austria [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Poland [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Sweden 4 [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Switzerland [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Czech Republic [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "DE/AT/LU [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 0,
+            "missing_marker_count": 8760
+          },
+          {
+            "column": "Northern Italy [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Slovenia [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          },
+          {
+            "column": "Hungary [\u20ac/MWh] Calculated resolutions",
+            "numeric_count": 8760,
+            "missing_marker_count": 0
+          }
+        ]
+      }
+    ],
+    "non_24_hour_days": {
+      "2025-03-30": 23,
+      "2025-10-26": 25
+    }
+  },
+  "rounding_policy": "Float64 for exploratory statistics; silver retains fixed-precision decimals",
+  "hourly_coverage": 8760,
+  "limitations": [
+    "Single observed year; association is not causal",
+    "Hourly averaged products cannot reconstruct sub-hourly settlements",
+    "Generation excludes behind-the-meter self-consumption; missing nuclear is not zero"
+  ]
+}

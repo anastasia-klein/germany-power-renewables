@@ -26,7 +26,7 @@
 #
 # Current scope: publish the validated technical calendar from `silver.dim_time_hour` as `gold.dim_time_hour`. The reporting calendar preserves UTC uniqueness and local calendar attributes.
 #
-# Analytical fact tables and reporting aggregates are not implemented yet. Their grain, dimensions and metric definitions will follow the exploratory research. Calendar publication depends only on persisted silver data.
+# Analytical fact tables are proposed in the gold metric contract following EDA and are not implemented yet. The proposed model contains an hourly market fact and an hourly generation-source fact with shared dimensions. This notebook currently publishes only the calendar from persisted silver data.
 
 # CELL ********************
 

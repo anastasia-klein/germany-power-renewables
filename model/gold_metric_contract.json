@@ -1,0 +1,275 @@
+{
+  "status": "Proposed analytical gold design following local EDA; not yet implemented in 04_build_gold",
+  "updated_on": "2026-11-08",
+  "scope": {
+    "year": 2025,
+    "physical_hours": 8760,
+    "country_code": "DE",
+    "bidding_zone_code": "DE-LU",
+    "interval": "Hourly export; market products change to quarter-hourly on 2025-10-01"
+  },
+  "evidence": "research/eda_2025_findings.md and evidence/eda_2025/",
+  "model_decision": "Consolidate the consumption and price facts proposed earlier into one hourly market fact. Retain generation by source in a separate fact. This avoids runtime fact-to-fact joins for weighted metrics.",
+  "tables": [
+    {
+      "name": "gold.dim_time_hour",
+      "grain": "One physical hour",
+      "key": [
+        "time_key"
+      ],
+      "fields": [
+        "interval_start_utc",
+        "interval_end_utc",
+        "duration_minutes",
+        "local_date",
+        "local_hour",
+        "utc_offset_minutes",
+        "fold",
+        "year",
+        "month",
+        "day_of_week",
+        "is_weekend",
+        "market_product_resolution_minutes"
+      ],
+      "rules": [
+        "UTC keys retain autumn repeated local hour",
+        "Month-hour grouping uses local time; chronology and episodes use UTC",
+        "Market product resolution is 60 before 2025-10-01 and 15 from that local date; data export resolution remains 60 minutes"
+      ]
+    },
+    {
+      "name": "gold.dim_market",
+      "grain": "One documented country/bidding-zone pairing",
+      "key": [
+        "market_key"
+      ],
+      "rows": [
+        {
+          "market_key": "DE_DE-LU",
+          "country_code": "DE",
+          "bidding_zone_code": "DE-LU"
+        }
+      ],
+      "rule": "Not a universal one-to-one relationship; additional markets require an effective-dated mapping"
+    },
+    {
+      "name": "gold.dim_generation_source",
+      "grain": "One of the 12 observed source categories",
+      "key": [
+        "generation_source_code"
+      ],
+      "fields": [
+        "generation_source_name",
+        "source_group",
+        "is_renewable",
+        "is_storage_output"
+      ],
+      "rules": [
+        "Pumped-storage output is storage, not an additional renewable source",
+        "Combined wind is a source group calculated from onshore and offshore; do not add a thirteenth physical category",
+        "Nuclear category remains present with unavailable generation"
+      ]
+    },
+    {
+      "name": "gold.fact_market_hour",
+      "grain": "Physical hour x market",
+      "key": [
+        "time_key",
+        "market_key"
+      ],
+      "expected_rows": 8760,
+      "fields": [
+        "day_ahead_price_eur_mwh",
+        "grid_load_mwh",
+        "grid_load_including_pumping_mwh",
+        "pumping_consumption_mwh",
+        "residual_load_mwh",
+        "wind_mwh",
+        "solar_mwh",
+        "wind_solar_mwh",
+        "wind_solar_load_ratio",
+        "price_weighted_load_eur",
+        "matched_grid_load_mwh",
+        "is_negative_price",
+        "is_zero_price",
+        "is_valid_price",
+        "is_valid_load_price"
+      ],
+      "construction": "Join consumption, price and generation aggregated to one hour using explicit DE/DE-LU pairing; validate one-to-one UTC coverage before writing"
+    },
+    {
+      "name": "gold.fact_generation_hour",
+      "grain": "Physical hour x market x generation source",
+      "key": [
+        "time_key",
+        "market_key",
+        "generation_source_code"
+      ],
+      "expected_rows": 105120,
+      "fields": [
+        "generation_mwh",
+        "price_weighted_generation_eur",
+        "matched_generation_mwh",
+        "negative_price_generation_mwh",
+        "is_valid_generation",
+        "is_valid_generation_price"
+      ],
+      "construction": "Join silver long generation to the unique price mapping once; products are hourly exposure components, not realized revenue",
+      "null_policy": "For missing source generation, volume and exposure components stay null. Valid observed zero generation produces zero exposure and counts as a matched hour."
+    }
+  ],
+  "relationships": "Shared time and market dimensions filter both facts, one-to-many and single direction. Generation source filters only generation fact. No fact-to-fact relationships.",
+  "data_types": "MWh and EUR/MWh retain fixed precision; hourly price-volume products use sufficient fixed precision such as DECIMAL(38,4). Ratios are measures with explicit zero/coverage guards.",
+  "metrics": [
+    {
+      "name": "average_price_eur_mwh",
+      "unit": "EUR/MWh",
+      "formula": "SUM(price * duration_hours) / SUM(duration_hours), matched valid-price intervals",
+      "research_reason": "Common benchmark across generation and demand profiles",
+      "source": "fact_market_hour",
+      "aggregation": "Recalculate for selected hours; do not average monthly means"
+    },
+    {
+      "name": "load_weighted_price_eur_mwh",
+      "unit": "EUR/MWh",
+      "formula": "SUM(price_weighted_load_eur) / SUM(matched_grid_load_mwh)",
+      "research_reason": "Annual exposure is 92.42 versus a market average of 89.32",
+      "source": "fact_market_hour",
+      "validity": "Identical valid-price and valid-load mask in numerator and denominator; blank if denominator is zero"
+    },
+    {
+      "name": "load_profile_price_gap_eur_mwh",
+      "unit": "EUR/MWh",
+      "formula": "load_weighted_price_eur_mwh - average_price_eur_mwh",
+      "research_reason": "Shows the price premium associated with the observed load profile",
+      "source": "fact_market_hour"
+    },
+    {
+      "name": "grid_load_mwh",
+      "unit": "MWh",
+      "formula": "SUM(grid_load_mwh)",
+      "research_reason": "Demand context for renewable output and price",
+      "source": "fact_market_hour"
+    },
+    {
+      "name": "generation_mwh",
+      "unit": "MWh",
+      "formula": "SUM(generation_mwh), preserving all-null as unavailable",
+      "research_reason": "Volume is the denominator of capture metrics",
+      "source": "fact_generation_hour",
+      "validity": "Nuclear is all-null in this snapshot; do not replace missing source observations with zero"
+    },
+    {
+      "name": "renewable_share_of_reported_generation",
+      "unit": "ratio",
+      "formula": "SUM(generation_mwh for renewable categories) / SUM(generation_mwh across observed categories)",
+      "research_reason": "Adds generation mix while distinguishing renewable output from storage discharge",
+      "source": "fact_generation_hour",
+      "denominator": "Reported generation across all categories, including pumped-storage output; nuclear unavailable",
+      "aggregation": "Ratio of sums, not mean of hourly shares; generation-source filter removed only for denominator"
+    },
+    {
+      "name": "wind_solar_load_ratio",
+      "unit": "ratio",
+      "formula": "SUM(wind_mwh + solar_mwh) / SUM(grid_load_mwh)",
+      "research_reason": "The annual high-output-to-load decile has much lower observed prices",
+      "source": "fact_market_hour",
+      "aggregation": "Ratio of sums for period measures; retain hourly ratio for scatter and distributions",
+      "validity": "Can exceed 1; not renewable share of generation or self-sufficiency"
+    },
+    {
+      "name": "residual_load_mwh",
+      "unit": "MWh",
+      "formula": "SUM(residual_load_mwh), where hourly residual = grid load - wind - solar",
+      "research_reason": "Strong positive raw and calendar-adjusted association with price",
+      "source": "fact_market_hour",
+      "validity": "Negative observations remain valid; not fossil generation or emissions"
+    },
+    {
+      "name": "capture_price_eur_mwh",
+      "unit": "EUR/MWh",
+      "formula": "SUM(price_weighted_generation_eur) / SUM(matched_generation_mwh)",
+      "research_reason": "Solar and wind receive different hourly market-price exposure",
+      "source": "fact_generation_hour",
+      "validity": "All selected source-hour observations must be available; zero-generation hours remain in benchmark coverage; blank for zero total volume or incomplete coverage"
+    },
+    {
+      "name": "capture_rate",
+      "unit": "ratio",
+      "formula": "capture_price_eur_mwh / average_market_price_over_same_selected_hours",
+      "research_reason": "Normalizes source exposure against a common period benchmark",
+      "source": "fact_generation_hour + fact_market_hour",
+      "validity": "Blank for non-positive benchmark or incomplete matched source coverage; negative capture price is allowed",
+      "aggregation": "Recompute from hourly components; never average monthly or source-specific ratios"
+    },
+    {
+      "name": "negative_price_hours",
+      "unit": "hours",
+      "formula": "SUM(is_negative_price * duration_hours) over valid prices",
+      "research_reason": "573 hourly exported values are negative",
+      "source": "fact_market_hour",
+      "validity": "Count physical hours once; not repeated generation-source rows; hourly export cannot recover negative quarter-hours"
+    },
+    {
+      "name": "negative_price_hour_share",
+      "unit": "ratio",
+      "formula": "negative_price_hours / SUM(valid_price_duration_hours)",
+      "research_reason": "Makes months with different lengths comparable",
+      "source": "fact_market_hour"
+    },
+    {
+      "name": "negative_price_generation_share",
+      "unit": "ratio",
+      "formula": "SUM(negative_price_generation_mwh) / SUM(matched_generation_mwh)",
+      "research_reason": "24.13% of solar generation occurs during negative-price hours",
+      "source": "fact_generation_hour",
+      "validity": "Same matched valid source-hour coverage; blank for zero denominator or incomplete coverage; not monetary loss"
+    },
+    {
+      "name": "price_p05_p50_p95_eur_mwh",
+      "unit": "EUR/MWh",
+      "formula": "Exact inclusive percentiles over selected physical-hour prices",
+      "research_reason": "Shows distribution beyond means and extreme individual observations",
+      "source": "fact_market_hour",
+      "priority": "Supporting distribution view",
+      "aggregation": "Recompute from hourly values; not additive across periods"
+    },
+    {
+      "name": "daily_price_range_eur_mwh",
+      "unit": "EUR/MWh",
+      "formula": "For each complete local date: MAX(price) - MIN(price)",
+      "research_reason": "Describes intraday price dispersion",
+      "source": "fact_market_hour",
+      "priority": "Supporting distribution view",
+      "aggregation": "Calculate daily values first, then an explicitly labeled mean/median; local days have 23, 24 or 25 physical hours",
+      "validity": "Not achievable arbitrage profit or household savings"
+    },
+    {
+      "name": "matched_hours_and_source_coverage",
+      "unit": "hours and ratio",
+      "formula": "Count valid matched physical hours; source valid hours / expected selected hours",
+      "research_reason": "Prevents missing values or join multiplication from appearing as complete results",
+      "source": "both facts",
+      "priority": "Required quality context"
+    }
+  ],
+  "publication_checks": [
+    "Unique business keys and complete UTC coverage",
+    "No join multiplication: 8760 market rows and 105120 source rows",
+    "Grid load including pumping reconciles with grid load plus pumping",
+    "Residual load reconciles with wind and solar within rounding tolerance",
+    "Valid source coverage is complete except expected unavailable nuclear observations",
+    "Annual headline measures reconcile with EDA before publication",
+    "Physical table writes are individually atomic; publishing multiple tables is not one transaction"
+  ],
+  "not_materialized": [
+    "Monthly averages or capture ratios: derive from hourly components for current dataset size",
+    "Correlation matrices, fitted model coefficients and sample-based decile bins: research diagnostics, not gold KPIs",
+    "Emissions, curtailment, generator profits, household bills or storage profitability: insufficient inputs"
+  ],
+  "next_research_inputs": [
+    "Quarter-hourly price and generation for settlement-resolution analysis",
+    "Forecast generation/load, fuel and carbon prices, flows and outages for broader price modeling",
+    "Tariff contracts and reconciled invoices for the private household extension"
+  ]
+}

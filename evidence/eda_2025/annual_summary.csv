@@ -1,0 +1,2 @@
+matched_hours,consumption_twh,wind_twh,solar_twh,renewable_share_of_reported_generation,average_price_eur_mwh,load_weighted_price_eur_mwh,negative_price_hours,negative_price_hour_share,zero_price_hours,p05_price_eur_mwh,median_price_eur_mwh,p95_price_eur_mwh,price_std_eur_mwh,minimum_price_eur_mwh,maximum_price_eur_mwh
+8760,465.8176831800,132.9624614700,73.7838303100,0.5886258104,89.3219121005,92.4171311170,573,0.0654109589,82,-0.1105000000,92.4300000000,162.3535000000,52.0985985757,-250.3200000000,583.4000000000

@@ -1,5 +1,5 @@
 {
-  "status": "Silver tables and gold calendar executed in Fabric; source profiling and initial refactored silver build confirmed by user; streamlined build revision awaits validation; analytical gold model remains a design",
+  "status": "Silver and initial separate EDA confirmed in Fabric; expanded EDA executed locally; analytical gold design proposed but not implemented",
   "time_key": {
     "format": "BIGINT YYYYMMDDHH in UTC",
     "example": 2025102600,
@@ -10,7 +10,7 @@
   },
   "tables": [
     {
-      "name": "dim_time_hour",
+      "name": "gold.dim_time_hour",
       "grain": "One physical hour",
       "key": [
         "time_key"
@@ -18,83 +18,106 @@
       "fields": [
         "interval_start_utc",
         "interval_end_utc",
+        "duration_minutes",
         "local_date",
         "local_hour",
         "utc_offset_minutes",
         "fold",
-        "duration_minutes"
+        "year",
+        "month",
+        "day_of_week",
+        "is_weekend",
+        "market_product_resolution_minutes"
+      ],
+      "rules": [
+        "UTC keys retain autumn repeated local hour",
+        "Month-hour grouping uses local time; chronology and episodes use UTC",
+        "Market product resolution is 60 before 2025-10-01 and 15 from that local date; data export resolution remains 60 minutes"
       ]
     },
     {
-      "name": "dim_country",
+      "name": "gold.dim_market",
+      "grain": "One documented country/bidding-zone pairing",
       "key": [
-        "country_code"
+        "market_key"
       ],
       "rows": [
-        "DE"
-      ]
-    },
-    {
-      "name": "dim_bidding_zone",
-      "key": [
-        "bidding_zone_code"
+        {
+          "market_key": "DE_DE-LU",
+          "country_code": "DE",
+          "bidding_zone_code": "DE-LU"
+        }
       ],
-      "rows": [
-        "DE-LU"
-      ]
+      "rule": "Not a universal one-to-one relationship; additional markets require an effective-dated mapping"
     },
     {
-      "name": "dim_generation_source",
+      "name": "gold.dim_generation_source",
+      "grain": "One of the 12 observed source categories",
       "key": [
         "generation_source_code"
       ],
-      "note": "Map the 12 generation columns to stable codes; distinguish pumped-storage output from renewable generation."
+      "fields": [
+        "generation_source_name",
+        "source_group",
+        "is_renewable",
+        "is_storage_output"
+      ],
+      "rules": [
+        "Pumped-storage output is storage, not an additional renewable source",
+        "Combined wind is a source group calculated from onshore and offshore; do not add a thirteenth physical category",
+        "Nuclear category remains present with unavailable generation"
+      ]
     },
     {
-      "name": "fact_consumption_hour",
-      "grain": "Hour x country",
+      "name": "gold.fact_market_hour",
+      "grain": "Physical hour x market",
       "key": [
         "time_key",
-        "country_code"
+        "market_key"
       ],
-      "measures": [
+      "expected_rows": 8760,
+      "fields": [
+        "day_ahead_price_eur_mwh",
         "grid_load_mwh",
         "grid_load_including_pumping_mwh",
         "pumping_consumption_mwh",
-        "residual_load_mwh"
+        "residual_load_mwh",
+        "wind_mwh",
+        "solar_mwh",
+        "wind_solar_mwh",
+        "wind_solar_load_ratio",
+        "price_weighted_load_eur",
+        "matched_grid_load_mwh",
+        "is_negative_price",
+        "is_zero_price",
+        "is_valid_price",
+        "is_valid_load_price"
       ],
-      "expected_rows": 8760
+      "construction": "Join consumption, price and generation aggregated to one hour using explicit DE/DE-LU pairing; validate one-to-one UTC coverage before writing"
     },
     {
-      "name": "fact_generation_hour",
-      "grain": "Hour x country x generation source",
+      "name": "gold.fact_generation_hour",
+      "grain": "Physical hour x market x generation source",
       "key": [
         "time_key",
-        "country_code",
+        "market_key",
         "generation_source_code"
       ],
-      "measures": [
-        "generation_mwh"
-      ],
       "expected_rows": 105120,
-      "null_policy": "Retain all 12 source categories, including Nuclear with null values; do not silently replace missing with zero."
-    },
-    {
-      "name": "fact_price_hour",
-      "grain": "Hour x bidding zone",
-      "key": [
-        "time_key",
-        "bidding_zone_code"
+      "fields": [
+        "generation_mwh",
+        "price_weighted_generation_eur",
+        "matched_generation_mwh",
+        "negative_price_generation_mwh",
+        "is_valid_generation",
+        "is_valid_generation_price"
       ],
-      "measures": [
-        "day_ahead_price_eur_mwh"
-      ],
-      "expected_rows": 8760,
-      "source_column": "Germany/Luxembourg [€/MWh] Calculated resolutions"
+      "construction": "Join silver long generation to the unique price mapping once; products are hourly exposure components, not realized revenue",
+      "null_policy": "For missing source generation, volume and exposure components stay null. Valid observed zero generation produces zero exposure and counts as a matched hour."
     }
   ],
   "semantic_model": {
-    "relationships": "Dimensions filter facts 1-to-many, single direction. No direct fact-to-fact relationships.",
+    "relationships": "Shared time and market dimensions filter both facts, one-to-many and single direction. Generation source filters only generation fact. No fact-to-fact relationships.",
     "geography": "Country DE and bidding zone DE-LU remain distinct. First release is fixed to this documented pairing; future countries require an explicit effective-dated country-zone mapping.",
     "date_filters": "Use local_date from dim_time_hour for business calendar filtering; UTC for uniqueness and joins.",
     "energy_aggregation": "SUM MWh across hours; do not multiply hourly MWh by duration again.",
@@ -102,7 +125,8 @@
     "weighted_price": "SUM(price * grid_load) / SUM(grid_load), with both sums restricted to the same matched valid hours.",
     "hourly_cost_limit": "Hourly aggregated prices times hourly energy are an hourly-resolution estimate. They do not reconstruct within-hour price/load covariance or actual settlement costs.",
     "negative_prices": "Valid observations; retain.",
-    "negative_residual_load": "Valid observations; retain."
+    "negative_residual_load": "Valid observations; retain.",
+    "model_decision": "Consolidate the consumption and price facts proposed earlier into one hourly market fact. Retain generation by source in a separate fact. This avoids runtime fact-to-fact joins for weighted metrics."
   },
   "staging_rules": [
     "Read UTF-8 BOM and semicolon delimiter; English date labels.",
@@ -119,5 +143,6 @@
     "price": "silver.price_hour",
     "technical_calendar": "silver.dim_time_hour",
     "reporting_calendar": "gold.dim_time_hour"
-  }
+  },
+  "analytical_gold_contract": "model/gold_metric_contract.json"
 }

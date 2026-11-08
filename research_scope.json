@@ -23,7 +23,7 @@
   "deliverables": [
     {
       "item": "Research notebooks and portable outputs",
-      "status": "Source profiling and initial refactored silver build confirmed in Fabric; streamlined silver revision and separate EDA/gold notebooks await execution"
+      "status": "Profiling, streamlined silver and initial separate EDA confirmed in Fabric; expanded EDA executed locally with outputs; expanded Fabric run pending"
     },
     {
       "item": "Versioned Fabric notebook and pipeline definitions",
@@ -31,7 +31,7 @@
     },
     {
       "item": "Gold tables, semantic model and DAX measures",
-      "status": "Analytical design pending EDA; calendar exists"
+      "status": "Calendar exists; proposed analytical gold metric contract follows local EDA; analytical tables, semantic model and DAX not implemented"
     },
     {
       "item": "Power BI report connected to Fabric",

@@ -3,7 +3,7 @@
   "metadata": {
     "type": "Notebook",
     "displayName": "03_explore_power_market",
-    "description": "Read-only analysis of monthly market prices and load exposure."
+    "description": "Hourly EDA of renewable generation, price exposure, negative prices and calendar-adjusted associations."
   },
   "config": {
     "version": "2.0",

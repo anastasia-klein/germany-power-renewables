@@ -1,0 +1,7 @@
+sample,variable,eur_mwh_per_additional_gwh,in_sample_r_squared,hours
+all_hours,wind_mwh,-2.6088419029,0.8255414961,8760
+all_hours,solar_mwh,-2.5355453337,0.8255414961,8760
+all_hours,grid_load_mwh,3.0593218746,0.8255414961,8760
+local_hours_08_to_17,wind_mwh,-2.7749082603,0.8517525631,3650
+local_hours_08_to_17,solar_mwh,-2.6570094939,0.8517525631,3650
+local_hours_08_to_17,grid_load_mwh,2.9138895270,0.8517525631,3650

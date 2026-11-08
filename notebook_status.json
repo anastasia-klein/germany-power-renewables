@@ -1,6 +1,6 @@
 {
   "refactored_on": "2026-11-08",
-  "gold_scope": "Calendar only; analytical gold design follows EDA",
+  "gold_scope": "Calendar implemented; analytical gold metric contract proposed after EDA",
   "calendar_dependency": "02 writes silver.dim_time_hour; 03 reads silver; 04 publishes gold",
   "notebooks": [
     "01_profile_sources.ipynb",
@@ -20,12 +20,15 @@
       "revision": "Research narrative updated; executed code unchanged"
     },
     "02_build_silver": {
-      "status": "streamlined revision pending Fabric run",
+      "status": "passed",
       "previous_execution": "User confirmed the initial refactored build completed without errors on 2026-11-08",
-      "revision": "Removed exploratory previews and redundant CSV reads; mandatory checks retained; seven build code cells"
+      "revision": "Removed exploratory previews and redundant CSV reads; mandatory checks retained; seven build code cells",
+      "evidence": "User confirmed the streamlined build completed without errors on 2026-11-08"
     },
     "03_explore_power_market": {
-      "status": "pending refactored run"
+      "status": "expanded EDA revision pending Fabric run",
+      "previous_execution": "User confirmed the separate monthly-analysis notebook passed in Fabric on 2026-11-08",
+      "local_execution": "Expanded analytical cells executed against original SMARD CSV files on 2026-11-08; evidence/eda_2025/"
     },
     "04_build_gold": {
       "status": "pending refactored run; calendar-only implementation"
