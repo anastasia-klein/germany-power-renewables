@@ -15,10 +15,13 @@
     "Solar: 73.78 TWh, capture 46.07 EUR/MWh, rate 51.58%, negative volume exposure 24.13%",
     "Biomass source selection: capture 92.85 EUR/MWh and rate 103.95%; market benchmark and all-source table retained",
     "Annual negative-price page: 573 hours, 6.54%, 8760 valid hours",
-    "June month selection: 141 negative hours, 19.58%, 720 valid hours"
+    "June month selection: 141 negative hours, 19.58%, 720 valid hours",
+    "Final line colors confirmed after sync: ochre generation/load ratio and terracotta negative-price frequency; annual headline values unchanged"
   ],
   "public_access": "Not enabled; workspace-authenticated report only",
   "reference_design": "https://github.com/anastasia-klein/global-critical-materials-intelligence",
-  "deployed_report_source_commit": "bb5c66d",
-  "pending_report_changes": "Two single-series line color settings in d4c3164 are not applied. Fabric requested a permanent-deletion-risk acknowledgement while resolving a report conflict; automatic review rejected that acknowledgement without user confirmation. The working three-page report remains deployed."
+  "deployed_report_source_commit": "d4c3164",
+  "pending_report_changes": null,
+  "fabric_synced_git_commit": "b382f86",
+  "conflict_resolution": "User explicitly approved updating only the report; accepted incoming report content in Fabric. Report returned to Synced."
 }
