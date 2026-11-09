@@ -56,11 +56,11 @@ The market changed to 15-minute products on 1 October 2025. These source exports
 
 ## Implications for gold
 
-The [proposed metric contract](../model/gold_metric_contract.json) retains hourly facts and computes ratios from their components for each selected reporting period. The first reporting model should contain an hourly market fact and an hourly generation-source fact with shared dimensions. This consolidates the three silver inputs at the appropriate grains and avoids making Power BI join consumption and prices across fact tables for every weighted measure.
+The [metric contract](../model/gold_metric_contract.json) retains hourly facts and computes ratios from their components for each selected reporting period. The first reporting model should contain an hourly market fact and an hourly generation-source fact with shared dimensions. This consolidates the three silver inputs at the appropriate grains and avoids making Power BI join consumption and prices across fact tables for every weighted measure.
 
 Core metrics are time-average and load-weighted prices, the load-profile price gap, generation volume and mix, wind-and-solar generation relative to load, residual load, capture price and rate, negative-price hours and source-volume exposure. Price quantiles and daily price range provide supporting distribution views. Correlations, regression coefficients and sample-derived deciles remain research outputs; they do not need permanent gold tables.
 
-The planned analytical gold tables have not been created. The existing gold notebook still publishes only the calendar. No monthly aggregate tables are necessary for this dataset size: keeping hourly components supports month, hour, weekday and selected-period filters without averaging already aggregated prices or ratios.
+The analytical gold build is now implemented in notebook 04 and has passed local SQL and calendar checks. Its first Fabric run and publication of the five tables are pending. No monthly aggregate tables are necessary for this dataset size: keeping hourly components supports month, hour, weekday and selected-period filters without averaging already aggregated prices or ratios.
 
 ## Definitions, validation and limits
 

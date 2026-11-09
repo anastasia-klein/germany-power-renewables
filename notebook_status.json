@@ -1,6 +1,6 @@
 {
   "refactored_on": "2026-11-08",
-  "gold_scope": "Calendar implemented; analytical gold metric contract proposed after EDA",
+  "gold_scope": "Five-table 2025 gold build implemented; local SQL/calendar checks passed; Fabric execution pending",
   "calendar_dependency": "02 writes silver.dim_time_hour; 03 reads silver; 04 publishes gold",
   "notebooks": [
     "01_profile_sources.ipynb",
@@ -32,7 +32,15 @@
       "evidence": "User confirmed the expanded EDA completed without errors in Fabric on 2026-11-09 after resolving Git conflicts"
     },
     "04_build_gold": {
-      "status": "pending refactored run; calendar-only implementation"
+      "status": "full 2025 build pending first Fabric run",
+      "outputs": {
+        "gold.dim_time_hour": 8760,
+        "gold.dim_market": 1,
+        "gold.dim_generation_source": 12,
+        "gold.fact_market_hour": 8760,
+        "gold.fact_generation_hour": 105120
+      },
+      "local_validation": "data/validation/gold_build_local.json; DuckDB SQL and Python calendar, not Spark/Delta execution"
     }
   },
   "all_refactored_notebooks_validated_in_fabric": false,

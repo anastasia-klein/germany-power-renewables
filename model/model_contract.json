@@ -1,5 +1,5 @@
 {
-  "status": "Silver and initial separate EDA confirmed in Fabric; expanded EDA executed locally; analytical gold design proposed but not implemented",
+  "status": "Silver and expanded EDA confirmed in Fabric; five-table gold build implemented and SQL/calendar checked locally; first gold notebook run pending",
   "time_key": {
     "format": "BIGINT YYYYMMDDHH in UTC",
     "example": 2025102600,
@@ -32,8 +32,10 @@
       "rules": [
         "UTC keys retain autumn repeated local hour",
         "Month-hour grouping uses local time; chronology and episodes use UTC",
-        "Market product resolution is 60 before 2025-10-01 and 15 from that local date; data export resolution remains 60 minutes"
-      ]
+        "Market product resolution is 60 before 2025-10-01 and 15 from that local date; data export resolution remains 60 minutes",
+        "day_of_week uses ISO numbering: Monday=1 through Sunday=7"
+      ],
+      "expected_rows": 8760
     },
     {
       "name": "gold.dim_market",
@@ -48,7 +50,8 @@
           "bidding_zone_code": "DE-LU"
         }
       ],
-      "rule": "Not a universal one-to-one relationship; additional markets require an effective-dated mapping"
+      "rule": "Not a universal one-to-one relationship; additional markets require an effective-dated mapping",
+      "expected_rows": 1
     },
     {
       "name": "gold.dim_generation_source",
@@ -66,7 +69,8 @@
         "Pumped-storage output is storage, not an additional renewable source",
         "Combined wind is a source group calculated from onshore and offshore; do not add a thirteenth physical category",
         "Nuclear category remains present with unavailable generation"
-      ]
+      ],
+      "expected_rows": 12
     },
     {
       "name": "gold.fact_market_hour",
@@ -144,5 +148,12 @@
     "technical_calendar": "silver.dim_time_hour",
     "reporting_calendar": "gold.dim_time_hour"
   },
-  "analytical_gold_contract": "model/gold_metric_contract.json"
+  "analytical_gold_contract": "model/gold_metric_contract.json",
+  "gold_build_targets": {
+    "gold.dim_time_hour": 8760,
+    "gold.dim_market": 1,
+    "gold.dim_generation_source": 12,
+    "gold.fact_market_hour": 8760,
+    "gold.fact_generation_hour": 105120
+  }
 }

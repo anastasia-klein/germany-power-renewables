@@ -1,0 +1,18 @@
+{
+  "checked_on": "2026-11-09",
+  "notebook_source_sha256": "429b8606062116836df94a0a7afd1c438c46fb363d3871a1b3ebf59b0dbc8c0e",
+  "engine": "Local DuckDB 2.0.0",
+  "market_fact_rows": 8760,
+  "generation_fact_rows": 105120,
+  "checks": [
+    "Executed exact notebook fact SQL against source-derived DECIMAL inputs",
+    "Unique business keys and complete time coverage",
+    "Exact notebook calendar construction preserves UTC chronology, DST folds, ISO weekdays and market-resolution boundary",
+    "Pumping and residual-load balance",
+    "Market mean and load-weighted price independently checked with Decimal",
+    "Capture prices and negative-price volume shares for all eleven observed source categories independently checked with Decimal",
+    "Missing nuclear remains null; valid zero generation remains zero",
+    "Negative, zero, positive and missing price cases preserve matched-volume semantics"
+  ],
+  "limitations": "Spark helpers, Fabric Lakehouse binding and Delta writes require the first Fabric run; no Fabric execution is claimed"
+}

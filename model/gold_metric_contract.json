@@ -1,6 +1,6 @@
 {
-  "status": "Proposed analytical gold design following local EDA; not yet implemented in 04_build_gold",
-  "updated_on": "2026-11-08",
+  "status": "Implemented in 04_build_gold; local SQL and calendar checks passed; first Fabric Spark/Delta run pending",
+  "updated_on": "2026-11-09",
   "scope": {
     "year": 2025,
     "physical_hours": 8760,
@@ -34,8 +34,10 @@
       "rules": [
         "UTC keys retain autumn repeated local hour",
         "Month-hour grouping uses local time; chronology and episodes use UTC",
-        "Market product resolution is 60 before 2025-10-01 and 15 from that local date; data export resolution remains 60 minutes"
-      ]
+        "Market product resolution is 60 before 2025-10-01 and 15 from that local date; data export resolution remains 60 minutes",
+        "day_of_week uses ISO numbering: Monday=1 through Sunday=7"
+      ],
+      "expected_rows": 8760
     },
     {
       "name": "gold.dim_market",
@@ -50,7 +52,8 @@
           "bidding_zone_code": "DE-LU"
         }
       ],
-      "rule": "Not a universal one-to-one relationship; additional markets require an effective-dated mapping"
+      "rule": "Not a universal one-to-one relationship; additional markets require an effective-dated mapping",
+      "expected_rows": 1
     },
     {
       "name": "gold.dim_generation_source",
@@ -68,7 +71,8 @@
         "Pumped-storage output is storage, not an additional renewable source",
         "Combined wind is a source group calculated from onshore and offshore; do not add a thirteenth physical category",
         "Nuclear category remains present with unavailable generation"
-      ]
+      ],
+      "expected_rows": 12
     },
     {
       "name": "gold.fact_market_hour",
@@ -271,5 +275,6 @@
     "Quarter-hourly price and generation for settlement-resolution analysis",
     "Forecast generation/load, fuel and carbon prices, flows and outages for broader price modeling",
     "Tariff contracts and reconciled invoices for the private household extension"
-  ]
+  ],
+  "execution_validation": "data/validation/gold_build_local.json"
 }
