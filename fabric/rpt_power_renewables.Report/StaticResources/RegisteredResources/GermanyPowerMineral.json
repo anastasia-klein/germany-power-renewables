@@ -1,0 +1,39 @@
+{
+  "name": "Germany Power · Mineral",
+  "dataColors": [
+    "#416A9C",
+    "#C3933D",
+    "#278B87",
+    "#758296",
+    "#527D58",
+    "#BC6657"
+  ],
+  "background": "#F1F4F1",
+  "foreground": "#20332D",
+  "tableAccent": "#278B87",
+  "good": "#278B87",
+  "neutral": "#C3933D",
+  "bad": "#BC6657",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Arial",
+      "fontSize": 28,
+      "color": "#20332D"
+    },
+    "title": {
+      "fontFace": "Arial",
+      "fontSize": 14,
+      "color": "#20332D"
+    },
+    "header": {
+      "fontFace": "Arial",
+      "fontSize": 12,
+      "color": "#20332D"
+    },
+    "label": {
+      "fontFace": "Arial",
+      "fontSize": 10,
+      "color": "#64746E"
+    }
+  }
+}
