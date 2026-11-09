@@ -1,0 +1,8 @@
+{
+  "analysis_date": "2026-11-09",
+  "execution_environment": "Local Python; supplemental source summary",
+  "reported_generation_twh": 437.89522283,
+  "renewable_share_of_reported_generation": 0.5886258104260397,
+  "wind_solar_share_of_reported_generation": 0.4721364404111419,
+  "denominator": "All observed source categories, including pumped-storage output; nuclear unavailable"
+}

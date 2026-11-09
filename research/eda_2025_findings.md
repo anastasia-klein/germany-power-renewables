@@ -6,7 +6,7 @@ The 2025 hourly SMARD data support a reporting model centered on the timing of g
 
 The analysis covers 8,760 consecutive physical hours in the local calendar year 2025. German consumption and generation are paired with the Germany/Luxembourg bidding-zone price through UTC keys. The original source files were downloaded on 6 November 2026. Missing nuclear observations remain unavailable, and negative prices remain valid data.
 
-The source profiling, streamlined silver build and earlier monthly analysis were confirmed successful in Microsoft Fabric by the project author. The expanded EDA was executed locally on 8 November 2026 against those same original exports. Its tables and figures are captured in [the local execution snapshot](../evidence/eda_2025/03_power_market_eda_local.ipynb). This is separate from Fabric execution evidence; the expanded notebook still awaits its Fabric run.
+The source profiling, streamlined silver build and earlier monthly analysis were confirmed successful in Microsoft Fabric by the project author. The expanded EDA was executed locally on 8 November 2026 against those same original exports. Its tables and figures are captured in [the local execution snapshot](../evidence/eda_2025/03_power_market_eda_local.ipynb). This is separate from Fabric execution evidence; the project author subsequently confirmed the expanded notebook passed in Fabric on 9 November 2026. The saved output snapshot remains local execution evidence.
 
 ## Generation-weighted prices differ substantially by source
 

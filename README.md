@@ -10,6 +10,8 @@ An applied research project examining how renewable generation and electricity d
 
 A private household extension will evaluate alternative tariffs using an observed Tibber consumption profile. Its data availability, applicable tariff periods and feasibility are still under investigation. Household records and credentials are excluded from this public research repository.
 
+The [source dictionary](data/source_dictionary.md) explains every raw column, scope, units and missing values. The [metric and figure interpretation](research/metrics_and_figures.md) explains weights, denominators and each chart; the [data extension plan](research/data_extension_plan.md) records candidate forecast, flow and fuel datasets.
+
 ## Data and methodology
 
 The initial dataset covers the full local calendar year 2025: 8,760 physical hours of German grid load and generation by source, matched to Germany/Luxembourg day-ahead prices. Source files are retained unchanged. Numeric fields use fixed precision, missing markers remain distinct from zero, and UTC keys distinguish the repeated autumn hour. Local dates support calendar-based analysis.
@@ -28,17 +30,19 @@ The [execution snapshot](evidence/03_explore_power_market_snapshot.ipynb) preser
 
 The expanded [2025 EDA findings](research/eda_2025_findings.md) compare generation-weighted prices, negative-price exposure and calendar-adjusted associations. Solar's annual capture price was 46.07 EUR/MWh, 51.58% of the time-average market price; 24.13% of solar generation occurred during negative-price hours. Combined wind's corresponding capture price was 78.93 EUR/MWh. Residual load showed a strong positive association with price, while the apparent wind and solar associations changed after removing calendar patterns. These are descriptive findings, not causal estimates or realized revenue.
 
-The expanded analytical cells were executed locally against the original exports, with [captured outputs](evidence/eda_2025/03_power_market_eda_local.ipynb), result tables and figures. Execution of this expanded revision in Fabric is pending. The [proposed gold metric contract](model/gold_metric_contract.json) retains hourly components so weighted prices and rates can be recomputed for each reporting period.
+The expanded analytical cells were executed locally against the original exports, with [captured outputs](evidence/eda_2025/03_power_market_eda_local.ipynb), result tables and figures. The project author confirmed this expanded revision completed successfully in Fabric on 9 November 2026. The captured outputs at this link remain from the local execution. The [proposed gold metric contract](model/gold_metric_contract.json) retains hourly components so weighted prices and rates can be recomputed for each reporting period.
 
 ## Fabric implementation
 
 The implemented flow is raw CSV files in OneLake → validated silver Delta tables → notebook analysis. Silver contains `consumption_hour`, `generation_hour` and `price_hour`. The refactored silver build also publishes a shared UTC calendar. A reporting calendar exists in gold; analytical gold tables are proposed in the metric contract and remain unimplemented.
 
-The notebook collection separates source profiling, silver preparation, exploration and gold publication. Source profiling, the streamlined silver build and the initial separate monthly-analysis notebook have passed in Fabric according to the project author's confirmation. The expanded EDA revision and separate calendar-publication notebook await their Fabric runs. The original combined notebook produced the earlier preserved results.
+The notebook collection separates source profiling, silver preparation, exploration and gold publication. Source profiling, the streamlined silver build and the initial separate monthly-analysis notebook have passed in Fabric according to the project author's confirmation. The expanded EDA revision also passed in Fabric on 9 November 2026; the separate calendar-publication notebook has not yet been run. The original combined notebook produced the earlier preserved results.
 
 The workspace is connected to GitHub. The `fabric/` directory contains the authoritative Fabric item definitions; `notebooks/` contains portable, output-free exports derived from that source. Captured outputs remain in `evidence/`, because Fabric Git integration versions source rather than notebook outputs. Source profiling and exploration are separate from the build flow. The silver build contains only input validation, transformation, quality gates and table publication; every code cell is part of the job.
 
 Data Factory orchestration, analytical gold models, DAX measures, the Power BI connection, public report and video are planned deliverables. No pipeline execution, published dashboard or semantic-model connection is claimed at this stage. Definitions and execution evidence will accompany these components as they are completed.
+
+The full [generation mix](evidence/eda_2025/generation_mix.png) provides context beyond wind and solar: all twelve categories are retained, with nuclear unavailable rather than replaced by zero. Wind and solar account for 47.21% of reported generation; the six renewable categories together account for 58.86%.
 
 ## Sources and attribution
 

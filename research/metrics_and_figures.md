@@ -1,0 +1,91 @@
+# Metrics and figures in the power-market analysis
+
+The [source dictionary](../data/source_dictionary.md) defines the raw fields. This document explains how the current EDA combines those fields and how each figure should be read. Values below refer to the downloaded 2025 snapshot, not household tariffs or generator accounts.
+
+## Price averages and volume weights
+
+For hourly price `p[h]`, grid load `L[h]` and source generation `G[s,h]`:
+
+| Metric | Formula | Interpretation |
+| --- | --- | --- |
+| Time-average price | `sum(p[h]) / matched_hours` | Every physical hour has equal weight; 89.32 EUR/MWh annually |
+| Load-weighted price | `sum(p[h] * L[h]) / sum(L[h])` | Every MWh of grid load has equal weight; 92.42 EUR/MWh annually |
+| Load-profile price gap | `load_weighted_price - time_average_price` | Difference associated with load timing; +3.10 EUR/MWh annually |
+| Capture price | `sum(p[h] * G[s,h]) / sum(G[s,h])` | Every MWh from the selected source has equal weight |
+| Capture rate | `capture_price / time_average_price` | Source price exposure relative to the market benchmark over the same hours |
+
+The current load weight excludes pumping consumption. Capture volumes use the relevant source, not total generation or grid load. The denominator and numerator must use the same valid matched observations. Ratios are recomputed after filtering, rather than averaged from monthly results.
+
+For a two-hour example, prices of 20 and 100 EUR/MWh have a time average of 60. A source generating 9 MWh in the first hour and 1 MWh in the second has a capture price of `(20*9 + 100*1)/10 = 28`, and a capture rate of 46.67%. A load profile of 1 and 9 MWh has a load-weighted price of 92. The same market prices therefore produce different exposures for different timing profiles.
+
+Annual source capture prices are 77.31 EUR/MWh for onshore wind, 85.53 for offshore wind, 78.93 for combined wind and 46.07 for solar. Solar's 51.58% capture rate does not mean 51.58% generation efficiency, a 48.42% financial loss or a share of generation. Fixed contracts, support payments, hedging and other settlements are outside this calculation. A negative captured price is possible; the proposed gold measure leaves capture rate undefined for a non-positive benchmark.
+
+## Frequency, volume exposure and the denominator of a percentage
+
+| Result | Numerator | Denominator |
+| --- | --- | --- |
+| Annual negative-price hour share: 6.54% | 573 negative-price hours | 8,760 valid physical hours in 2025 |
+| June negative-price hour share: 19.58% | 141 negative-price hours | 720 valid hours in June |
+| Heatmap cell for June at 13:00 | June observations at local hour 13 with negative prices | All valid June observations at local hour 13; normally 30 |
+| Annual solar negative-price volume exposure: 24.13% | Solar MWh in negative-price hours | All matched solar MWh in 2025 |
+| June solar negative-price volume exposure: 46.94% | Solar MWh in negative-price hours in June | All matched solar MWh in June |
+
+The dashed line in the annual volume-exposure chart represents the negative-price **hour** share, while the bars represent negative-price **volume** shares. A solar bar above the line means that solar generation is concentrated in those hours, not that the share of negative hours changed between technologies.
+
+Each percentage inherits the period and filters in its grouping. It is a daily share only when the grouping is a date. DST days use their actual 23 or 25 hours. Zero prices are distinct from negative prices: the export contains 82 zero-price hours.
+
+## Energy mix and load-relative ratios
+
+The supplemental [generation-mix figure](../evidence/eda_2025/generation_mix.png) includes all observed source categories. Nuclear is shown as unavailable in the accompanying table rather than plotted as measured zero. Summed reported generation is 437.90 TWh. Renewable sources account for 58.86%; wind and solar together account for 47.21% of reported generation. Pumped-storage output is included in that denominator and is not classified as an additional renewable source.
+
+The annual ratio of wind-and-solar MWh to grid-load MWh is 44.38%. That is a different denominator from generation share. On an individual hour, this ratio can exceed 100%. It does not establish the origin of consumed electricity or household self-sufficiency. A period ratio of summed energy also differs from the unweighted average of hourly ratios: both require explicit labels.
+
+## Figure 1: monthly prices and load-profile gap
+
+The top panel shows two prices per month. The time-average line weights every hour equally; the load-weighted line gives greater influence to hours with higher grid load. January is 114.14 versus 118.49 EUR/MWh. February has the highest monthly mean in this sample, while June has the lowest.
+
+The bottom bars subtract the first line from the second. January's +4.35 EUR/MWh means load was relatively more concentrated in expensive hours. June's -0.39 and July's -0.08 indicate slightly lower load-weighted prices. This is a profile association, not a causal effect or a retail billing premium. The comparison is within each month, not a comparison of monthly consumption volumes.
+
+## Figure 2: three hourly density plots
+
+Each hexagonal cell aggregates observed hours with similar x and y values. The common color scale counts hours logarithmically: brighter cells contain more observations, not more generation. The vertical axis is day-ahead price; the horizontal axes are wind, solar and residual-load energy in GWh per hour.
+
+- Wind: high-output hours tend to have lower prices, but output alone leaves considerable dispersion.
+- Solar: the high-output side contains many low and negative prices. Season and hour affect this relationship, because solar output follows daylight and seasons.
+- Residual load: prices rise strongly with demand remaining after wind and solar. The pattern is curved and retains outliers, so correlation is only a summary.
+
+Raw Pearson correlations with price are -0.286 for wind, -0.557 for solar, +0.346 for grid load, +0.876 for residual load and -0.805 for wind-and-solar output divided by load. They do not measure causal contribution or the fraction of the electricity price set by each technology.
+
+## Figure 3: monthly capture rates and annual negative-price volume exposure
+
+The left panel shows each month's source-weighted price divided by that month's market average. The 100% line means equal source and market prices; it does not mean full renewable demand coverage. Solar exceeds 100% slightly in January and December, but falls to 31.36% in June: 20.07 EUR/MWh captured against a market mean of 63.99. Combined wind stays closer to the benchmark for much of the year, with 72.76% in October.
+
+The right panel compares annual source-volume exposure: onshore wind 7.54%, offshore wind 4.40% and solar 24.13%. Combined wind is 6.92% in the result table. These are shares of energy, not shares of hours. The time-based reference line is 6.54%.
+
+## Figure 4: negative-price heatmap and generation-to-load deciles
+
+The heatmap groups observations by month and local hour. A deep color means a high frequency of negative prices within that specific month-hour group. Negative-price hours are concentrated around midday in spring and summer, with other episodes outside that pattern. It does not display solar output or the number of negative hours per whole day.
+
+The right panel sorts all 8,760 hours by `(wind + solar) / grid load` and divides them into ten equally sized groups of 876 hours. Each dot shows the group's mean ratio and mean price. These are not chronological observations or fixed 10-percentage-point bands. The lowest group averages 8.20% and 145.99 EUR/MWh; the highest averages 94.73% and -3.00 EUR/MWh. Only 58.90% of hours in the highest group are negative, illustrating that high variable-renewable output relative to load does not deterministically imply a negative price.
+
+The complementary table bins residual load itself. Its lowest decile has a mean price of -3.18 EUR/MWh; its highest, 170.28. Both comparisons mix calendar and demand conditions, so they are descriptive rather than counterfactual effects.
+
+## Other tables in notebook 03
+
+- Annual summary: matched coverage, energy totals, price means, negative and zero hours, minimum -250.32 and maximum 583.40 EUR/MWh.
+- Price quantiles: P05 -0.1105, median 92.43 and P95 162.3535 EUR/MWh. Approximately 5% of observations fall below P05 and 5% above P95, subject to interpolation and ties. They are not confidence intervals.
+- Population standard deviation: 52.10 EUR/MWh, describing dispersion of observed hourly price levels. It is not volatility of returns or a forecast error.
+- Negative-price conditions: mean wind-and-solar/load ratio is 95.41% in negative hours versus 40.96% in other hours. These are means of hourly ratios, not ratios of summed energy.
+- Episodes: consecutive negative hours in UTC, irrespective of local midnight. The longest lasts 20 hours, from 4 October 19:00 UTC to 5 October 15:00 UTC.
+- Calendar-adjusted correlations: month-by-local-hour effects and additive weekday effects are removed from both price and explanatory variables. Residual correlations are -0.628 for wind, -0.232 for solar and +0.774 for residual load. This does not control every market driver.
+- Multivariate descriptive model: wind, solar and load enter together with calendar controls. Coefficients are approximately -2.61, -2.54 and +3.06 EUR/MWh per additional GWh in the hour. Residual load is omitted because it is an arithmetic combination of these inputs. In-sample R-squared is 0.826; that is not an out-of-sample forecast score or causal variance decomposition. Signs persist in a local 08:00–17:00 sensitivity sample. No significance claims are made.
+- Daily price range: daily maximum minus minimum. The mean of these daily ranges is 124.13 EUR/MWh. It does not measure achievable battery profit.
+- Resolution-period table: separates January–September and October–December because the day-ahead market changed product resolution. Seasonal differences prevent a simple before/after causal interpretation.
+
+## Why negative prices are not a solar threshold
+
+Negative bids can clear when flexible demand, export or storage opportunities cannot absorb available offers at non-negative prices. Low demand, wind, solar, operational inflexibility, heat obligations, contracts and incentives can all matter. This is a market-clearing outcome, not a physical state in which electricity is allowed to accumulate unbalanced in the grid. [SMARD explanation](https://www.smard.de/page/en/topic-article/5892/15618/negative-electricity-prices).
+
+Direct counterexamples occur in this export. There are 102 hours with solar output of at least 40,000 MWh and positive prices. At 03:00 local time on 1 January, the price is -0.01 EUR/MWh while reported solar is only 9.25 MWh. Small nighttime solar values can occur in estimated source data and should not be interpreted as strong solar production. These observations reject an always-negative-with-high-solar rule; they do not isolate causal effects.
+
+The day-ahead price is formed before actual delivery. Actual generation and actual demand can be used to describe realized profiles, but are not information available at bidding time. Predictive or causal work needs additional inputs and valid publication-time alignment. [SMARD: market mechanics](https://www.smard.de/page/en/wiki-article/5884/5840/this-is-how-the-electricity-market-works).

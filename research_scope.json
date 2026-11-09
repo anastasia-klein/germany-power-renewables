@@ -1,6 +1,6 @@
 {
   "project": "Germany Power & Renewables",
-  "updated_on": "2026-11-08",
+  "updated_on": "2026-11-09",
   "format": "Research case study with analysis, methodology, findings, pipelines and Fabric execution evidence; no reproduction tutorial",
   "questions": [
     {
@@ -23,7 +23,7 @@
   "deliverables": [
     {
       "item": "Research notebooks and portable outputs",
-      "status": "Profiling, streamlined silver and initial separate EDA confirmed in Fabric; expanded EDA executed locally with outputs; expanded Fabric run pending"
+      "status": "Profiling, streamlined silver and expanded EDA confirmed successful in Fabric; local expanded EDA outputs preserved separately; separate gold notebook not yet run"
     },
     {
       "item": "Versioned Fabric notebook and pipeline definitions",

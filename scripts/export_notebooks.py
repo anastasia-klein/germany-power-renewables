@@ -28,9 +28,9 @@ def export_notebook(source):
         body = body.strip()
         if kind == "MARKDOWN":
             lines = body.splitlines()
-            if any(line != "#" and not line.startswith("# ") for line in lines):
+            if any(line not in {"", "#"} and not line.startswith("# ") for line in lines):
                 raise ValueError("Invalid Fabric markdown section")
-            body = "\n".join(line[2:] if line != "#" else "" for line in lines)
+            body = "\n".join(line[2:] if line not in {"", "#"} else "" for line in lines)
         else:
             ast.parse(body)
         item = {
