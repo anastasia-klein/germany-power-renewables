@@ -1,5 +1,5 @@
 {
-  "status": "Five-table gold build and latest EDA confirmed successful in Fabric; sm_power_renewables created with five gold tables; semantic relationships and proposed DAX pending validation",
+  "status": "Gold build and EDA passed in Fabric; semantic model with five relationships and six initial measures committed from Fabric; nineteen measures implemented in TMDL, thirteen additions pending Fabric synchronization and numeric validation",
   "updated_on": "2026-11-09",
   "scope": {
     "year": 2025,

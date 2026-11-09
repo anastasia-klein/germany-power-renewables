@@ -31,7 +31,7 @@
     },
     {
       "item": "Gold tables, semantic model and DAX measures",
-      "status": "Gold tables published and sm_power_renewables created with five gold tables; relationships and DAX definitions proposed in model/ and pending semantic execution"
+      "status": "Gold tables and semantic model created in Fabric; five relationships and six measures committed from Fabric; nineteen measures implemented in versioned TMDL, thirteen additions pending sync and validation"
     },
     {
       "item": "Power BI report connected to Fabric",

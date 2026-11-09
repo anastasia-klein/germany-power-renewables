@@ -70,6 +70,35 @@ table fact_market_hour
 
 		changedProperty = FormatString
 
+	measure 'Valid Price Hours' =
+			CALCULATE(
+			    COUNTROWS('fact_market_hour'),
+			    'fact_market_hour'[is_valid_price] = TRUE()
+			)
+		formatString: 0
+		lineageTag: 13c8cb91-0090-4464-aac1-094c195587f1
+
+	measure 'Negative Price Hours' =
+			COALESCE(
+			    CALCULATE(
+			        COUNTROWS('fact_market_hour'),
+			        'fact_market_hour'[is_negative_price] = TRUE()
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: 42abcb8f-cc91-4b87-a61d-ce7d34164926
+
+	measure 'Negative Price Hour Share' =
+			DIVIDE([Negative Price Hours], [Valid Price Hours])
+		formatString: 0.00%
+		lineageTag: dd579e52-85f0-4248-8d9f-8bd862523297
+
+	measure 'Residual Load TWh' =
+			DIVIDE(SUM('fact_market_hour'[residual_load_mwh]), 1000000)
+		formatString: 0.00
+		lineageTag: 14826d16-5e8a-451f-8f71-35d8e02bcfe1
+
 	column time_key
 		dataType: int64
 		formatString: 0

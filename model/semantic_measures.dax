@@ -1,9 +1,9 @@
-// Proposed semantic measures for sm_power_renewables.
+// Semantic measures implemented in the versioned sm_power_renewables definition.
 // Each definition is a separate model measure, not a DAX query.
 // Table names refer to semantic display names without the gold schema prefix.
 // All intervals in the current dataset are exactly one physical hour.
 // Intended filters come from dimensions; fact columns are implementation fields.
-// Definitions are versioned; execution in the semantic model is pending.
+// Six initial measures were authored in Fabric; thirteen added through Git await Fabric synchronization and execution.
 
 // Home table: fact_market_hour; format: 0
 Market Hours =

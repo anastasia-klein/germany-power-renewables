@@ -1,6 +1,6 @@
 {
   "name": "sm_power_renewables",
-  "status": "Created by the project author with five gold tables; relationships and DAX proposed, not yet confirmed in Fabric",
+  "status": "Five relationships and six initial measures committed from Fabric; all nineteen measures implemented in TMDL; thirteen additions pending Fabric synchronization and execution",
   "confirmation_date": "2026-11-09",
   "relationships": [
     {
@@ -144,5 +144,10 @@
   ],
   "filter_policy": "Report axes and slicers use shared dimensions. No fact-to-fact relationship. Generation-source filters do not filter market prices or grid load.",
   "coverage_policy": "Capture metrics require all selected source-hour observations. Nuclear remains unavailable, so selecting all twelve categories leaves capture metrics blank; selecting complete sources or source groups produces valid capture metrics. Generation totals sum observed volumes and keep all-null nuclear blank.",
-  "scope": "Hourly 2025 export, one DE/DE-LU market; hour counts equal durations. No daily date-table designation for the non-unique local_date column."
+  "scope": "Hourly 2025 export, one DE/DE-LU market; hour counts equal durations. No daily date-table designation for the non-unique local_date column.",
+  "fabric_definition": "fabric/sm_power_renewables.SemanticModel",
+  "execution_status": {
+    "initial_six": "Created in Fabric by the project author; numeric validation not yet reported",
+    "remaining_thirteen": "Implemented in Git; pending Update from Git and model query validation"
+  }
 }

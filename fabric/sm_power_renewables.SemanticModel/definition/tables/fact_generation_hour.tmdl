@@ -2,6 +2,89 @@ table fact_generation_hour
 	lineageTag: a3879765-0561-40bd-ba33-409074eaad37
 	sourceLineageTag: [gold].[fact_generation_hour]
 
+	measure 'Generation TWh' =
+			DIVIDE(SUM('fact_generation_hour'[generation_mwh]), 1000000)
+		formatString: 0.00
+		lineageTag: ec5e05c2-b6c4-4c22-b48d-c032f1741731
+
+	measure 'Generation Share' =
+			DIVIDE(
+			    [Generation TWh],
+			    CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'))
+			)
+		formatString: 0.00%
+		lineageTag: 5a284580-6fb1-422b-a986-4ef05e814c9e
+
+	measure 'Renewable Share of Reported Generation' =
+			VAR RenewableVolume =
+			    CALCULATE(
+			        [Generation TWh],
+			        REMOVEFILTERS('dim_generation_source'),
+			        'dim_generation_source'[is_renewable] = TRUE()
+			    )
+			VAR ReportedVolume =
+			    CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'))
+			RETURN
+			    DIVIDE(RenewableVolume, ReportedVolume)
+		formatString: 0.00%
+		lineageTag: 26226ade-1617-4a50-a94a-7f829869e34b
+
+	measure 'Expected Source Hours' =
+			[Market Hours] * COUNTROWS(VALUES('dim_generation_source'[generation_source_code]))
+		formatString: 0
+		lineageTag: c24ffd54-fda0-4e92-8cfc-2228b416ce36
+
+	measure 'Valid Source Price Hours' =
+			COALESCE(
+			    CALCULATE(
+			        COUNTROWS('fact_generation_hour'),
+			        'fact_generation_hour'[is_valid_generation_price] = TRUE()
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: 13874888-f28a-4a33-80b8-04bf3714b5b6
+
+	measure 'Source Price Coverage' =
+			DIVIDE([Valid Source Price Hours], [Expected Source Hours])
+		formatString: 0.00%
+		lineageTag: e1ca0ccb-2550-44fe-b10b-5a8dc31c854f
+
+	measure 'Capture Price EUR per MWh' =
+			VAR ExpectedRows = [Expected Source Hours]
+			VAR ValidRows = [Valid Source Price Hours]
+			RETURN
+			    IF(
+			        ExpectedRows > 0 && ValidRows = ExpectedRows,
+			        DIVIDE(
+			            SUM('fact_generation_hour'[price_weighted_generation_eur]),
+			            SUM('fact_generation_hour'[matched_generation_mwh])
+			        )
+			    )
+		formatString: 0.00
+		lineageTag: 68e75826-2ae6-451d-b8bd-96182583583e
+
+	measure 'Capture Rate' =
+			VAR Benchmark = [Average Price EUR per MWh]
+			RETURN
+			    IF(Benchmark > 0, DIVIDE([Capture Price EUR per MWh], Benchmark))
+		formatString: 0.00%
+		lineageTag: 555be451-db57-4ee4-9dd7-1dcc6d3140ca
+
+	measure 'Negative Price Generation Share' =
+			VAR ExpectedRows = [Expected Source Hours]
+			VAR ValidRows = [Valid Source Price Hours]
+			RETURN
+			    IF(
+			        ExpectedRows > 0 && ValidRows = ExpectedRows,
+			        DIVIDE(
+			            SUM('fact_generation_hour'[negative_price_generation_mwh]),
+			            SUM('fact_generation_hour'[matched_generation_mwh])
+			        )
+			    )
+		formatString: 0.00%
+		lineageTag: 5305f23c-1853-4ddc-b553-82809e0862eb
+
 	column time_key
 		dataType: int64
 		formatString: 0
