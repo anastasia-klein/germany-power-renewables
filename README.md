@@ -1,6 +1,6 @@
 # Germany Power & Renewables
 
-An applied research project examining how renewable generation and electricity demand align with German day-ahead prices. Microsoft Fabric provides the data preparation and validation environment; a Power BI semantic model and public report are planned as the research develops.
+An applied research project examining how renewable generation and electricity demand align with German day-ahead prices. Microsoft Fabric provides the data preparation and validation environment; the project author has created the Fabric-backed semantic model, while DAX validation and the public report remain in progress.
 
 ## Research questions
 
@@ -30,7 +30,7 @@ The [execution snapshot](evidence/03_explore_power_market_snapshot.ipynb) preser
 
 The expanded [2025 EDA findings](research/eda_2025_findings.md) compare generation-weighted prices, negative-price exposure and calendar-adjusted associations. Solar's annual capture price was 46.07 EUR/MWh, 51.58% of the time-average market price; 24.13% of solar generation occurred during negative-price hours. Combined wind's corresponding capture price was 78.93 EUR/MWh. Residual load showed a strong positive association with price, while the apparent wind and solar associations changed after removing calendar patterns. These are descriptive findings, not causal estimates or realized revenue.
 
-The expanded analytical cells were executed locally against the original exports, with [captured outputs](evidence/eda_2025/03_power_market_eda_local.ipynb), result tables and figures. The project author confirmed the expanded EDA completed successfully in Fabric on 9 November 2026. The subsequent generation-mix addition is now figure 5 in notebook 03 and has been checked locally; that revision awaits its Fabric run. The captured outputs at this link remain from the local execution. The [gold metric contract](model/gold_metric_contract.json) retains hourly components so weighted prices and rates can be recomputed for each reporting period.
+The expanded analytical cells were executed locally against the original exports, with [captured outputs](evidence/eda_2025/03_power_market_eda_local.ipynb), result tables and figures. The project author confirmed the expanded EDA completed successfully in Fabric on 9 November 2026. The generation-mix addition is figure 5 in notebook 03; the project author also confirmed that latest revision completed without errors in Fabric. The captured outputs at this link remain from the local execution. The [gold metric contract](model/gold_metric_contract.json) retains hourly components so weighted prices and rates can be recomputed for each reporting period.
 
 ## Fabric implementation
 
@@ -40,7 +40,7 @@ The notebook collection separates source profiling, silver preparation, explorat
 
 The workspace is connected to GitHub. The `fabric/` directory contains the authoritative Fabric item definitions; `notebooks/` contains portable, output-free exports derived from that source. Captured outputs remain in `evidence/`, because Fabric Git integration versions source rather than notebook outputs. Source profiling and exploration are separate from the build flow. The silver build contains only input validation, transformation, quality gates and table publication; every code cell is part of the job.
 
-Data Factory orchestration, DAX measures, the Power BI connection, public report and video are planned deliverables. Gold publication is confirmed by the project author; a saved Fabric run snapshot remains to be captured. No pipeline execution, published dashboard or semantic-model connection is claimed at this stage. Definitions and execution evidence will accompany these components as they are completed.
+The project author created `sm_power_renewables` with all five gold tables. The [semantic model specification](model/semantic_model_spec.json) records the proposed relationships, and [DAX definitions](model/semantic_measures.dax) record the proposed measures; their semantic execution and validation remain pending. Data Factory orchestration, public report and video remain planned deliverables. Gold publication is confirmed by the project author; a saved Fabric run snapshot remains to be captured. No pipeline execution or published dashboard is claimed at this stage; connection-mode screenshots and a model export remain to be captured. Definitions and execution evidence will accompany these components as they are completed.
 
 The full generation mix, now figure 5 in notebook 03, provides context beyond wind and solar: all twelve categories are retained, with nuclear unavailable rather than replaced by zero. Wind and solar account for 47.21% of reported generation; the six renewable categories together account for 58.86%.
 

@@ -1,5 +1,5 @@
 {
-  "status": "Five-table 2025 gold model published successfully in Fabric, confirmed by the project author on 2026-11-09; semantic model and DAX remain planned",
+  "status": "Five-table gold build and latest EDA confirmed successful in Fabric; sm_power_renewables created with five gold tables; semantic relationships and proposed DAX pending validation",
   "time_key": {
     "format": "BIGINT YYYYMMDDHH in UTC",
     "example": 2025102600,
@@ -156,5 +156,6 @@
     "gold.fact_market_hour": 8760,
     "gold.fact_generation_hour": 105120
   },
-  "fabric_execution_evidence": "notebook_status.json: author-reported successful execution; no Fabric output snapshot captured for this run"
+  "fabric_execution_evidence": "notebook_status.json: author-reported successful execution; no Fabric output snapshot captured for this run",
+  "semantic_model_spec": "model/semantic_model_spec.json"
 }

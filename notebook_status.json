@@ -26,10 +26,10 @@
       "evidence": "User confirmed the streamlined build completed without errors on 2026-11-08"
     },
     "03_explore_power_market": {
-      "status": "previous expanded EDA passed; generation-mix revision pending Fabric execution",
+      "status": "passed",
       "previous_execution": "User confirmed the separate monthly-analysis notebook passed in Fabric on 2026-11-08",
       "local_execution": "Five-figure revision analytical cells executed locally against original SMARD files on 2026-11-09; evidence/eda_2025/",
-      "evidence": "User confirmed the expanded EDA completed without errors in Fabric on 2026-11-09 after resolving Git conflicts"
+      "evidence": "User confirmed the latest five-figure revision completed without errors in Fabric on 2026-11-09"
     },
     "04_build_gold": {
       "status": "passed",
@@ -44,6 +44,7 @@
       "evidence": "User confirmed notebook 04 completed without errors and all five tables appeared in the gold schema on 2026-11-09"
     }
   },
-  "all_refactored_notebooks_validated_in_fabric": false,
-  "source_of_truth": "Fabric item definitions in fabric/; notebooks/ are derived portable exports"
+  "all_refactored_notebooks_validated_in_fabric": true,
+  "source_of_truth": "Fabric item definitions in fabric/; notebooks/ are derived portable exports",
+  "semantic_model": "sm_power_renewables created with five gold tables; relationships and proposed measures pending validation"
 }

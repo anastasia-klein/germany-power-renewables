@@ -1,0 +1,136 @@
+// Proposed semantic measures for sm_power_renewables.
+// Each definition is a separate model measure, not a DAX query.
+// Table names refer to semantic display names without the gold schema prefix.
+// All intervals in the current dataset are exactly one physical hour.
+// Intended filters come from dimensions; fact columns are implementation fields.
+// Definitions are versioned; execution in the semantic model is pending.
+
+// Home table: fact_market_hour; format: 0
+Market Hours =
+COUNTROWS('fact_market_hour')
+
+// Home table: fact_market_hour; format: 0
+Valid Price Hours =
+CALCULATE(
+    COUNTROWS('fact_market_hour'),
+    'fact_market_hour'[is_valid_price] = TRUE()
+)
+
+// Home table: fact_market_hour; format: 0.00
+Average Price EUR per MWh =
+AVERAGE('fact_market_hour'[day_ahead_price_eur_mwh])
+
+// Home table: fact_market_hour; format: 0.00
+Grid Load TWh =
+DIVIDE(SUM('fact_market_hour'[grid_load_mwh]), 1000000)
+
+// Home table: fact_market_hour; format: 0.00
+Load Weighted Price EUR per MWh =
+DIVIDE(
+    SUM('fact_market_hour'[price_weighted_load_eur]),
+    SUM('fact_market_hour'[matched_grid_load_mwh])
+)
+
+// Home table: fact_market_hour; format: 0.00
+Load Profile Price Gap EUR per MWh =
+[Load Weighted Price EUR per MWh] - [Average Price EUR per MWh]
+
+// Home table: fact_market_hour; format: 0
+Negative Price Hours =
+COALESCE(
+    CALCULATE(
+        COUNTROWS('fact_market_hour'),
+        'fact_market_hour'[is_negative_price] = TRUE()
+    ),
+    0
+)
+
+// Home table: fact_market_hour; format: 0.00%
+Negative Price Hour Share =
+DIVIDE([Negative Price Hours], [Valid Price Hours])
+
+// Home table: fact_market_hour; format: 0.00%
+Wind Solar Load Ratio =
+DIVIDE(
+    SUM('fact_market_hour'[wind_solar_mwh]),
+    SUM('fact_market_hour'[grid_load_mwh])
+)
+
+// Home table: fact_market_hour; format: 0.00
+Residual Load TWh =
+DIVIDE(SUM('fact_market_hour'[residual_load_mwh]), 1000000)
+
+// Home table: fact_generation_hour; format: 0.00
+Generation TWh =
+DIVIDE(SUM('fact_generation_hour'[generation_mwh]), 1000000)
+
+// Home table: fact_generation_hour; format: 0.00%
+Generation Share =
+DIVIDE(
+    [Generation TWh],
+    CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'))
+)
+
+// Home table: fact_generation_hour; format: 0.00%
+Renewable Share of Reported Generation =
+VAR RenewableVolume =
+    CALCULATE(
+        [Generation TWh],
+        REMOVEFILTERS('dim_generation_source'),
+        'dim_generation_source'[is_renewable] = TRUE()
+    )
+VAR ReportedVolume =
+    CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'))
+RETURN
+    DIVIDE(RenewableVolume, ReportedVolume)
+
+// Home table: fact_generation_hour; format: 0
+Expected Source Hours =
+[Market Hours] * COUNTROWS(VALUES('dim_generation_source'[generation_source_code]))
+
+// Home table: fact_generation_hour; format: 0
+Valid Source Price Hours =
+COALESCE(
+    CALCULATE(
+        COUNTROWS('fact_generation_hour'),
+        'fact_generation_hour'[is_valid_generation_price] = TRUE()
+    ),
+    0
+)
+
+// Home table: fact_generation_hour; format: 0.00%
+Source Price Coverage =
+DIVIDE([Valid Source Price Hours], [Expected Source Hours])
+
+// Home table: fact_generation_hour; format: 0.00
+Capture Price EUR per MWh =
+VAR ExpectedRows = [Expected Source Hours]
+VAR ValidRows = [Valid Source Price Hours]
+RETURN
+    IF(
+        ExpectedRows > 0 && ValidRows = ExpectedRows,
+        DIVIDE(
+            SUM('fact_generation_hour'[price_weighted_generation_eur]),
+            SUM('fact_generation_hour'[matched_generation_mwh])
+        )
+    )
+
+// Home table: fact_generation_hour; format: 0.00%
+Capture Rate =
+VAR Benchmark = [Average Price EUR per MWh]
+RETURN
+    IF(Benchmark > 0, DIVIDE([Capture Price EUR per MWh], Benchmark))
+
+// Home table: fact_generation_hour; format: 0.00%
+Negative Price Generation Share =
+VAR ExpectedRows = [Expected Source Hours]
+VAR ValidRows = [Valid Source Price Hours]
+RETURN
+    IF(
+        ExpectedRows > 0 && ValidRows = ExpectedRows,
+        DIVIDE(
+            SUM('fact_generation_hour'[negative_price_generation_mwh]),
+            SUM('fact_generation_hour'[matched_generation_mwh])
+        )
+    )
+

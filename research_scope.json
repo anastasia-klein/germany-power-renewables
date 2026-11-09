@@ -23,7 +23,7 @@
   "deliverables": [
     {
       "item": "Research notebooks and portable outputs",
-      "status": "Profiling, silver and expanded EDA confirmed successful in Fabric; latest EDA generation-mix addition checked locally and pending Fabric run; five-table gold build confirmed successful in Fabric"
+      "status": "Profiling, silver, latest five-figure EDA and five-table gold build confirmed successful in Fabric"
     },
     {
       "item": "Versioned Fabric notebook and pipeline definitions",
@@ -31,11 +31,11 @@
     },
     {
       "item": "Gold tables, semantic model and DAX measures",
-      "status": "All five gold tables published successfully in Fabric, confirmed by the project author on 2026-11-09; semantic model and DAX not implemented"
+      "status": "Gold tables published and sm_power_renewables created with five gold tables; relationships and DAX definitions proposed in model/ and pending semantic execution"
     },
     {
       "item": "Power BI report connected to Fabric",
-      "status": "Planned; connection and model mode must be evidenced"
+      "status": "Fabric-backed semantic model created by the project author; report not yet created; connection mode evidence remains to be captured"
     },
     {
       "item": "Public interactive Power BI report",

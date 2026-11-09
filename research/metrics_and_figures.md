@@ -100,7 +100,7 @@ The complementary table bins residual load itself. Its lowest decile has a mean 
 
 This figure and its accompanying table are now included in notebook 03. All twelve source categories remain in the table; nuclear is unavailable and is omitted from the bars rather than plotted as measured zero. Summed reported generation is 437.90 TWh. Renewable sources account for 58.86%; wind and solar together account for 47.21% of reported generation. Pumped-storage output is included in that denominator and classified separately from renewable generation.
 
-The figure supplies context for the wind-and-solar analysis: conventional sources are present in the system and in the source tables. Annual volumes alone cannot identify which technology set the hourly market price. The new figure has been executed locally; its Fabric execution remains pending.
+The figure supplies context for the wind-and-solar analysis: conventional sources are present in the system and in the source tables. Annual volumes alone cannot identify which technology set the hourly market price. The figure has been executed locally, and the project author subsequently confirmed the latest notebook revision completed without errors in Fabric.
 
 ## Other tables in notebook 03
 
