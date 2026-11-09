@@ -1,0 +1,103 @@
+table fact_generation_hour
+	lineageTag: a3879765-0561-40bd-ba33-409074eaad37
+	sourceLineageTag: [gold].[fact_generation_hour]
+
+	column time_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 78a10982-6e9a-4e2b-85c4-4877fb2b9ad8
+		sourceLineageTag: time_key
+		summarizeBy: none
+		sourceColumn: time_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_key
+		dataType: string
+		lineageTag: eeb18c66-c581-4ecf-a9cf-984c5fe4bbbc
+		sourceLineageTag: market_key
+		summarizeBy: none
+		sourceColumn: market_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column generation_source_code
+		dataType: string
+		lineageTag: 0be69f44-7932-47b4-87e1-db16f7d95f3c
+		sourceLineageTag: generation_source_code
+		summarizeBy: none
+		sourceColumn: generation_source_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column generation_mwh
+		dataType: double
+		lineageTag: de7b7857-ed8b-4b9f-ba6e-9d7b31c3c4af
+		sourceLineageTag: generation_mwh
+		summarizeBy: sum
+		sourceColumn: generation_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column price_weighted_generation_eur
+		dataType: double
+		lineageTag: 3119658b-5109-4859-9c62-390bfa8336e5
+		sourceLineageTag: price_weighted_generation_eur
+		summarizeBy: sum
+		sourceColumn: price_weighted_generation_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column matched_generation_mwh
+		dataType: double
+		lineageTag: 45e11d67-0bcb-4e37-99da-798152ce204b
+		sourceLineageTag: matched_generation_mwh
+		summarizeBy: sum
+		sourceColumn: matched_generation_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column negative_price_generation_mwh
+		dataType: double
+		lineageTag: 42b38ac3-ace8-4b3e-b0fe-01abf21e93a8
+		sourceLineageTag: negative_price_generation_mwh
+		summarizeBy: sum
+		sourceColumn: negative_price_generation_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_valid_generation
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e81f99ff-9fb6-4a0b-ac64-6d48f319cc76
+		sourceLineageTag: is_valid_generation
+		summarizeBy: none
+		sourceColumn: is_valid_generation
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_valid_generation_price
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bf5aa54e-f3c3-49d5-985c-8436856462d0
+		sourceLineageTag: is_valid_generation_price
+		summarizeBy: none
+		sourceColumn: is_valid_generation_price
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_generation_hour = entity
+		mode: directLake
+		source
+			entityName: fact_generation_hour
+			schemaName: gold
+			expressionSource: 'DirectLake - lh_power_renewables'
+

@@ -1,0 +1,58 @@
+table dim_generation_source
+	lineageTag: e6297733-606b-45af-b485-513f81e9e781
+	sourceLineageTag: [gold].[dim_generation_source]
+
+	column generation_source_code
+		dataType: string
+		lineageTag: 9162e3b0-3c46-497b-a26d-bd0c7cc03a36
+		sourceLineageTag: generation_source_code
+		summarizeBy: none
+		sourceColumn: generation_source_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column generation_source_name
+		dataType: string
+		lineageTag: 9c71d4a4-312b-4429-8837-009b12f529a9
+		sourceLineageTag: generation_source_name
+		summarizeBy: none
+		sourceColumn: generation_source_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_group
+		dataType: string
+		lineageTag: 614992b8-9b16-41f9-84b4-4a9e12f699b3
+		sourceLineageTag: source_group
+		summarizeBy: none
+		sourceColumn: source_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_renewable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 86b85c79-b127-4400-bd96-5a0dc07fc29f
+		sourceLineageTag: is_renewable
+		summarizeBy: none
+		sourceColumn: is_renewable
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_storage_output
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 211f9173-5b75-4cd4-b69d-7dc85d28926c
+		sourceLineageTag: is_storage_output
+		summarizeBy: none
+		sourceColumn: is_storage_output
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_generation_source = entity
+		mode: directLake
+		source
+			entityName: dim_generation_source
+			schemaName: gold
+			expressionSource: 'DirectLake - lh_power_renewables'
+

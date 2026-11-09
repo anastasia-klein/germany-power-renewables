@@ -1,0 +1,38 @@
+table dim_market
+	lineageTag: e35c909e-6eef-43b9-8c08-58adbcbddcf4
+	sourceLineageTag: [gold].[dim_market]
+
+	column market_key
+		dataType: string
+		lineageTag: 45ffec06-e05c-4686-8f0a-06a070eeb84e
+		sourceLineageTag: market_key
+		summarizeBy: none
+		sourceColumn: market_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_code
+		dataType: string
+		lineageTag: 5f8eecd0-f178-48c7-a68f-7ce2945d7ed2
+		sourceLineageTag: country_code
+		summarizeBy: none
+		sourceColumn: country_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column bidding_zone_code
+		dataType: string
+		lineageTag: 969ad64a-9f3e-49f5-ae19-c3e4d2508c35
+		sourceLineageTag: bidding_zone_code
+		summarizeBy: none
+		sourceColumn: bidding_zone_code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_market = entity
+		mode: directLake
+		source
+			entityName: dim_market
+			schemaName: gold
+			expressionSource: 'DirectLake - lh_power_renewables'
+

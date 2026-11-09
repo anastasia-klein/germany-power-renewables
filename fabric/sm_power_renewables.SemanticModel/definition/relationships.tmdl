@@ -1,0 +1,20 @@
+relationship 8d7e870d-707b-6d81-990e-78196b4f3913
+	fromColumn: fact_market_hour.time_key
+	toColumn: dim_time_hour.time_key
+
+relationship 8c0b4bbc-09a5-d154-6a72-1ced914f597f
+	fromColumn: fact_generation_hour.time_key
+	toColumn: dim_time_hour.time_key
+
+relationship bc987bc0-2a97-93e3-bdb7-597615476e8c
+	fromColumn: fact_market_hour.market_key
+	toColumn: dim_market.market_key
+
+relationship 4a44cd4a-d58c-328c-81dc-f92c891f92b4
+	fromColumn: fact_generation_hour.market_key
+	toColumn: dim_market.market_key
+
+relationship eb901f80-15e5-c769-f860-7d7dadecb2cc
+	fromColumn: fact_generation_hour.generation_source_code
+	toColumn: dim_generation_source.generation_source_code
+

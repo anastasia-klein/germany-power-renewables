@@ -1,0 +1,141 @@
+table dim_time_hour
+	lineageTag: 33d9a803-a9d0-4b33-bc3a-a84e14a2a939
+	sourceLineageTag: [gold].[dim_time_hour]
+
+	column time_key
+		dataType: int64
+		formatString: 0
+		lineageTag: cc85ae6a-833f-43f3-be01-d8ec110005e5
+		sourceLineageTag: time_key
+		summarizeBy: none
+		sourceColumn: time_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column interval_start_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eb60941c-8ed4-4437-a0cb-fd12f337853c
+		sourceLineageTag: interval_start_utc
+		summarizeBy: none
+		sourceColumn: interval_start_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column local_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 11e7a224-ef9b-4344-a0f6-f64120aedb41
+		sourceLineageTag: local_date
+		summarizeBy: none
+		sourceColumn: local_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column local_hour
+		dataType: int64
+		formatString: 0
+		lineageTag: d5e3899b-ed15-408b-b732-9573c5d33ffc
+		sourceLineageTag: local_hour
+		summarizeBy: sum
+		sourceColumn: local_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column utc_offset_minutes
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e2f1765-01f4-4d80-8371-df4b105d92d5
+		sourceLineageTag: utc_offset_minutes
+		summarizeBy: sum
+		sourceColumn: utc_offset_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column fold
+		dataType: int64
+		formatString: 0
+		lineageTag: a5f520d5-5ecf-4026-8327-9d34448d0839
+		sourceLineageTag: fold
+		summarizeBy: sum
+		sourceColumn: fold
+
+		annotation SummarizationSetBy = Automatic
+
+	column interval_end_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1d4c15c0-0c70-48b2-a5d3-592bef5851bb
+		sourceLineageTag: interval_end_utc
+		summarizeBy: none
+		sourceColumn: interval_end_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration_minutes
+		dataType: int64
+		formatString: 0
+		lineageTag: 8aee44d2-48a9-48af-9e00-97ec6e90e225
+		sourceLineageTag: duration_minutes
+		summarizeBy: sum
+		sourceColumn: duration_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 5cb36033-a928-463a-8da2-080b6ff7c5e9
+		sourceLineageTag: year
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: a65f3d29-593f-48df-b5fc-88e1add033f4
+		sourceLineageTag: month
+		summarizeBy: sum
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_week
+		dataType: int64
+		formatString: 0
+		lineageTag: b2d96b8c-7c78-45e8-bbc2-f7808e233241
+		sourceLineageTag: day_of_week
+		summarizeBy: sum
+		sourceColumn: day_of_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: de3790b2-e4b7-4e84-9adc-33ff48c5e1ab
+		sourceLineageTag: is_weekend
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_product_resolution_minutes
+		dataType: int64
+		formatString: 0
+		lineageTag: ad468f1a-02c8-48a8-9c8c-76d23802a75a
+		sourceLineageTag: market_product_resolution_minutes
+		summarizeBy: sum
+		sourceColumn: market_product_resolution_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_time_hour = entity
+		mode: directLake
+		source
+			entityName: dim_time_hour
+			schemaName: gold
+			expressionSource: 'DirectLake - lh_power_renewables'
+

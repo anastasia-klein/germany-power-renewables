@@ -1,0 +1,11 @@
+expression 'DirectLake - lh_power_renewables' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/af058716-784e-466d-b01b-06f7413c9fdb/a5d1c663-d58f-4d6e-bccd-4251c72c3357", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: ca98dfd2-da8e-4e63-b0a4-f94e13581f65
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[silver].[price_hour]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[silver].[dim_time_hour]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[silver].[generation_hour]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[silver].[consumption_hour]"}},"objectType":"Table"}]
+

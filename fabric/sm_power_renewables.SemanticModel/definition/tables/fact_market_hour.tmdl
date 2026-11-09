@@ -1,0 +1,259 @@
+table fact_market_hour
+	lineageTag: 272dcc84-6639-4c97-a2a0-a9351a797e83
+	sourceLineageTag: [gold].[fact_market_hour]
+
+	measure 'Average Price EUR per MWh' =
+			
+			AVERAGE('fact_market_hour'[day_ahead_price_eur_mwh])
+		formatString: 0.00
+		lineageTag: d803aa14-7d0a-4642-91e2-0838ca1f71c5
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Grid Load TWh' =
+			
+			DIVIDE(
+			    SUM('fact_market_hour'[grid_load_mwh]),
+			    1000000
+			)
+		formatString: 0.00
+		lineageTag: 070586ca-e2d1-4172-a843-617ac4e7da2c
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Load Profile Price Gap EUR per MWh' =
+			
+			[Load Weighted Price EUR per MWh]
+			    - [Average Price EUR per MWh]
+		formatString: 0.0
+		lineageTag: af32bac9-f57a-45f1-909a-f5a553513279
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Load Weighted Price EUR per MWh' =
+			
+			DIVIDE(
+			    SUM('fact_market_hour'[price_weighted_load_eur]),
+			    SUM('fact_market_hour'[matched_grid_load_mwh])
+			)
+		formatString: 0.00
+		lineageTag: 264fddb6-2473-41aa-8dc7-2135f9013360
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Market Hours' =
+			
+			COUNTROWS('fact_market_hour')
+		formatString: 0
+		lineageTag: 0ec5f97a-127a-4363-a13f-6ff19bee0740
+
+		changedProperty = Name
+
+	measure 'Wind Solar Load Ratio' =
+			
+			DIVIDE(
+			    SUM('fact_market_hour'[wind_solar_mwh]),
+			    SUM('fact_market_hour'[grid_load_mwh])
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0327c92c-55f4-477d-8fee-4aed862f515f
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	column time_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e97b876-4965-48e5-b818-941e9ecdd1e4
+		sourceLineageTag: time_key
+		summarizeBy: none
+		sourceColumn: time_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_key
+		dataType: string
+		lineageTag: 0b50cb20-3b85-4520-83b4-7dc6febed028
+		sourceLineageTag: market_key
+		summarizeBy: none
+		sourceColumn: market_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_ahead_price_eur_mwh
+		dataType: double
+		lineageTag: f6db6ce7-41e2-427b-8866-8cc031766ac3
+		sourceLineageTag: day_ahead_price_eur_mwh
+		summarizeBy: sum
+		sourceColumn: day_ahead_price_eur_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column grid_load_mwh
+		dataType: double
+		lineageTag: b6f756a5-2437-4fe3-9141-87aa250e2299
+		sourceLineageTag: grid_load_mwh
+		summarizeBy: sum
+		sourceColumn: grid_load_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column grid_load_including_pumping_mwh
+		dataType: double
+		lineageTag: 415bb620-063c-465b-9c41-dfec75f81c57
+		sourceLineageTag: grid_load_including_pumping_mwh
+		summarizeBy: sum
+		sourceColumn: grid_load_including_pumping_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pumping_consumption_mwh
+		dataType: double
+		lineageTag: e957af3d-e7ae-432d-b610-1b222d6e197a
+		sourceLineageTag: pumping_consumption_mwh
+		summarizeBy: sum
+		sourceColumn: pumping_consumption_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column residual_load_mwh
+		dataType: double
+		lineageTag: 2b5f4cd1-1ed9-462b-9ada-e9ce174bae68
+		sourceLineageTag: residual_load_mwh
+		summarizeBy: sum
+		sourceColumn: residual_load_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wind_mwh
+		dataType: double
+		lineageTag: e8e422a9-a848-40bc-8308-6146fef9a3cb
+		sourceLineageTag: wind_mwh
+		summarizeBy: sum
+		sourceColumn: wind_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column solar_mwh
+		dataType: double
+		lineageTag: a59a3079-6483-4a5b-8943-8ec0e412c740
+		sourceLineageTag: solar_mwh
+		summarizeBy: sum
+		sourceColumn: solar_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wind_solar_mwh
+		dataType: double
+		lineageTag: 8e08cf2d-0b20-4d9f-b2dc-f6d6952058d4
+		sourceLineageTag: wind_solar_mwh
+		summarizeBy: sum
+		sourceColumn: wind_solar_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wind_solar_load_ratio
+		dataType: double
+		lineageTag: 0caf22e6-d1c6-4652-bc4d-101c6b1a3436
+		sourceLineageTag: wind_solar_load_ratio
+		summarizeBy: sum
+		sourceColumn: wind_solar_load_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column price_weighted_load_eur
+		dataType: double
+		lineageTag: 0446fd3f-db3d-4639-bbfa-47515d0cf4dc
+		sourceLineageTag: price_weighted_load_eur
+		summarizeBy: sum
+		sourceColumn: price_weighted_load_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column matched_grid_load_mwh
+		dataType: double
+		lineageTag: a7d98b04-2ba7-435c-8162-c56c3d0e42a0
+		sourceLineageTag: matched_grid_load_mwh
+		summarizeBy: sum
+		sourceColumn: matched_grid_load_mwh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_negative_price
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4f81c77d-b59d-467c-b818-af236204d136
+		sourceLineageTag: is_negative_price
+		summarizeBy: none
+		sourceColumn: is_negative_price
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_zero_price
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4f2b3e65-7128-4809-9317-ee4fe7664114
+		sourceLineageTag: is_zero_price
+		summarizeBy: none
+		sourceColumn: is_zero_price
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_valid_price
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0aecae02-349d-481c-ae84-7d1a93665244
+		sourceLineageTag: is_valid_price
+		summarizeBy: none
+		sourceColumn: is_valid_price
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_valid_load_price
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c8c77e63-56b8-4734-accf-7f2c1227fe03
+		sourceLineageTag: is_valid_load_price
+		summarizeBy: none
+		sourceColumn: is_valid_load_price
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_market_hour = entity
+		mode: directLake
+		source
+			entityName: fact_market_hour
+			schemaName: gold
+			expressionSource: 'DirectLake - lh_power_renewables'
+
