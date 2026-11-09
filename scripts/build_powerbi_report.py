@@ -136,7 +136,7 @@ class Page:
             objects['categoryAxis'][0]['properties']['axisType'] = lit('Categorical')
             objects['lineStyles'] = props(showMarker=lit(True), showMarkerByDefault=lit(True), markerSize=lit(4), strokeWidth=lit(2.5), lineChartType=lit('linear'))
         if colors:
-            objects['dataPoint'] = props(fill=color(colors[0])) if len(metrics) == 1 else [{'selector': {'metadata': m[0]+'.'+m[1]}, 'properties': {'fill': color(c)}} for m,c in zip(metrics,colors)]
+            objects['dataPoint'] = props(fill=color(colors[0])) if len(metrics) == 1 and kind != 'lineChart' else [{'selector': {'metadata': m[0]+'.'+m[1]}, 'properties': {'fill': color(c)}} for m,c in zip(metrics,colors)]
         visual = self.add(kind,x,y,w,h,title,{'Category':[axis], 'Y':metrics},objects)
         sort_field = metrics[0] if descending else axis
         visual['visual']['query']['sortDefinition'] = {'sort':[{'field':field(*sort_field),'direction':'Descending' if descending else 'Ascending'}], 'isDefaultSort':True}

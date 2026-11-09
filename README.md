@@ -1,6 +1,6 @@
 # Germany Power & Renewables
 
-An applied research project examining how renewable generation and electricity demand align with German day-ahead prices. Microsoft Fabric provides the data preparation and validation environment; the project author has created the Fabric-backed semantic model, while DAX validation and the public report remain in progress.
+An applied research project examining how renewable generation and electricity demand align with German day-ahead prices. Microsoft Fabric provides the data preparation and validation environment; the Fabric-backed semantic model and three-page Power BI report are implemented, while unauthenticated public publication remains planned.
 
 ## Research questions
 
@@ -40,7 +40,13 @@ The notebook collection separates source profiling, silver preparation, explorat
 
 The workspace is connected to GitHub. The `fabric/` directory contains the authoritative Fabric item definitions; `notebooks/` contains portable, output-free exports derived from that source. Captured outputs remain in `evidence/`, because Fabric Git integration versions source rather than notebook outputs. Source profiling and exploration are separate from the build flow. The silver build contains only input validation, transformation, quality gates and table publication; every code cell is part of the job.
 
-The project author created `sm_power_renewables` with all five gold tables. The [versioned semantic model](fabric/sm_power_renewables.SemanticModel) contains the five relationships and six measures committed from Fabric, plus thirteen measures added through Git. The [semantic model specification](model/semantic_model_spec.json) and [DAX definitions](model/semantic_measures.dax) document all nineteen measures. The thirteen additions await Fabric synchronization, and numeric validation of the semantic measures remains pending. Data Factory orchestration, public report and video remain planned deliverables. Gold publication is confirmed by the project author; a saved Fabric run snapshot remains to be captured. No pipeline execution or published dashboard is claimed at this stage; connection-mode screenshots and a model export remain to be captured. Definitions and execution evidence will accompany these components as they are completed.
+The semantic model `sm_power_renewables` contains five shared-dimension relationships and nineteen measures. The author confirmed the headline values in Fabric, and browser checks of the connected report verified annual totals, solar capture metrics, source selection and a June date filter. The [native report definition](fabric/rpt_power_renewables.Report) contains three pages: Market overview, Generation & value, and Negative prices. The visual style follows the author's Global Critical Materials report, with blue price series, ochre solar exposure, teal wind and terracotta negative-price frequency.
+
+![Market overview rendered in Fabric](evidence/powerbi/01_market_overview.png)
+
+The report uses the existing Direct Lake model over gold; it contains no embedded copy of the source CSVs. Month selectors filter the individual page. The generation-source selector changes the selected-source charts and cards, while the comparison table retains all sources for the selected months. Chart clicks do not cross-filter unrelated KPIs. Nuclear remains unavailable and is omitted where every measure is blank. Price exposure is not realized revenue or profit.
+
+Data Factory orchestration, unauthenticated public report publication and video remain planned deliverables. No pipeline execution or public access is claimed. The [semantic specification](model/semantic_model_spec.json), [measure definitions](model/semantic_measures.dax) and browser screenshots document the implemented components.
 
 The full generation mix, now figure 5 in notebook 03, provides context beyond wind and solar: all twelve categories are retained, with nuclear unavailable rather than replaced by zero. Wind and solar account for 47.21% of reported generation; the six renewable categories together account for 58.86%.
 

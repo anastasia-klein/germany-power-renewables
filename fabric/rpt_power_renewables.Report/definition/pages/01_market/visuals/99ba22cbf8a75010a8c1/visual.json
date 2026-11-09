@@ -563,6 +563,9 @@
       ],
       "dataPoint": [
         {
+          "selector": {
+            "metadata": "fact_market_hour.Wind Solar Load Ratio"
+          },
           "properties": {
             "fill": {
               "solid": {

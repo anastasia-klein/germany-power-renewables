@@ -1,5 +1,5 @@
 {
-  "status": "Gold build and EDA passed in Fabric; semantic model with five relationships and six initial measures committed from Fabric; nineteen measures implemented in TMDL, thirteen additions pending Fabric synchronization and numeric validation",
+  "status": "Gold build, EDA and semantic model deployed in Fabric; nineteen measures present and headline values validated; three-page connected report created and checked in browser",
   "time_key": {
     "format": "BIGINT YYYYMMDDHH in UTC",
     "example": 2025102600,

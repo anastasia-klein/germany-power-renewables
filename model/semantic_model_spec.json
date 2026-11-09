@@ -1,6 +1,6 @@
 {
   "name": "sm_power_renewables",
-  "status": "Five relationships and six initial measures committed from Fabric; all nineteen measures implemented in TMDL; thirteen additions pending Fabric synchronization and execution",
+  "status": "Deployed in Fabric; all nineteen measures visible and headline values confirmed by the project author; report values and source/month filters also checked in browser",
   "confirmation_date": "2026-11-09",
   "relationships": [
     {
@@ -147,7 +147,7 @@
   "scope": "Hourly 2025 export, one DE/DE-LU market; hour counts equal durations. No daily date-table designation for the non-unique local_date column.",
   "fabric_definition": "fabric/sm_power_renewables.SemanticModel",
   "execution_status": {
-    "initial_six": "Created in Fabric by the project author; numeric validation not yet reported",
-    "remaining_thirteen": "Implemented in Git; pending Update from Git and model query validation"
+    "all_nineteen": "Present in Fabric; author confirmed headline control values",
+    "report_checks": "Annual market mean 89.32, load-weighted 92.42, load 465.82 TWh, renewable share 58.86%; solar capture 46.07 and 51.58%; Biomass selection updates capture to 92.85; June selection gives 141 negative hours, 19.58% and 720 valid hours"
   }
 }

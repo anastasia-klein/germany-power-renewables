@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-09",
+  "report_id": "5b92ecf0-ba8f-4e3e-8fdd-26476b3747fc",
+  "semantic_model_id": "2ac8afba-a766-46be-b606-b3009a1ef41a",
+  "report_pages": 3,
+  "static_validation": {
+    "schema_files": 58,
+    "visuals": 50,
+    "model_field_references": 40,
+    "native_formatting_properties": 402
+  },
+  "browser_checks": [
+    "All three report pages rendered against the existing model",
+    "Annual overview: 89.32, 92.42, 465.82 TWh, 58.86%",
+    "Solar: 73.78 TWh, capture 46.07 EUR/MWh, rate 51.58%, negative volume exposure 24.13%",
+    "Biomass source selection: capture 92.85 EUR/MWh and rate 103.95%; market benchmark and all-source table retained",
+    "Annual negative-price page: 573 hours, 6.54%, 8760 valid hours",
+    "June month selection: 141 negative hours, 19.58%, 720 valid hours"
+  ],
+  "public_access": "Not enabled; workspace-authenticated report only",
+  "reference_design": "https://github.com/anastasia-klein/global-critical-materials-intelligence"
+}

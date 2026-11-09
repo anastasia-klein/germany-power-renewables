@@ -31,11 +31,11 @@
     },
     {
       "item": "Gold tables, semantic model and DAX measures",
-      "status": "Gold tables and semantic model created in Fabric; five relationships and six measures committed from Fabric; nineteen measures implemented in versioned TMDL, thirteen additions pending sync and validation"
+      "status": "Five gold tables, five relationships and nineteen semantic measures deployed in Fabric; headline values validated"
     },
     {
       "item": "Power BI report connected to Fabric",
-      "status": "Fabric-backed semantic model created by the project author; report not yet created; connection mode evidence remains to be captured"
+      "status": "Three-page Power BI report created in Fabric, connected to sm_power_renewables; browser rendering and source/month filter checks passed"
     },
     {
       "item": "Public interactive Power BI report",
