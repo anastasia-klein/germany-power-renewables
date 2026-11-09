@@ -18,5 +18,7 @@
     "June month selection: 141 negative hours, 19.58%, 720 valid hours"
   ],
   "public_access": "Not enabled; workspace-authenticated report only",
-  "reference_design": "https://github.com/anastasia-klein/global-critical-materials-intelligence"
+  "reference_design": "https://github.com/anastasia-klein/global-critical-materials-intelligence",
+  "deployed_report_source_commit": "bb5c66d",
+  "pending_report_changes": "Two single-series line color settings in d4c3164 are not applied. Fabric requested a permanent-deletion-risk acknowledgement while resolving a report conflict; automatic review rejected that acknowledgement without user confirmation. The working three-page report remains deployed."
 }
