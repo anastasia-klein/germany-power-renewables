@@ -1,5 +1,5 @@
 {
-  "status": "Silver and expanded EDA confirmed in Fabric; five-table gold build implemented and SQL/calendar checked locally; first gold notebook run pending",
+  "status": "Five-table 2025 gold model published successfully in Fabric, confirmed by the project author on 2026-11-09; semantic model and DAX remain planned",
   "time_key": {
     "format": "BIGINT YYYYMMDDHH in UTC",
     "example": 2025102600,
@@ -155,5 +155,6 @@
     "gold.dim_generation_source": 12,
     "gold.fact_market_hour": 8760,
     "gold.fact_generation_hour": 105120
-  }
+  },
+  "fabric_execution_evidence": "notebook_status.json: author-reported successful execution; no Fabric output snapshot captured for this run"
 }

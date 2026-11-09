@@ -60,7 +60,7 @@ The [metric contract](../model/gold_metric_contract.json) retains hourly facts a
 
 Core metrics are time-average and load-weighted prices, the load-profile price gap, generation volume and mix, wind-and-solar generation relative to load, residual load, capture price and rate, negative-price hours and source-volume exposure. Price quantiles and daily price range provide supporting distribution views. Correlations, regression coefficients and sample-derived deciles remain research outputs; they do not need permanent gold tables.
 
-The analytical gold build is now implemented in notebook 04 and has passed local SQL and calendar checks. Its first Fabric run and publication of the five tables are pending. No monthly aggregate tables are necessary for this dataset size: keeping hourly components supports month, hour, weekday and selected-period filters without averaging already aggregated prices or ratios.
+The analytical gold build in notebook 04 passed local SQL and calendar checks. On 9 November 2026, the project author confirmed its successful Fabric execution and publication of all five gold tables. No monthly aggregate tables are necessary for this dataset size: keeping hourly components supports month, hour, weekday and selected-period filters without averaging already aggregated prices or ratios.
 
 ## Definitions, validation and limits
 

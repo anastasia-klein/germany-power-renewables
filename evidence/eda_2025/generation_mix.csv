@@ -1,13 +1,13 @@
-generation_source,classification,valid_hours,generation_twh,share_of_reported_generation
-Biomass,renewable,8760,35.8741369100,0.0819240198
-Hydropower,renewable,8760,14.1828844400,0.0323887627
-Wind offshore,renewable,8760,26.1945692600,0.0598192624
-Wind onshore,renewable,8760,106.7678922100,0.2438206371
-Photovoltaics,renewable,8760,73.7838303100,0.1684965409
-Other renewable,renewable,8760,0.9531172900,0.0021765875
-Nuclear,other_generation,0,,
-Lignite,other_generation,8760,67.1663535300,0.1533845313
-Hard coal,other_generation,8760,28.1574084100,0.0643017026
-Fossil gas,other_generation,8760,60.5473542500,0.1382690450
-Hydro pumped storage,storage_output,8760,9.8935449400,0.0225934069
-Other conventional,other_generation,8760,14.3741312800,0.0328255038
+generation_source_code,matched_hours,valid_hours,generation_twh,generation_source,classification,share_of_reported_generation
+wind_onshore,8760,8760,106.7678922100,Wind onshore,renewable,0.2438206371
+solar,8760,8760,73.7838303100,Photovoltaics,renewable,0.1684965409
+lignite,8760,8760,67.1663535300,Lignite,other_generation,0.1533845313
+fossil_gas,8760,8760,60.5473542500,Fossil gas,other_generation,0.1382690450
+biomass,8760,8760,35.8741369100,Biomass,renewable,0.0819240198
+hard_coal,8760,8760,28.1574084100,Hard coal,other_generation,0.0643017026
+wind_offshore,8760,8760,26.1945692600,Wind offshore,renewable,0.0598192624
+other_conventional,8760,8760,14.3741312800,Other conventional,other_generation,0.0328255038
+hydropower,8760,8760,14.1828844400,Hydropower,renewable,0.0323887627
+pumped_storage,8760,8760,9.8935449400,Hydro pumped storage,storage_output,0.0225934069
+other_renewable,8760,8760,0.9531172900,Other renewable,renewable,0.0021765875
+nuclear,8760,0,,Nuclear,other_generation,

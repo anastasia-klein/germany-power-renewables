@@ -1,7 +1,7 @@
 {
-  "executed_on": "2026-11-08",
+  "executed_on": "2026-11-09",
   "execution_environment": "Local Python; not Fabric",
-  "analysis_source_sha256": "7a656e904e8883cf8fd26fadc96c453b15be4c9c4569a67c8e6096f1b3a547a9",
+  "analysis_source_sha256": "a3c89e2c4f297c9ce7c1908fe723eb276bd20afb336266b68e3ac8d8b3a16299",
   "source_profile": {
     "year": 2025,
     "expected_hours": 8760,

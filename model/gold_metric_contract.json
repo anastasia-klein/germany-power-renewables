@@ -1,5 +1,5 @@
 {
-  "status": "Implemented in 04_build_gold; local SQL and calendar checks passed; first Fabric Spark/Delta run pending",
+  "status": "Five-table 2025 gold model published successfully in Fabric, confirmed by the project author on 2026-11-09; semantic model and DAX remain planned",
   "updated_on": "2026-11-09",
   "scope": {
     "year": 2025,
@@ -276,5 +276,6 @@
     "Forecast generation/load, fuel and carbon prices, flows and outages for broader price modeling",
     "Tariff contracts and reconciled invoices for the private household extension"
   ],
-  "execution_validation": "data/validation/gold_build_local.json"
+  "execution_validation": "data/validation/gold_build_local.json",
+  "fabric_execution_evidence": "notebook_status.json: author-reported successful execution; no Fabric output snapshot captured for this run"
 }

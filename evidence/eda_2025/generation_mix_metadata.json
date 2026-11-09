@@ -1,8 +1,9 @@
 {
   "analysis_date": "2026-11-09",
-  "execution_environment": "Local Python; supplemental source summary",
-  "reported_generation_twh": 437.89522283,
-  "renewable_share_of_reported_generation": 0.5886258104260397,
-  "wind_solar_share_of_reported_generation": 0.4721364404111419,
-  "denominator": "All observed source categories, including pumped-storage output; nuclear unavailable"
+  "execution_environment": "Local execution of notebook 03 generation-mix cells",
+  "analysis_source_sha256": "a3c89e2c4f297c9ce7c1908fe723eb276bd20afb336266b68e3ac8d8b3a16299",
+  "reported_generation_twh": 437.8952228300001,
+  "renewable_share_of_reported_generation": 0.5886258104260396,
+  "wind_solar_share_of_reported_generation": 0.47213644041114183,
+  "denominator": "All observed generation categories including pumped-storage output; nuclear unavailable"
 }

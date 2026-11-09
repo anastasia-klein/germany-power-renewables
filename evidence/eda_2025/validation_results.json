@@ -1,8 +1,9 @@
 {
-  "checked_on": "2026-11-08",
-  "environment": "Local Python and SQLite; Spark execution still pending",
+  "checked_on": "2026-11-09",
+  "environment": "Local Python and SQLite; new generation-mix cells pending Fabric execution",
   "checks": [
     "Annual market and load-weighted prices reconcile independently with Decimal arithmetic",
+    "Generation-mix SQL matches original source totals and coverage for all twelve categories; nuclear remains null",
     "Onshore, offshore and solar capture prices and exposure shares reconcile independently with Decimal arithmetic",
     "New SQL research panel matches source-derived pandas panel at all 8760 hourly records",
     "Annual capture price equals monthly price weighted by monthly source generation, not a mean of ratios",

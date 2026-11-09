@@ -628,6 +628,96 @@ plt.show()
 
 # MARKDOWN ********************
 
+# ## Full generation mix: context beyond wind and solar
+
+# This fifth figure includes every reported generation category, not only variable renewables. Values are annual energy delivered to the public grid. The mix is not a decomposition of the electricity price or the origin of consumed electricity.
+
+# Nuclear observations remain unavailable; they are retained in the table and omitted from the bars rather than plotted as measured zero. Pumped-storage output is shown separately from renewable generation. The denominator of each share is the sum of all available generation categories, including pumped-storage output.
+
+# CELL ********************
+
+# EDA_INPUT: generation mix from persisted silver data.
+eda_generation_mix = spark.sql("""
+    SELECT generation_source_code,
+        COUNT(*) AS matched_hours,
+        COUNT(generation_mwh) AS valid_hours,
+        SUM(generation_mwh) / 1000000 AS generation_twh
+    FROM silver.generation_hour
+    WHERE country_code = 'DE'
+    GROUP BY generation_source_code
+""").toPandas()
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# EDA_ANALYSIS: full generation mix table and figure.
+from matplotlib.patches import Patch
+
+mix_sources = {
+    "biomass": ("Biomass", "renewable"),
+    "hydropower": ("Hydropower", "renewable"),
+    "wind_offshore": ("Wind offshore", "renewable"),
+    "wind_onshore": ("Wind onshore", "renewable"),
+    "solar": ("Photovoltaics", "renewable"),
+    "other_renewable": ("Other renewable", "renewable"),
+    "nuclear": ("Nuclear", "other_generation"),
+    "lignite": ("Lignite", "other_generation"),
+    "hard_coal": ("Hard coal", "other_generation"),
+    "fossil_gas": ("Fossil gas", "other_generation"),
+    "pumped_storage": ("Hydro pumped storage", "storage_output"),
+    "other_conventional": ("Other conventional", "other_generation"),
+}
+assert eda_generation_mix.generation_source_code.is_unique, "Duplicate generation mix categories"
+assert set(eda_generation_mix.generation_source_code) == set(mix_sources), "Unexpected generation mix categories"
+assert eda_generation_mix.matched_hours.eq(8760).all(), "Incomplete annual source coverage"
+expected_valid = eda_generation_mix.generation_source_code.map(lambda code: 0 if code == "nuclear" else 8760)
+assert eda_generation_mix.valid_hours.eq(expected_valid).all(), "Unexpected generation availability"
+
+generation_mix = eda_generation_mix.copy()
+generation_mix["generation_twh"] = pd.to_numeric(generation_mix.generation_twh, errors="raise").astype(float)
+generation_mix["generation_source"] = generation_mix.generation_source_code.map(lambda code: mix_sources[code][0])
+generation_mix["classification"] = generation_mix.generation_source_code.map(lambda code: mix_sources[code][1])
+assert generation_mix.loc[generation_mix.generation_source_code == "nuclear", "generation_twh"].isna().all(), "Nuclear must remain unavailable"
+assert generation_mix.loc[generation_mix.generation_source_code != "nuclear", "generation_twh"].notna().all(), "Missing observed source total"
+reported_total = generation_mix.generation_twh.sum(min_count=1)
+assert reported_total > 0, "Non-positive reported generation total"
+generation_mix["share_of_reported_generation"] = generation_mix.generation_twh / reported_total
+assert abs(generation_mix.share_of_reported_generation.sum() - 1) < 1e-10, "Generation shares do not reconcile"
+assert abs(reported_total - eda_hourly.reported_generation_mwh.sum() / 1e6) < 1e-7, "Generation total differs from the hourly panel"
+generation_mix = generation_mix.sort_values("generation_twh", ascending=False, na_position="last").reset_index(drop=True)
+display(generation_mix[["generation_source", "classification", "valid_hours", "generation_twh", "share_of_reported_generation"]].round(4))
+
+mix_plot = generation_mix.dropna(subset=["generation_twh"]).sort_values("generation_twh")
+mix_colors = {"renewable": "#22836c", "storage_output": "#2563eb", "other_generation": "#64748b"}
+fig, ax = plt.subplots(figsize=(10, 6.8), constrained_layout=True)
+bars = ax.barh(mix_plot.generation_source, mix_plot.generation_twh, color=mix_plot.classification.map(mix_colors))
+ax.bar_label(bars, fmt="%.2f", padding=4, fontsize=9)
+ax.set_xlim(0, mix_plot.generation_twh.max() * 1.17)
+ax.set_xlabel("Reported net generation (TWh)")
+ax.set_title("Germany: reported generation by source, 2025\nNuclear unavailable in this export; not plotted as measured zero", loc="left", pad=16)
+ax.spines[["top", "right", "left"]].set_visible(False)
+ax.grid(axis="x", alpha=0.15)
+ax.set_axisbelow(True)
+ax.legend(handles=[Patch(color=mix_colors[key], label=label) for key, label in [
+    ("renewable", "Renewable"), ("other_generation", "Other reported generation"), ("storage_output", "Pumped-storage output")
+]], loc="lower right", frameon=False, fontsize=8)
+plt.show()
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# MARKDOWN ********************
+
 # ## Findings and gold candidates
 #
 # The local execution against the original CSV exports gives a market average of 89.32 EUR/MWh and a load-weighted price of 92.42 EUR/MWh. Annual capture prices are 46.07 for solar, 77.31 for onshore wind and 85.53 for offshore wind. Solar capture rate is 51.58%; 24.13% of solar generation occurs in negative-price hours.
@@ -636,6 +726,6 @@ plt.show()
 #
 # Raw price correlation is 0.876 with residual load, -0.286 with wind and -0.557 with solar. After calendar adjustment, the respective values are 0.774, -0.628 and -0.232. These are descriptive relationships; actual generation is known after the day-ahead auction and cannot be treated as an available bidding-time forecast.
 #
-# The proposed gold model retains an hourly market fact and a generation-source fact with shared time and market dimensions. Weighted prices, capture rates and exposure shares are recomputed from hourly components. Monthly means, regression coefficients and decile bins are not permanent fact tables. Analytical gold tables remain unimplemented; the metric contract and research findings accompany the source in the repository.
+# The gold model contains an hourly market fact and a generation-source fact with shared time, market and generation-source dimensions. The project author confirmed that notebook 04 published all five tables successfully in Fabric. Weighted prices, capture rates and exposure shares are recomputed from hourly components. Monthly means, regression coefficients and decile bins are not permanent fact tables.
 #
-# The expanded analytical cells have run locally. The earlier monthly analysis passed in Fabric, but execution of this expanded revision in Fabric is still pending. The local output snapshot is separately labeled as local execution evidence.
+# The expanded EDA passed in Fabric before the generation-mix figure was added. This fifth-figure revision still awaits its Fabric run. Saved local output snapshots are labeled separately from Fabric execution evidence.

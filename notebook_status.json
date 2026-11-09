@@ -1,6 +1,6 @@
 {
   "refactored_on": "2026-11-08",
-  "gold_scope": "Five-table 2025 gold build implemented; local SQL/calendar checks passed; Fabric execution pending",
+  "gold_scope": "Five-table 2025 gold build completed in Fabric, confirmed by the project author on 2026-11-09",
   "calendar_dependency": "02 writes silver.dim_time_hour; 03 reads silver; 04 publishes gold",
   "notebooks": [
     "01_profile_sources.ipynb",
@@ -26,13 +26,13 @@
       "evidence": "User confirmed the streamlined build completed without errors on 2026-11-08"
     },
     "03_explore_power_market": {
-      "status": "passed",
+      "status": "previous expanded EDA passed; generation-mix revision pending Fabric execution",
       "previous_execution": "User confirmed the separate monthly-analysis notebook passed in Fabric on 2026-11-08",
-      "local_execution": "Expanded analytical cells executed against original SMARD CSV files on 2026-11-08; evidence/eda_2025/",
+      "local_execution": "Five-figure revision analytical cells executed locally against original SMARD files on 2026-11-09; evidence/eda_2025/",
       "evidence": "User confirmed the expanded EDA completed without errors in Fabric on 2026-11-09 after resolving Git conflicts"
     },
     "04_build_gold": {
-      "status": "full 2025 build pending first Fabric run",
+      "status": "passed",
       "outputs": {
         "gold.dim_time_hour": 8760,
         "gold.dim_market": 1,
@@ -40,7 +40,8 @@
         "gold.fact_market_hour": 8760,
         "gold.fact_generation_hour": 105120
       },
-      "local_validation": "data/validation/gold_build_local.json; DuckDB SQL and Python calendar, not Spark/Delta execution"
+      "local_validation": "data/validation/gold_build_local.json; DuckDB SQL and Python calendar, not Spark/Delta execution",
+      "evidence": "User confirmed notebook 04 completed without errors and all five tables appeared in the gold schema on 2026-11-09"
     }
   },
   "all_refactored_notebooks_validated_in_fabric": false,
