@@ -515,9 +515,6 @@
       ],
       "dataPoint": [
         {
-          "selector": {
-            "metadata": "fact_generation_hour.Capture Rate"
-          },
           "properties": {
             "fill": {
               "solid": {

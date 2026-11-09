@@ -114,7 +114,12 @@ class Page:
             objects['general'] = props(filter={'filter': {'Version': 2, 'From': [{'Name': 's', 'Entity': table, 'Type': 0}], 'Where': [{'Condition': {'In': {
                 'Expressions': [{'Column': {'Expression': {'SourceRef': {'Source': 's'}}, 'Property': column}}],
                 'Values': [[{'Literal': {'Value': "'"+default+"'"}}]]}}}]}})
-        return self.add('slicer', x, y, w, 83, title, {'Values': [(table, column, False)]}, objects)
+        visual = self.add('slicer', x, y, w, 83, title, {'Values': [(table, column, False)]}, objects)
+        visual['filterConfig'] = {'filters': [{'name': 'available_values', 'field': field(table, column), 'type': 'Categorical', 'filter': {
+            'Version': 2, 'From': [{'Name': 's', 'Entity': table, 'Type': 0}], 'Where': [{'Condition': {'Not': {'Expression': {'In': {
+                'Expressions': [{'Column': {'Expression': {'SourceRef': {'Source': 's'}}, 'Property': column}}],
+                'Values': [[{'Literal': {'Value': 'null'}}]]}}}}}]}, 'howCreated': 'User', 'isHiddenInViewMode': True}]}
+        return visual
 
     def card(self, x, title, name, table=M, accent='blue'):
         return self.add('card', x, 211, 370, 103, title, {'Values': [measure(name, table)]}, {
@@ -131,7 +136,7 @@ class Page:
             objects['categoryAxis'][0]['properties']['axisType'] = lit('Categorical')
             objects['lineStyles'] = props(showMarker=lit(True), showMarkerByDefault=lit(True), markerSize=lit(4), strokeWidth=lit(2.5), lineChartType=lit('linear'))
         if colors:
-            objects['dataPoint'] = [{'selector': {'metadata': m[0]+'.'+m[1]}, 'properties': {'fill': color(c)}} for m,c in zip(metrics,colors)]
+            objects['dataPoint'] = props(fill=color(colors[0])) if len(metrics) == 1 else [{'selector': {'metadata': m[0]+'.'+m[1]}, 'properties': {'fill': color(c)}} for m,c in zip(metrics,colors)]
         visual = self.add(kind,x,y,w,h,title,{'Category':[axis], 'Y':metrics},objects)
         sort_field = metrics[0] if descending else axis
         visual['visual']['query']['sortDefinition'] = {'sort':[{'field':field(*sort_field),'direction':'Descending' if descending else 'Ascending'}], 'isDefaultSort':True}
@@ -194,7 +199,12 @@ def build():
     p.chart('clusteredColumnChart',28,332,764,288,'Negative-price hours by month · count',month,[measure('Negative Price Hours')],[C['red']])
     p.chart('clusteredColumnChart',810,332,764,288,'Negative-price frequency by local hour · share of observed hours',(T,'local_hour',False),[measure('Negative Price Hour Share')],[C['red']])
     p.chart('lineChart',28,638,764,202,'Negative-price frequency by month · share of each month',month,[measure('Negative Price Hour Share')],[C['red']])
-    p.chart('clusteredBarChart',810,638,764,202,'Generation exposed to negative prices · share of source MWh',(S,'source_group',False),[measure('Negative Price Generation Share',G)],[C['amber']],descending=True)
+    exposure = p.chart('clusteredBarChart',810,638,764,202,'Wind & solar exposure · share of source MWh in negative hours',(S,'generation_source_name',False),[measure('Negative Price Generation Share',G)],[C['amber']],descending=True)
+    exposure['filterConfig'] = {'filters': [{'name': 'variable_renewables', 'field': field(S,'generation_source_code'), 'type':'Categorical', 'filter': {
+        'Version':2, 'From':[{'Name':'s','Entity':S,'Type':0}], 'Where':[{'Condition':{'In':{
+            'Expressions':[{'Column':{'Expression':{'SourceRef':{'Source':'s'}},'Property':'generation_source_code'}}],
+            'Values':[[{'Literal':{'Value':"'"+code+"'"}}] for code in ['solar','wind_onshore','wind_offshore']]}}}]}, 'howCreated':'User', 'isHiddenInViewMode':True}]}
+
     p.finish()
     print('Built three-page native PBIR report connected to sm_power_renewables')
 

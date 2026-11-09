@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Generation exposed to negative prices · share of source MWh'"
+                  "Value": "'Wind & solar exposure · share of source MWh in negative hours'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Generation exposed to negative prices · share of source MWh'"
+                  "Value": "'Wind & solar exposure · share of source MWh in negative hours'"
                 }
               }
             },
@@ -287,11 +287,11 @@
                       "Entity": "dim_generation_source"
                     }
                   },
-                  "Property": "source_group"
+                  "Property": "generation_source_name"
                 }
               },
-              "queryRef": "dim_generation_source.source_group",
-              "nativeQueryRef": "source_group",
+              "queryRef": "dim_generation_source.generation_source_name",
+              "nativeQueryRef": "generation_source_name",
               "active": true
             }
           ]
@@ -515,9 +515,6 @@
       ],
       "dataPoint": [
         {
-          "selector": {
-            "metadata": "fact_generation_hour.Negative Price Generation Share"
-          },
           "properties": {
             "fill": {
               "solid": {
@@ -534,5 +531,78 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "variable_renewables",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_generation_source"
+              }
+            },
+            "Property": "generation_source_code"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "s",
+              "Entity": "dim_generation_source",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "s"
+                          }
+                        },
+                        "Property": "generation_source_code"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'solar'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'wind_onshore'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'wind_offshore'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isHiddenInViewMode": true
+      }
+    ]
   }
 }

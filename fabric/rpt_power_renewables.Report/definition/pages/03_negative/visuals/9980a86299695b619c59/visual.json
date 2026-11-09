@@ -515,9 +515,6 @@
       ],
       "dataPoint": [
         {
-          "selector": {
-            "metadata": "fact_market_hour.Negative Price Hours"
-          },
           "properties": {
             "fill": {
               "solid": {
