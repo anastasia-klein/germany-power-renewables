@@ -5,7 +5,7 @@
     "x": 1068,
     "y": 302,
     "width": 506,
-    "height": 222,
+    "height": 190,
     "z": 19000,
     "tabOrder": 19000
   },
@@ -462,6 +462,34 @@
                 }
               }
             },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "-260D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "600D"
+                }
+              }
+            },
             "showAxisTitle": {
               "expr": {
                 "Literal": {
@@ -572,7 +600,7 @@
             "bubbleSize": {
               "expr": {
                 "Literal": {
-                  "Value": "5D"
+                  "Value": "1D"
                 }
               }
             },

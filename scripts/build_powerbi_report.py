@@ -157,16 +157,16 @@ class Page:
         return visual
 
     def scatter(self,x,w,title,x_measure,accent):
-        visual=self.add('scatterChart',x,302,w,222,title,{
+        visual=self.add('scatterChart',x,302,w,190,title,{
             'Category':[(T,'time_key',False)],'X':[measure(x_measure)],
             'Y':[measure('Average Price EUR per MWh')],
             'Tooltips':[(T,'interval_start_utc',False),(T,'local_hour',False)]},{
             'general':props(dataVolume=lit(10000)),
             'categoryAxis':props(labelColor=color(C['muted']),fontFamily=lit(FONT),fontSize=lit(9),showAxisTitle=lit(True),titleText=lit(title.split(' vs.')[0]+' · GW')),
-            'valueAxis':props(labelColor=color(C['muted']),fontFamily=lit(FONT),fontSize=lit(9),showAxisTitle=lit(True),titleText=lit('EUR/MWh'),gridlineColor=color(C['edge']),gridlineShow=lit(True)),
+            'valueAxis':props(labelColor=color(C['muted']),fontFamily=lit(FONT),fontSize=lit(9),labelDisplayUnits=lit(1),labelPrecision=lit(0),start=lit(-260),end=lit(600),showAxisTitle=lit(True),titleText=lit('EUR/MWh'),gridlineColor=color(C['edge']),gridlineShow=lit(True)),
             'legend':props(show=lit(False)),'categoryLabels':props(show=lit(False)),
             'fillPoint':props(style=lit('Fill only')), 'markers':props(transparency=lit(65)), 'dataPoint':props(fill=color(C[accent])),
-            'bubbles':props(bubbleSize=lit(5),preventOverflow=lit(True))})
+            'bubbles':props(bubbleSize=lit(1),preventOverflow=lit(True))})
         return visual
 
     def finish(self):
@@ -235,9 +235,9 @@ def build():
            'Pumped storage is storage output · Nuclear unavailable · Capture requires complete source coverage')
     selector=p.slicer(850,96,352,'Selected generation source',R,'source_label','Solar (Photovoltaics)')
     for x,label,name,accent in [(28,'Selected generation · TWh','Generation TWh','amber'),(420,'Capture price · EUR/MWh','Capture Price EUR per MWh','amber'),(812,'Capture / market average','Capture Rate','teal'),(1204,'MWh in negative-price hours','Negative Price Generation Share','red')]:p.card(x,label,name,G,accent)
-    p.chart('lineChart',28,302,966,310,'Selected source capture price vs market average · EUR/MWh',month,[measure('Timeline Average Price'),measure('Timeline Capture Price',G)],[C['blue'],C['amber']])
-    p.chart('clusteredColumnChart',28,630,966,210,'Selected source · capture rate',month,[measure('Timeline Capture Rate',G)],[C['amber']])
-    table=p.add('tableEx',1012,302,562,538,'All sources · comparison for the selected months',{'Values':[measure('Generation Source Icon',G),(R,'source_label',False),measure('Generation TWh',G),measure('Capture Price EUR per MWh',G),measure('Capture Rate',G)]},{
+    p.chart('lineChart',28,302,1028,310,'Selected source capture price vs market average · EUR/MWh',month,[measure('Timeline Average Price'),measure('Timeline Capture Price',G)],[C['blue'],C['amber']])
+    p.chart('clusteredColumnChart',28,630,1028,210,'Selected source · capture rate',month,[measure('Timeline Capture Rate',G)],[C['amber']])
+    table=p.add('tableEx',1074,302,500,538,'All sources · comparison for the selected months',{'Values':[measure('Generation Source Icon',G),(R,'source_label',False),measure('Generation TWh',G),measure('Capture Price EUR per MWh',G),measure('Capture Rate',G)]},{
         'values':props(fontColor=color(C['text']),backColorPrimary=color(C['panel']),backColorSecondary=color('#F5F7F5'),fontFamily=lit(FONT),fontSize=lit(9.5),wordWrap=lit(True)),
         'columnHeaders':props(fontColor=color(C['text']),backColor=color(C['panel']),fontFamily=lit(FONT),fontSize=lit(9.5),bold=lit(True),wordWrap=lit(True)),
         'grid':props(gridHorizontal=lit(True),gridHorizontalColor=color(C['edge']),gridVertical=lit(False),rowPadding=lit(5),imageHeight=lit(22),imageWidth=lit(24)), 'total':props(totals=lit(False))})
@@ -264,20 +264,23 @@ def build():
     p.scatter(28,502,'Residual load vs. price','Average Residual Load GW','blue')
     p.scatter(548,502,'Wind vs. price','Average Wind GW','teal')
     p.scatter(1068,506,'Solar (Photovoltaics) vs. price','Average Solar GW','amber')
-    heatmap=p.add('pivotTable',28,542,1546,298,'Average day-ahead price · month × local hour · EUR/MWh',{
+    heatmap=p.add('pivotTable',28,510,1546,330,'Average day-ahead price · month × local hour · EUR/MWh',{
         'Rows':[(MONTH,'month_short',False)],'Columns':[(T,'local_hour',False)],
         'Values':[measure('Heatmap Price EUR per MWh')]},{
         'values':props(fontColor=color(C['text']),fontFamily=lit(FONT),fontSize=lit(8.5),wordWrap=lit(False)),
         'rowHeaders':props(fontColor=color(C['text']),fontFamily=lit(FONT),fontSize=lit(9),wordWrap=lit(False),stepped=lit(False)),
-        'columnHeaders':props(fontColor=color(C['muted']),fontFamily=lit(FONT),fontSize=lit(8.5),wordWrap=lit(False),autoSizeColumnWidth=lit(True),alignment=lit('center')),
+        'columnHeaders':props(fontColor=color(C['muted']),fontFamily=lit(FONT),fontSize=lit(8.5),wordWrap=lit(False),autoSizeColumnWidth=lit(False),defaultColumnWidth=lit(58),customColumnWidth=lit(True),alignment=lit('center')),
         'grid':props(gridHorizontal=lit(False),gridVertical=lit(False),rowPadding=lit(2)),
         'subTotals':props(rowSubtotals=lit(False),columnSubtotals=lit(False)),
-        'columnFormatting':[{'selector':{'metadata':M+'.Heatmap Price EUR per MWh'},'properties':{
+        'columnFormatting':[{'selector':{'metadata':M+'.Heatmap Price EUR per MWh','data':[{'dataViewWildcard':{'matchingOption':1}}]},'properties':{
             'backColor':{'solid':{'color':{'expr':field(M,'Heatmap Price Color',True)}}},
             'fontColor':color(C['text']),'alignment':lit('center'),
             'styleValues':lit(True),'styleSubtotals':lit(False)}}]})
+    heatmap['visual']['objects']['values'].append({'selector':{'metadata':M+'.Heatmap Price EUR per MWh','data':[{'dataViewWildcard':{'matchingOption':1}}]},'properties':{'backColor':{'solid':{'color':{'expr':field(M,'Heatmap Price Color',True)}}}}})
+    heatmap['visual']['query']['queryState']['Rows']['projections'][0]['displayName']='Month'
+    heatmap['visual']['query']['queryState']['Columns']['projections'][0]['displayName']='Hour'
     heatmap['visual']['query']['sortDefinition']={'sort':[{'field':field(MONTH,'month_number'),'direction':'Ascending'},{'field':field(T,'local_hour'),'direction':'Ascending'}],'isDefaultSort':True}
-    p.text(894,550,664,24,'Blue <0 · Pale blue 0–50 · Teal 50–100 · Amber 100–150 · Coral ≥150',8,align='right')
+    p.text(894,518,664,24,'Blue <0 · Pale blue 0–50 · Teal 50–100 · Amber 100–150 · Coral ≥150',8,align='right')
     p.finish()
     print('Built four-page native PBIR report connected to sm_power_renewables')
 

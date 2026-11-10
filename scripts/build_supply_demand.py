@@ -12,10 +12,10 @@ def build():
     # source filters must be removed when computing the reported-generation total.
     for path in [TABLES/'fact_generation_hour.tmdl',ROOT/'model/semantic_measures.dax']:
         text=path.read_text().replace("CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'))", "CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'), REMOVEFILTERS('report_source'))")
-        if "REMOVEFILTERS('dim_generation_source'),\n" in text:
-            text=text.replace("REMOVEFILTERS('dim_generation_source'),\n", "REMOVEFILTERS('dim_generation_source'),\n        REMOVEFILTERS('report_source'),\n") if path.suffix=='.dax' else text.replace("REMOVEFILTERS('dim_generation_source'),\n", "REMOVEFILTERS('dim_generation_source'),\n\t\t\t        REMOVEFILTERS('report_source'),\n")
-        # Keep the patch idempotent when the source file already has both filters.
-        text=re.sub(r"(REMOVEFILTERS\('report_source'\),\s*){2,}", "REMOVEFILTERS('report_source'),\n", text)
+        text=re.sub(
+            r"(?m)^([ \t]*)REMOVEFILTERS\('dim_generation_source'\),\n(?![ \t]*REMOVEFILTERS\('report_source'\))",
+            lambda match: match.group(0)+match.group(1)+"REMOVEFILTERS('report_source'),\n",
+            text)
         path.write_text(text)
     items=[]
     for label,column in [('Residual Load','residual_load_mwh'),('Wind','wind_mwh'),('Solar','solar_mwh')]:
