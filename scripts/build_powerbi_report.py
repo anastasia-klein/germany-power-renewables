@@ -264,7 +264,7 @@ def build():
     p.scatter(28,502,'Residual load vs. price','Average Residual Load GW','blue')
     p.scatter(548,502,'Wind vs. price','Average Wind GW','teal')
     p.scatter(1068,506,'Solar (Photovoltaics) vs. price','Average Solar GW','amber')
-    heatmap=p.add('pivotTable',28,510,1546,330,'Average day-ahead price · month × local hour · EUR/MWh',{
+    heatmap=p.add('pivotTable',28,510,1080,330,'Average day-ahead price · month × local hour · EUR/MWh',{
         'Rows':[(MONTH,'month_short',False)],'Columns':[(T,'local_hour',False)],
         'Values':[measure('Heatmap Price EUR per MWh')]},{
         'values':props(fontColor=color(C['text']),fontFamily=lit(FONT),fontSize=lit(8.5),wordWrap=lit(False)),
@@ -280,7 +280,15 @@ def build():
     heatmap['visual']['query']['queryState']['Rows']['projections'][0]['displayName']='Month'
     heatmap['visual']['query']['queryState']['Columns']['projections'][0]['displayName']='Hour'
     heatmap['visual']['query']['sortDefinition']={'sort':[{'field':field(MONTH,'month_number'),'direction':'Ascending'},{'field':field(T,'local_hour'),'direction':'Ascending'}],'isDefaultSort':True}
-    p.text(894,518,664,24,'Blue <0 · Pale blue 0–50 · Teal 50–100 · Amber 100–150 · Coral ≥150',8,align='right')
+    p.add('shape',1126,510,448,330,'Colour scale · EUR/MWh',objects={'shape':props(tileShape=lit('rectangle')),'fill':props(show=lit(False)),'outline':props(show=lit(False))})
+    p.text(1142,550,416,48,'Each cell averages prices across all days in one month at one local hour.',10)
+    for index,(label,fg) in enumerate([('Below 0 · negative mean','#8EC5FF'),('0 to 50','#E9F2FF'),('50 to 100','#D2E8EF'),('100 to 150','#F8D995'),('150 and above','#ED8B82')]):
+        swatch=p.add('shape',1142,620+index*28,22,18,objects={'shape':props(tileShape=lit('rectangle')),'fill':props(show=lit(False)),'outline':props(show=lit(False))})
+        swatch['visual']['visualContainerObjects']['background']=props(show=lit(True),color=color(fg),transparency=lit(0))
+        swatch['visual']['visualContainerObjects']['border']=props(show=lit(False))
+        swatch['visual']['visualContainerObjects']['dropShadow']=props(show=lit(False))
+        p.text(1178,618+index*28,360,24,label,10)
+    p.text(1142,783,416,44,'Blue means a negative mean price, not the frequency of negative hours.',9)
     p.finish()
     print('Built four-page native PBIR report connected to sm_power_renewables')
 

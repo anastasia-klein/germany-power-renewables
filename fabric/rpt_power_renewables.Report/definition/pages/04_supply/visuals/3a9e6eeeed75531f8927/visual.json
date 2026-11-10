@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "ab6651a55c0e584a8fdd",
+  "name": "3a9e6eeeed75531f8927",
   "position": {
-    "x": 894,
-    "y": 518,
-    "width": 664,
-    "height": 24,
+    "x": 1126,
+    "y": 510,
+    "width": 448,
+    "height": 330,
     "z": 21000,
     "tabOrder": 21000
   },
   "visual": {
-    "visualType": "textbox",
+    "visualType": "shape",
     "visualContainerObjects": {
       "background": [
         {
@@ -18,7 +18,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -36,7 +36,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "100D"
+                  "Value": "0D"
                 }
               }
             }
@@ -49,7 +49,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -87,7 +87,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -173,14 +173,14 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "''"
+                  "Value": "'Colour scale · EUR/MWh'"
                 }
               }
             },
@@ -225,28 +225,28 @@
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "10D"
                 }
               }
             },
             "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "8D"
                 }
               }
             },
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "12D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "12D"
                 }
               }
             }
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'textbox'"
+                  "Value": "'Colour scale · EUR/MWh'"
                 }
               }
             },
@@ -276,25 +276,42 @@
     },
     "drillFilterOtherVisuals": true,
     "objects": {
-      "general": [
+      "shape": [
         {
           "properties": {
-            "paragraphs": [
-              {
-                "textRuns": [
-                  {
-                    "value": "Blue <0 · Pale blue 0–50 · Teal 50–100 · Amber 100–150 · Coral ≥150",
-                    "textStyle": {
-                      "fontFamily": "'Avenir Next', Arial, sans-serif",
-                      "fontSize": "8pt",
-                      "fontWeight": "normal",
-                      "color": "#65768A"
-                    }
-                  }
-                ],
-                "horizontalTextAlignment": "right"
+            "tileShape": {
+              "expr": {
+                "Literal": {
+                  "Value": "'rectangle'"
+                }
               }
-            ]
+            }
+          }
+        }
+      ],
+      "fill": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "outline": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ]
