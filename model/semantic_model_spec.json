@@ -149,5 +149,14 @@
   "execution_status": {
     "all_nineteen": "Present in Fabric; author confirmed headline control values",
     "report_checks": "Annual market mean 89.32, load-weighted 92.42, load 465.82 TWh, renewable share 58.86%; solar capture 46.07 and 51.58%; Biomass selection updates capture to 92.85; June selection gives 141 negative hours, 19.58% and 720 valid hours"
-  }
+  },
+  "presentation": "model/report_presentation.json",
+  "presentation_tables": {
+    "report_month": "Twelve fixed 2025 month labels, sorted by month number; filters dim_time_hour",
+    "report_axis": "Disconnected 377-row month/day axis; seven measures return only the applicable grain",
+    "report_source": "Twelve source labels, SVG icons and fixed colors; filters dim_generation_source"
+  },
+  "gold_storage": "Five gold tables remain in Direct Lake mode; three fixed presentation tables use Import calculated partitions without referencing Direct Lake data",
+  "presentation_measure_count": 9,
+  "core_measure_count": 19
 }

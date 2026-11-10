@@ -157,5 +157,6 @@
     "gold.fact_generation_hour": 105120
   },
   "fabric_execution_evidence": "notebook_status.json: author-reported successful execution; no Fabric output snapshot captured for this run",
-  "semantic_model_spec": "model/semantic_model_spec.json"
+  "semantic_model_spec": "model/semantic_model_spec.json",
+  "report_presentation": "model/report_presentation.json; static calendar/source helpers and nine presentation measures, separate from the nineteen core metrics"
 }

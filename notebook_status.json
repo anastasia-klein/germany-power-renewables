@@ -46,5 +46,5 @@
   },
   "all_refactored_notebooks_validated_in_fabric": true,
   "source_of_truth": "Fabric item definitions in fabric/; notebooks/ are derived portable exports",
-  "semantic_model": "Five relationships and nineteen measures deployed in Fabric; headline values confirmed by author and checked in report"
+  "semantic_model": "Five gold-model relationships and nineteen core measures deployed in Fabric; three small presentation tables, two presentation relationships and nine report measures support names, icons, colors and the adaptive axis"
 }

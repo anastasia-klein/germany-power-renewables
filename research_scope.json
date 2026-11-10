@@ -31,7 +31,7 @@
     },
     {
       "item": "Gold tables, semantic model and DAX measures",
-      "status": "Five gold tables, five relationships and nineteen semantic measures deployed in Fabric; headline values validated"
+      "status": "Five gold tables and nineteen core semantic measures deployed and validated; presentation metadata and adaptive-axis/color/icon measures are also deployed"
     },
     {
       "item": "Power BI report connected to Fabric",

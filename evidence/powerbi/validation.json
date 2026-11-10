@@ -1,13 +1,13 @@
 {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "report_id": "5b92ecf0-ba8f-4e3e-8fdd-26476b3747fc",
   "semantic_model_id": "2ac8afba-a766-46be-b606-b3009a1ef41a",
   "report_pages": 3,
   "static_validation": {
-    "schema_files": 58,
-    "visuals": 50,
-    "model_field_references": 40,
-    "native_formatting_properties": 402
+    "schema_files": 64,
+    "visuals": 56,
+    "model_field_references": 41,
+    "native_formatting_properties": 435
   },
   "browser_checks": [
     "All three report pages rendered against the existing model",
@@ -16,12 +16,26 @@
     "Biomass source selection: capture 92.85 EUR/MWh and rate 103.95%; market benchmark and all-source table retained",
     "Annual negative-price page: 573 hours, 6.54%, 8760 valid hours",
     "June month selection: 141 negative hours, 19.58%, 720 valid hours",
-    "Final line colors confirmed after sync: ochre generation/load ratio and terracotta negative-price frequency; annual headline values unchanged"
+    "Final line colors confirmed after sync: ochre generation/load ratio and terracotta negative-price frequency; annual headline values unchanged",
+    "Full month names in January-December calendar order",
+    "June selection switches to thirty daily observations; mean 63.99 and load-weighted 63.60 unchanged",
+    "Source color changes consistently across cards, capture line and bars when selecting Biomass",
+    "Inline SVG icons render for all twelve source categories, including unavailable nuclear",
+    "Avenir Next font stack rendered on the author Mac; local Avenir Next installation verified",
+    "Rounded light navigation and removal of technical footer verified",
+    "Selecting June and July together restores two monthly axis categories rather than daily points"
   ],
   "public_access": "Not enabled; workspace-authenticated report only",
   "reference_design": "https://github.com/anastasia-klein/global-critical-materials-intelligence",
-  "deployed_report_source_commit": "d4c3164",
+  "deployed_report_source_commit": "2d10d83",
   "pending_report_changes": null,
-  "fabric_synced_git_commit": "b382f86",
-  "conflict_resolution": "User explicitly approved updating only the report; accepted incoming report content in Fabric. Report returned to Synced."
+  "fabric_synced_git_commit": "2d10d83",
+  "conflict_resolution": "The report update was applied using the previously authorized report-only incoming version; notebook and Test report changes were not committed or overwritten.",
+  "presentation_tables": {
+    "report_month": 12,
+    "report_axis": 377,
+    "report_source": 12
+  },
+  "core_measure_count": 19,
+  "presentation_measure_count": 9
 }
