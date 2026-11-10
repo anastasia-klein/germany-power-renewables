@@ -18,7 +18,7 @@ COLORS={'canvas':'#F5F8FC','panel':'#FFFFFF','edge':'#E0E8F3','text':'#203349','
 SOURCES=[
  ('biomass','Biomass','#65B87C','leaf'),('hydropower','Hydropower','#4A9DE3','water'),
  ('wind_offshore','Wind offshore','#56BED7','offshore'),('wind_onshore','Wind onshore','#12A89D','wind'),
- ('solar','Solar (photovoltaics)','#F1B63D','sun'),('other_renewable','Other renewable','#A0CD8C','sprout'),
+ ('solar','Solar (Photovoltaics)','#F1B63D','sun'),('other_renewable','Other renewable','#A0CD8C','sprout'),
  ('nuclear','Nuclear','#9C91C7','atom'),('lignite','Lignite','#B29378','coal'),
  ('hard_coal','Hard coal','#71859B','coal'),('fossil_gas','Fossil gas','#F39A70','flame'),
  ('pumped_storage','Pumped storage','#9D8DE5','storage'),('other_conventional','Other conventional','#A9B8CA','plant')]

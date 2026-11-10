@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "936fd117f6e75b34bce4",
   "position": {
-    "x": 1204,
-    "y": 211,
+    "x": 420,
+    "y": 188,
     "width": 370,
-    "height": 103,
+    "height": 96,
     "z": 14000,
     "tabOrder": 14000
   },
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Valid physical hours'"
+                  "Value": "'Share of valid hours'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Valid physical hours'"
+                  "Value": "'Share of valid hours'"
                 }
               }
             },
@@ -287,12 +287,12 @@
                       "Entity": "fact_market_hour"
                     }
                   },
-                  "Property": "Valid Price Hours"
+                  "Property": "Negative Price Hour Share"
                 }
               },
-              "queryRef": "fact_market_hour.Valid Price Hours",
-              "nativeQueryRef": "Valid Price Hours",
-              "displayName": "Valid Price Hours",
+              "queryRef": "fact_market_hour.Negative Price Hour Share",
+              "nativeQueryRef": "Negative Price Hour Share",
+              "displayName": "Negative Price Hour Share",
               "active": true
             }
           ]
@@ -308,7 +308,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8298B0'"
+                      "Value": "'#EA6C73'"
                     }
                   }
                 }

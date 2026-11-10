@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "193ad6547c31545faad2",
   "position": {
-    "x": 812,
-    "y": 211,
+    "x": 28,
+    "y": 188,
     "width": 370,
-    "height": 103,
+    "height": 96,
     "z": 13000,
     "tabOrder": 13000
   },
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Grid load · TWh'"
+                  "Value": "'Market average · EUR/MWh'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Grid load · TWh'"
+                  "Value": "'Market average · EUR/MWh'"
                 }
               }
             },
@@ -287,12 +287,12 @@
                       "Entity": "fact_market_hour"
                     }
                   },
-                  "Property": "Grid Load TWh"
+                  "Property": "Average Price EUR per MWh"
                 }
               },
-              "queryRef": "fact_market_hour.Grid Load TWh",
-              "nativeQueryRef": "Grid Load TWh",
-              "displayName": "Grid Load TWh",
+              "queryRef": "fact_market_hour.Average Price EUR per MWh",
+              "nativeQueryRef": "Average Price EUR per MWh",
+              "displayName": "Average Price EUR per MWh",
               "active": true
             }
           ]
@@ -308,7 +308,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8298B0'"
+                      "Value": "'#397FE5'"
                     }
                   }
                 }

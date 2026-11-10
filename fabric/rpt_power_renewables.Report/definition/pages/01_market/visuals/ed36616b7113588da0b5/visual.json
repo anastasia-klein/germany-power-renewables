@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "ed36616b7113588da0b5",
   "position": {
-    "x": 29,
-    "y": 153,
+    "x": 28,
+    "y": 97,
     "width": 800,
-    "height": 36,
+    "height": 48,
     "z": 7000,
     "tabOrder": 7000
   },
@@ -283,12 +283,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "Germany load & generation · DE/LU day-ahead price · Select one month for daily detail",
+                    "value": "How did the German power market move?",
                     "textStyle": {
                       "fontFamily": "'Avenir Next', Arial, sans-serif",
-                      "fontSize": "10pt",
-                      "fontWeight": "normal",
-                      "color": "#65768A"
+                      "fontSize": "26pt",
+                      "fontWeight": "bold",
+                      "color": "#203349"
                     }
                   }
                 ],

@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "f5df17e69a2157fbb3e6",
   "position": {
-    "x": 29,
-    "y": 153,
+    "x": 28,
+    "y": 97,
     "width": 800,
-    "height": 36,
+    "height": 48,
     "z": 7000,
     "tabOrder": 7000
   },
@@ -283,12 +283,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "Source-weighted prices describe timing exposure · They do not measure generator revenue or profit",
+                    "value": "When does generation capture market value?",
                     "textStyle": {
                       "fontFamily": "'Avenir Next', Arial, sans-serif",
-                      "fontSize": "10pt",
-                      "fontWeight": "normal",
-                      "color": "#65768A"
+                      "fontSize": "26pt",
+                      "fontWeight": "bold",
+                      "color": "#203349"
                     }
                   }
                 ],

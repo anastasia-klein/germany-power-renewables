@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "e6c6051a912f5bb688de",
   "position": {
-    "x": 812,
-    "y": 211,
+    "x": 28,
+    "y": 188,
     "width": 370,
-    "height": 103,
+    "height": 96,
     "z": 13000,
     "tabOrder": 13000
   },
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Wind + solar / grid load'"
+                  "Value": "'Negative-price hours'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Wind + solar / grid load'"
+                  "Value": "'Negative-price hours'"
                 }
               }
             },
@@ -287,12 +287,12 @@
                       "Entity": "fact_market_hour"
                     }
                   },
-                  "Property": "Wind Solar Load Ratio"
+                  "Property": "Negative Price Hours"
                 }
               },
-              "queryRef": "fact_market_hour.Wind Solar Load Ratio",
-              "nativeQueryRef": "Wind Solar Load Ratio",
-              "displayName": "Wind Solar Load Ratio",
+              "queryRef": "fact_market_hour.Negative Price Hours",
+              "nativeQueryRef": "Negative Price Hours",
+              "displayName": "Negative Price Hours",
               "active": true
             }
           ]
@@ -308,7 +308,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#12A89D'"
+                      "Value": "'#EA6C73'"
                     }
                   }
                 }

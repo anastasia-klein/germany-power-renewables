@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "f6489b2bb34c5ae08dbc",
   "position": {
-    "x": 28,
-    "y": 856,
-    "width": 1050,
-    "height": 38,
+    "x": 1222,
+    "y": 96,
+    "width": 348,
+    "height": 24,
     "z": 9000,
     "tabOrder": 9000
   },
@@ -283,12 +283,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "Negative hourly averages, not negative quarter-hours · High solar output does not always imply negative prices",
+                    "value": "Month · 2025",
                     "textStyle": {
                       "fontFamily": "'Avenir Next', Arial, sans-serif",
-                      "fontSize": "9pt",
-                      "fontWeight": "normal",
-                      "color": "#65768A"
+                      "fontSize": "10pt",
+                      "fontWeight": "bold",
+                      "color": "#203349"
                     }
                   }
                 ],

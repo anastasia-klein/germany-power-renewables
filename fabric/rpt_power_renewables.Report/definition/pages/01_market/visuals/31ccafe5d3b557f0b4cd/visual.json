@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "31ccafe5d3b557f0b4cd",
   "position": {
-    "x": 28,
-    "y": 856,
-    "width": 1050,
-    "height": 38,
+    "x": 1222,
+    "y": 96,
+    "width": 348,
+    "height": 24,
     "z": 9000,
     "tabOrder": 9000
   },
@@ -283,12 +283,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "Hourly export · Local calendar: Europe/Berlin · UTC preserves repeated DST hours · Descriptive analysis",
+                    "value": "Month · 2025",
                     "textStyle": {
                       "fontFamily": "'Avenir Next', Arial, sans-serif",
-                      "fontSize": "9pt",
-                      "fontWeight": "normal",
-                      "color": "#65768A"
+                      "fontSize": "10pt",
+                      "fontWeight": "bold",
+                      "color": "#203349"
                     }
                   }
                 ],

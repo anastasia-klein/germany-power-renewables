@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "fb9e590dea4a5446b61d",
   "position": {
-    "x": 1204,
-    "y": 211,
+    "x": 420,
+    "y": 188,
     "width": 370,
-    "height": 103,
+    "height": 96,
     "z": 14000,
     "tabOrder": 14000
   },
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Renewables / reported generation'"
+                  "Value": "'Load-weighted · EUR/MWh'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Renewables / reported generation'"
+                  "Value": "'Load-weighted · EUR/MWh'"
                 }
               }
             },
@@ -284,15 +284,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fact_generation_hour"
+                      "Entity": "fact_market_hour"
                     }
                   },
-                  "Property": "Renewable Share of Reported Generation"
+                  "Property": "Load Weighted Price EUR per MWh"
                 }
               },
-              "queryRef": "fact_generation_hour.Renewable Share of Reported Generation",
-              "nativeQueryRef": "Renewable Share of Reported Generation",
-              "displayName": "Renewable Share of Reported Generation",
+              "queryRef": "fact_market_hour.Load Weighted Price EUR per MWh",
+              "nativeQueryRef": "Load Weighted Price EUR per MWh",
+              "displayName": "Load Weighted Price EUR per MWh",
               "active": true
             }
           ]
@@ -308,7 +308,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#65B87C'"
+                      "Value": "'#12A89D'"
                     }
                   }
                 }

@@ -3,7 +3,8 @@
   "pageOrder": [
     "01_market",
     "02_generation",
-    "03_negative"
+    "03_negative",
+    "04_supply"
   ],
   "activePageName": "01_market"
 }

@@ -68,7 +68,7 @@ DIVIDE(SUM('fact_generation_hour'[generation_mwh]), 1000000)
 Generation Share =
 DIVIDE(
     [Generation TWh],
-    CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'))
+    CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'), REMOVEFILTERS('report_source'))
 )
 
 // Home table: fact_generation_hour; format: 0.00%
@@ -77,10 +77,11 @@ VAR RenewableVolume =
     CALCULATE(
         [Generation TWh],
         REMOVEFILTERS('dim_generation_source'),
+        REMOVEFILTERS('report_source'),
         'dim_generation_source'[is_renewable] = TRUE()
     )
 VAR ReportedVolume =
-    CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'))
+    CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'), REMOVEFILTERS('report_source'))
 RETURN
     DIVIDE(RenewableVolume, ReportedVolume)
 

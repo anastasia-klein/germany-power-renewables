@@ -1,0 +1,42 @@
+{
+  "physical_hours": 8760,
+  "raw_correlations": {
+    "residual_load": 0.8762283379749375,
+    "wind": -0.28580558530800354,
+    "solar": -0.5572503605065032
+  },
+  "heatmap_cells": 288,
+  "heatmap_examples": {
+    "01-00": {
+      "price": 90.09225806451613,
+      "hours": 31
+    },
+    "06-13": {
+      "price": -10.094333333333333,
+      "hours": 30
+    },
+    "03-02": {
+      "price": 90.84566666666666,
+      "hours": 30
+    },
+    "10-02": {
+      "price": 60.111875,
+      "hours": 32
+    }
+  },
+  "reported_generation_twh": 437.8952228300001,
+  "generation_shares": {
+    "biomass": 0.08192401981038984,
+    "hydropower": 0.032388762655001804,
+    "wind_offshore": 0.05981926244984241,
+    "wind_onshore": 0.24382063709210525,
+    "solar": 0.1684965408691942,
+    "other_renewable": 0.0021765875495061513,
+    "nuclear": null,
+    "lignite": 0.1533845313404466,
+    "hard_coal": 0.06430170264938305,
+    "fossil_gas": 0.138269044952577,
+    "pumped_storage": 0.022593406879528523,
+    "other_conventional": 0.032825503752025025
+  }
+}

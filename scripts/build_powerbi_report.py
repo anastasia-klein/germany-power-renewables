@@ -16,7 +16,7 @@ FONT = DESIGN['font']
 R = 'report_source'
 MONTH = 'report_month'
 AXIS = 'report_axis'
-PAGES = [('01_market', 'Market overview'), ('02_generation', 'Generation & value'), ('03_negative', 'Negative prices')]
+PAGES = [('01_market', 'Market overview'), ('02_generation', 'Generation & value'), ('03_negative', 'Negative prices'), ('04_supply', 'Supply & demand')]
 M = 'fact_market_hour'
 G = 'fact_generation_hour'
 T = 'dim_time_hour'
@@ -69,9 +69,9 @@ class Page:
         self.text(28, 14, 590, 62, 'Germany Power & Renewables', 25, True)
         self.text(29, 72, 570, 25, 'POWER MARKET RESEARCH  ·  SMARD  ·  2025', 10)
         for index,(page_name,_) in enumerate(PAGES):
-            panel=self.add('shape',650+index*310,24,302,48,objects={'shape':props(tileShape=lit('rectangle')),'fill':props(show=lit(False)),'outline':props(show=lit(False))})
+            panel=self.add('shape',650+index*(922/len(PAGES)),24,922/len(PAGES)-8,48,objects={'shape':props(tileShape=lit('rectangle')),'fill':props(show=lit(False)),'outline':props(show=lit(False))})
             panel['visual']['visualContainerObjects']['background']=props(show=lit(True),color=color('#E2EEFF' if page_name==name else C['panel']),transparency=lit(0))
-            panel['visual']['visualContainerObjects']['border']=props(show=lit(True),color=color('#D8E7FA' if page_name==name else C['edge']),radius=lit(24),width=lit(1))
+            panel['visual']['visualContainerObjects']['border']=props(show=lit(True),color=color('#D8E7FA' if page_name==name else C['edge']),radius=lit(8),width=lit(1))
             panel['visual']['visualContainerObjects']['dropShadow']=props(show=lit(False))
         self.add('pageNavigator', 650, 24, 922, 48, transparent=True, objects={
             'layout': props(orientation=lit(2), cellPadding=lit(8)),
@@ -82,10 +82,10 @@ class Page:
             'fill': [{'selector': {'id': state}, 'properties': {
                 'show': lit(False), 'fillColor': color('#FFFFFF'), 'transparency': lit(100)}}
                      for state in ['default', 'selected']],
-            'outline': props(show=lit(False)), 'shape': props(tileShape=lit('rectangleRoundedByPixel'), rectangleRoundedCurve=lit(24))})
-        self.text(28, 101, 800, 48, question, 26, True)
-        self.text(29, 153, 800, 36, subtitle, 10)
-        self.slicer(1220, 101, 352, 'Month · 2025', MONTH, 'month_name')
+            'outline': props(show=lit(False)), 'shape': props(tileShape=lit('rectangleRoundedByPixel'), rectangleRoundedCurve=lit(8))})
+        self.text(28, 97, 800, 48, question, 26, True)
+        self.text(29, 146, 800, 36, subtitle, 10)
+        self.slicer(1220, 96, 352, 'Month · 2025', MONTH, 'month_name')
         self.text(28, 856, 1050, 38, footnote, 9)
         self.text(1100, 854, 472, 22, 'Bundesnetzagentur | SMARD.de · CC BY 4.0', 9, align='right')
 
@@ -118,12 +118,17 @@ class Page:
     def slicer(self, x, y, w, title, table, column, default=None):
         objects = {'data': props(mode=lit('Dropdown')), 'header': props(show=lit(False)),
                    'items': props(fontColor=color(C['text']), background=color(C['panel']), fontFamily=lit(FONT), textSize=lit(11)),
+                   'general': props(outlineWeight=lit(0), outlineColor=color(C['panel'])),
                    'selection': props(singleSelect=lit(default is not None), strictSingleSelect=lit(default is not None), selectAllCheckboxEnabled=lit(default is None))}
         if default is not None:
-            objects['general'] = props(filter={'filter': {'Version': 2, 'From': [{'Name': 's', 'Entity': table, 'Type': 0}], 'Where': [{'Condition': {'In': {
+            objects['general'] = props(outlineWeight=lit(0), outlineColor=color(C['panel']), filter={'filter': {'Version': 2, 'From': [{'Name': 's', 'Entity': table, 'Type': 0}], 'Where': [{'Condition': {'In': {
                 'Expressions': [{'Column': {'Expression': {'SourceRef': {'Source': 's'}}, 'Property': column}}],
                 'Values': [[{'Literal': {'Value': "'"+default+"'"}}]]}}}]}})
-        visual = self.add('slicer', x, y, w, 83, title, {'Values': [(table, column, False)]}, objects)
+        self.text(x+2,y,w-4,24,title,10,True)
+        visual = self.add('slicer', x, y+26, w, 40, '', {'Values': [(table, column, False)]}, objects)
+        visual['visual']['visualContainerObjects']['border']=props(show=lit(True),color=color(C['edge']),radius=lit(7),width=lit(1))
+        visual['visual']['visualContainerObjects']['dropShadow']=props(show=lit(False))
+        visual['visual']['visualContainerObjects']['padding']=props(top=lit(3),bottom=lit(3),left=lit(8),right=lit(8))
         visual['filterConfig'] = {'filters': [{'name': 'available_values', 'field': field(table, column), 'type': 'Categorical', 'filter': {
             'Version': 2, 'From': [{'Name': 's', 'Entity': table, 'Type': 0}], 'Where': [{'Condition': {'Not': {'Expression': {'In': {
                 'Expressions': [{'Column': {'Expression': {'SourceRef': {'Source': 's'}}, 'Property': column}}],
@@ -131,7 +136,7 @@ class Page:
         return visual
 
     def card(self, x, title, name, table=M, accent='blue'):
-        return self.add('card', x, 211, 370, 103, title, {'Values': [measure(name, table)]}, {
+        return self.add('card', x, 188, 370, 96, title, {'Values': [measure(name, table)]}, {
             'labels': props(color=color(C[accent]), fontFamily=lit(FONT), fontSize=lit(28), labelDisplayUnits=lit(1)),
             'categoryLabels': props(show=lit(False))})
 
@@ -149,6 +154,19 @@ class Page:
         visual = self.add(kind,x,y,w,h,title,{'Category':[axis], 'Y':metrics},objects)
         sort_field = metrics[0] if descending else (AXIS, 'axis_order', False) if axis[0] == AXIS else axis
         visual['visual']['query']['sortDefinition'] = {'sort':[{'field':field(*sort_field),'direction':'Descending' if descending else 'Ascending'}], 'isDefaultSort':True}
+        return visual
+
+    def scatter(self,x,w,title,x_measure,accent):
+        visual=self.add('scatterChart',x,302,w,222,title,{
+            'Category':[(T,'time_key',False)],'X':[measure(x_measure)],
+            'Y':[measure('Average Price EUR per MWh')],
+            'Tooltips':[(T,'interval_start_utc',False),(T,'local_hour',False)]},{
+            'general':props(dataVolume=lit(10000)),
+            'categoryAxis':props(labelColor=color(C['muted']),fontFamily=lit(FONT),fontSize=lit(9),showAxisTitle=lit(True),titleText=lit(title.split(' vs.')[0]+' · GW')),
+            'valueAxis':props(labelColor=color(C['muted']),fontFamily=lit(FONT),fontSize=lit(9),showAxisTitle=lit(True),titleText=lit('EUR/MWh'),gridlineColor=color(C['edge']),gridlineShow=lit(True)),
+            'legend':props(show=lit(False)),'categoryLabels':props(show=lit(False)),
+            'fillPoint':props(style=lit('Fill only')), 'markers':props(transparency=lit(65)), 'dataPoint':props(fill=color(C[accent])),
+            'bubbles':props(bubbleSize=lit(5),preventOverflow=lit(True))})
         return visual
 
     def finish(self):
@@ -169,7 +187,7 @@ class Page:
             if self.name == '03_negative' and kind == 'clusteredBarChart':
                 visual['objects']['dataPoint']=[{'selector':{'data':[{'dataViewWildcard':{'matchingOption':1}}]},'properties':{'fill':{'solid':{'color':{'expr':field(G,'Generation Source Color',True)}}}}}]
         # Slicers filter the page. Charts do not change the meaning of other KPIs.
-        charts=[v for v in self.visuals if v['visual']['visualType'] in ['lineChart','clusteredBarChart','clusteredColumnChart','tableEx']]
+        charts=[v for v in self.visuals if v['visual']['visualType'] in ['lineChart','clusteredBarChart','clusteredColumnChart','tableEx','scatterChart','pivotTable']]
         targets=[v for v in self.visuals if v['visual']['visualType'] != 'textbox']
         interactions=[{'source':a['name'],'target':b['name'],'type':'NoFilter'} for a in charts for b in targets if a!=b]
         interactions += self.overrides
@@ -203,22 +221,25 @@ def build():
            'Hourly export · Local calendar: Europe/Berlin · UTC preserves repeated DST hours · Descriptive analysis')
     for x,label,name,accent in [(28,'Market average · EUR/MWh','Average Price EUR per MWh','blue'),(420,'Load-weighted · EUR/MWh','Load Weighted Price EUR per MWh','teal'),(812,'Grid load · TWh','Grid Load TWh','slate')]:p.card(x,label,name,accent=accent)
     p.card(1204,'Renewables / reported generation','Renewable Share of Reported Generation',G,'green')
-    p.chart('lineChart',28,332,1008,278,'Price profile · time average vs load-weighted · EUR/MWh',month,[measure('Timeline Average Price'),measure('Timeline Load Weighted Price')],[C['blue'],C['teal']])
-    p.chart('lineChart',28,628,1008,212,'Wind + solar / grid load · ratio of energy sums',month,[measure('Timeline Wind Solar Load Ratio')],[C['amber']])
-    mix=p.chart('clusteredBarChart',1054,332,520,508,'Reported generation mix · TWh',(R,'source_label',False),[measure('Generation TWh',G)],[C['slate']],descending=True)
+    p.chart('lineChart',28,302,920,300,'Price profile · time average vs load-weighted · EUR/MWh',month,[measure('Timeline Average Price'),measure('Timeline Load Weighted Price')],[C['blue'],C['teal']])
+    p.chart('lineChart',28,620,920,220,'Wind + solar / grid load · ratio of energy sums',month,[measure('Timeline Wind Solar Load Ratio')],[C['amber']])
+    mix=p.chart('clusteredBarChart',968,302,606,538,'Generation mix · share of reported output',(R,'source_label',False),[measure('Generation Share',G)],[C['slate']],descending=True)
+    mix['visual']['objects']['categoryAxis'][0]['properties'].update(maxMarginFactor=lit(60),fontSize=lit(9.5))
+    mix['visual']['objects']['labels']=props(show=lit(True),color=color(C['text']),fontFamily=lit(FONT),fontSize=lit(9.5),labelPrecision=lit(1),labelDisplayUnits=lit(1),labelPosition=lit('OutsideEnd'),labelOverflow=lit(True))
+    mix['visual']['query']['queryState']['Tooltips']={'projections':[projection(G,'Generation TWh',True)]}
     # Stable category colors identify technologies, rather than changing with sorting.
     source_colors={source['label']:source['color'] for source in DESIGN['sources']}
     mix['visual']['objects']['dataPoint']=[{'selector':{'data':[{'scopeId':{'Comparison':{'ComparisonKind':0,'Left':field(R,'source_label'),'Right':{'Literal':{'Value':"'"+label+"'"}}}}}]},'properties':{'fill':color(c)}} for label,c in source_colors.items()]
     p.finish()
     p=Page(*PAGES[1],'When does generation capture market value?', 'Source-weighted prices describe timing exposure · They do not measure generator revenue or profit',
-           'Photovoltaics = solar · Pumped storage is storage output · Nuclear unavailable · Capture requires complete source coverage')
-    selector=p.slicer(850,102,352,'Selected generation source',R,'source_label','Solar (photovoltaics)')
+           'Pumped storage is storage output · Nuclear unavailable · Capture requires complete source coverage')
+    selector=p.slicer(850,96,352,'Selected generation source',R,'source_label','Solar (Photovoltaics)')
     for x,label,name,accent in [(28,'Selected generation · TWh','Generation TWh','amber'),(420,'Capture price · EUR/MWh','Capture Price EUR per MWh','amber'),(812,'Capture / market average','Capture Rate','teal'),(1204,'MWh in negative-price hours','Negative Price Generation Share','red')]:p.card(x,label,name,G,accent)
-    p.chart('lineChart',28,332,850,290,'Selected source capture price vs market average · EUR/MWh',month,[measure('Timeline Average Price'),measure('Timeline Capture Price',G)],[C['blue'],C['amber']])
-    p.chart('clusteredColumnChart',28,640,850,200,'Selected source · capture rate',month,[measure('Timeline Capture Rate',G)],[C['amber']])
-    table=p.add('tableEx',896,332,678,508,'All sources · comparison for the selected months',{'Values':[measure('Generation Source Icon',G),(S,'generation_source_name',False),measure('Generation TWh',G),measure('Capture Price EUR per MWh',G),measure('Capture Rate',G)]},{
-        'values':props(fontColor=color(C['text']),backColorPrimary=color(C['panel']),backColorSecondary=color('#F5F7F5'),fontFamily=lit(FONT),fontSize=lit(10),wordWrap=lit(True)),
-        'columnHeaders':props(fontColor=color(C['text']),backColor=color(C['panel']),fontFamily=lit(FONT),fontSize=lit(10),bold=lit(True),wordWrap=lit(True)),
+    p.chart('lineChart',28,302,966,310,'Selected source capture price vs market average · EUR/MWh',month,[measure('Timeline Average Price'),measure('Timeline Capture Price',G)],[C['blue'],C['amber']])
+    p.chart('clusteredColumnChart',28,630,966,210,'Selected source · capture rate',month,[measure('Timeline Capture Rate',G)],[C['amber']])
+    table=p.add('tableEx',1012,302,562,538,'All sources · comparison for the selected months',{'Values':[measure('Generation Source Icon',G),(R,'source_label',False),measure('Generation TWh',G),measure('Capture Price EUR per MWh',G),measure('Capture Rate',G)]},{
+        'values':props(fontColor=color(C['text']),backColorPrimary=color(C['panel']),backColorSecondary=color('#F5F7F5'),fontFamily=lit(FONT),fontSize=lit(9.5),wordWrap=lit(True)),
+        'columnHeaders':props(fontColor=color(C['text']),backColor=color(C['panel']),fontFamily=lit(FONT),fontSize=lit(9.5),bold=lit(True),wordWrap=lit(True)),
         'grid':props(gridHorizontal=lit(True),gridHorizontalColor=color(C['edge']),gridVertical=lit(False),rowPadding=lit(5),imageHeight=lit(22),imageWidth=lit(24)), 'total':props(totals=lit(False))})
     for item,label in zip(table['visual']['query']['queryState']['Values']['projections'],['Icon','Source','TWh','Capture EUR/MWh','Capture rate']):item['displayName']=label
     p.overrides.append({'source':selector['name'],'target':table['name'],'type':'NoFilter'})
@@ -226,17 +247,39 @@ def build():
     p=Page(*PAGES[2],'When did power prices turn negative?', 'Frequency of negative hourly prices · Compare calendar patterns and generation exposure',
            'Negative hourly averages, not negative quarter-hours · High solar output does not always imply negative prices')
     for x,label,name,table,accent in [(28,'Negative-price hours','Negative Price Hours',M,'red'),(420,'Share of valid hours','Negative Price Hour Share',M,'red'),(812,'Wind + solar / grid load','Wind Solar Load Ratio',M,'teal'),(1204,'Valid physical hours','Valid Price Hours',M,'slate')]:p.card(x,label,name,table,accent)
-    p.chart('clusteredColumnChart',28,332,764,288,'Negative-price hours · selected period',month,[measure('Timeline Negative Price Hours')],[C['red']])
-    p.chart('clusteredColumnChart',810,332,764,288,'Negative-price frequency by local hour · share of observed hours',(T,'local_hour',False),[measure('Negative Price Hour Share')],[C['red']])
-    p.chart('lineChart',28,638,764,202,'Negative-price frequency · share of observed hours',month,[measure('Timeline Negative Price Share')],[C['red']])
-    exposure = p.chart('clusteredBarChart',810,638,764,202,'Wind & solar exposure · share of source MWh in negative hours',(S,'generation_source_name',False),[measure('Negative Price Generation Share',G)],[C['amber']],descending=True)
+    p.chart('clusteredColumnChart',28,302,764,304,'Negative-price hours · selected period',month,[measure('Timeline Negative Price Hours')],[C['red']])
+    p.chart('clusteredColumnChart',810,302,764,304,'Negative-price frequency by local hour · share of observed hours',(T,'local_hour',False),[measure('Negative Price Hour Share')],[C['red']])
+    p.chart('lineChart',28,624,764,216,'Negative-price frequency · share of observed hours',month,[measure('Timeline Negative Price Share')],[C['red']])
+    exposure = p.chart('clusteredBarChart',810,624,764,216,'Wind & solar exposure · share of source MWh in negative hours',(R,'source_label',False),[measure('Negative Price Generation Share',G)],[C['amber']],descending=True)
     exposure['filterConfig'] = {'filters': [{'name': 'variable_renewables', 'field': field(S,'generation_source_code'), 'type':'Categorical', 'filter': {
         'Version':2, 'From':[{'Name':'s','Entity':S,'Type':0}], 'Where':[{'Condition':{'In':{
             'Expressions':[{'Column':{'Expression':{'SourceRef':{'Source':'s'}},'Property':'generation_source_code'}}],
             'Values':[[{'Literal':{'Value':"'"+code+"'"}}] for code in ['solar','wind_onshore','wind_offshore']]}}}]}, 'howCreated':'User', 'isHiddenInViewMode':True}]}
 
     p.finish()
-    print('Built three-page native PBIR report connected to sm_power_renewables')
+    p=Page(*PAGES[3],'What aligns with the hourly price?',
+           'Each point is one physical hour · Raw Pearson correlations · Month filter applies',
+           'Hourly associations, not causal effects · Scatter may sample overlapping points · Heatmap: mean price in each month × local-hour cell')
+    for x,label,name,accent in [(28,'Price / residual load · Pearson r','Price Correlation Residual Load','blue'),(420,'Price / wind · Pearson r','Price Correlation Wind','teal'),(812,'Price / solar · Pearson r','Price Correlation Solar','amber'),(1204,'Matched physical hours','Valid Price Hours','slate')]:p.card(x,label,name,M,accent)
+    p.scatter(28,502,'Residual load vs. price','Average Residual Load GW','blue')
+    p.scatter(548,502,'Wind vs. price','Average Wind GW','teal')
+    p.scatter(1068,506,'Solar (Photovoltaics) vs. price','Average Solar GW','amber')
+    heatmap=p.add('pivotTable',28,542,1546,298,'Average day-ahead price · month × local hour · EUR/MWh',{
+        'Rows':[(MONTH,'month_short',False)],'Columns':[(T,'local_hour',False)],
+        'Values':[measure('Heatmap Price EUR per MWh')]},{
+        'values':props(fontColor=color(C['text']),fontFamily=lit(FONT),fontSize=lit(8.5),wordWrap=lit(False)),
+        'rowHeaders':props(fontColor=color(C['text']),fontFamily=lit(FONT),fontSize=lit(9),wordWrap=lit(False),stepped=lit(False)),
+        'columnHeaders':props(fontColor=color(C['muted']),fontFamily=lit(FONT),fontSize=lit(8.5),wordWrap=lit(False),autoSizeColumnWidth=lit(True),alignment=lit('center')),
+        'grid':props(gridHorizontal=lit(False),gridVertical=lit(False),rowPadding=lit(2)),
+        'subTotals':props(rowSubtotals=lit(False),columnSubtotals=lit(False)),
+        'columnFormatting':[{'selector':{'metadata':M+'.Heatmap Price EUR per MWh'},'properties':{
+            'backColor':{'solid':{'color':{'expr':field(M,'Heatmap Price Color',True)}}},
+            'fontColor':color(C['text']),'alignment':lit('center'),
+            'styleValues':lit(True),'styleSubtotals':lit(False)}}]})
+    heatmap['visual']['query']['sortDefinition']={'sort':[{'field':field(MONTH,'month_number'),'direction':'Ascending'},{'field':field(T,'local_hour'),'direction':'Ascending'}],'isDefaultSort':True}
+    p.text(894,550,664,24,'Blue <0 · Pale blue 0–50 · Teal 50–100 · Amber 100–150 · Coral ≥150',8,align='right')
+    p.finish()
+    print('Built four-page native PBIR report connected to sm_power_renewables')
 
 
 if __name__ == '__main__':

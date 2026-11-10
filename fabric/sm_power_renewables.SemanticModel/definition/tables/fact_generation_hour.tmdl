@@ -10,7 +10,7 @@ table fact_generation_hour
 	measure 'Generation Share' =
 			DIVIDE(
 			    [Generation TWh],
-			    CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'))
+			    CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'), REMOVEFILTERS('report_source'))
 			)
 		formatString: 0.00%
 		lineageTag: 5a284580-6fb1-422b-a986-4ef05e814c9e
@@ -20,10 +20,11 @@ table fact_generation_hour
 			    CALCULATE(
 			        [Generation TWh],
 			        REMOVEFILTERS('dim_generation_source'),
+			        REMOVEFILTERS('report_source'),
 			        'dim_generation_source'[is_renewable] = TRUE()
 			    )
 			VAR ReportedVolume =
-			    CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'))
+			    CALCULATE([Generation TWh], REMOVEFILTERS('dim_generation_source'), REMOVEFILTERS('report_source'))
 			RETURN
 			    DIVIDE(RenewableVolume, ReportedVolume)
 		formatString: 0.00%

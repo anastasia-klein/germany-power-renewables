@@ -189,6 +189,106 @@ table fact_market_hour
 		displayFolder: Report presentation
 		formatString: 0.00%
 
+	measure 'Average Residual Load GW' =
+			DIVIDE(AVERAGE('fact_market_hour'[residual_load_mwh]), 1000)
+		lineageTag: e8418981-62d6-5ec0-b713-eda61f7a4fe2
+		displayFolder: Supply and demand
+		formatString: 0.00
+
+	measure 'Price Correlation Residual Load' =
+			VAR Observations =
+			    FILTER(
+			        'fact_market_hour',
+			        NOT ISBLANK('fact_market_hour'[residual_load_mwh])
+			            && NOT ISBLANK('fact_market_hour'[day_ahead_price_eur_mwh])
+			    )
+			VAR MeanX = AVERAGEX(Observations, 'fact_market_hour'[residual_load_mwh] / 1000)
+			VAR MeanY = AVERAGEX(Observations, 'fact_market_hour'[day_ahead_price_eur_mwh])
+			VAR CrossProduct =
+			    SUMX(Observations, ('fact_market_hour'[residual_load_mwh] / 1000 - MeanX)
+			        * ('fact_market_hour'[day_ahead_price_eur_mwh] - MeanY))
+			VAR SumSquaresX = SUMX(Observations, ('fact_market_hour'[residual_load_mwh] / 1000 - MeanX) ^ 2)
+			VAR SumSquaresY = SUMX(Observations, ('fact_market_hour'[day_ahead_price_eur_mwh] - MeanY) ^ 2)
+			RETURN
+			    IF(COUNTROWS(Observations) >= 2,
+			        DIVIDE(CrossProduct, SQRT(SumSquaresX * SumSquaresY)))
+		lineageTag: 6cdecd62-d899-54d7-8b69-f82d1385d67e
+		displayFolder: Supply and demand
+		formatString: 0.000
+
+	measure 'Average Wind GW' =
+			DIVIDE(AVERAGE('fact_market_hour'[wind_mwh]), 1000)
+		lineageTag: 832e34c1-6c16-5c70-9b88-75039c168bd2
+		displayFolder: Supply and demand
+		formatString: 0.00
+
+	measure 'Price Correlation Wind' =
+			VAR Observations =
+			    FILTER(
+			        'fact_market_hour',
+			        NOT ISBLANK('fact_market_hour'[wind_mwh])
+			            && NOT ISBLANK('fact_market_hour'[day_ahead_price_eur_mwh])
+			    )
+			VAR MeanX = AVERAGEX(Observations, 'fact_market_hour'[wind_mwh] / 1000)
+			VAR MeanY = AVERAGEX(Observations, 'fact_market_hour'[day_ahead_price_eur_mwh])
+			VAR CrossProduct =
+			    SUMX(Observations, ('fact_market_hour'[wind_mwh] / 1000 - MeanX)
+			        * ('fact_market_hour'[day_ahead_price_eur_mwh] - MeanY))
+			VAR SumSquaresX = SUMX(Observations, ('fact_market_hour'[wind_mwh] / 1000 - MeanX) ^ 2)
+			VAR SumSquaresY = SUMX(Observations, ('fact_market_hour'[day_ahead_price_eur_mwh] - MeanY) ^ 2)
+			RETURN
+			    IF(COUNTROWS(Observations) >= 2,
+			        DIVIDE(CrossProduct, SQRT(SumSquaresX * SumSquaresY)))
+		lineageTag: 5ae5be7c-fa09-5c20-a9e8-d293161f1180
+		displayFolder: Supply and demand
+		formatString: 0.000
+
+	measure 'Average Solar GW' =
+			DIVIDE(AVERAGE('fact_market_hour'[solar_mwh]), 1000)
+		lineageTag: a47b5623-63fa-5b7c-830d-dee3c18ddef1
+		displayFolder: Supply and demand
+		formatString: 0.00
+
+	measure 'Price Correlation Solar' =
+			VAR Observations =
+			    FILTER(
+			        'fact_market_hour',
+			        NOT ISBLANK('fact_market_hour'[solar_mwh])
+			            && NOT ISBLANK('fact_market_hour'[day_ahead_price_eur_mwh])
+			    )
+			VAR MeanX = AVERAGEX(Observations, 'fact_market_hour'[solar_mwh] / 1000)
+			VAR MeanY = AVERAGEX(Observations, 'fact_market_hour'[day_ahead_price_eur_mwh])
+			VAR CrossProduct =
+			    SUMX(Observations, ('fact_market_hour'[solar_mwh] / 1000 - MeanX)
+			        * ('fact_market_hour'[day_ahead_price_eur_mwh] - MeanY))
+			VAR SumSquaresX = SUMX(Observations, ('fact_market_hour'[solar_mwh] / 1000 - MeanX) ^ 2)
+			VAR SumSquaresY = SUMX(Observations, ('fact_market_hour'[day_ahead_price_eur_mwh] - MeanY) ^ 2)
+			RETURN
+			    IF(COUNTROWS(Observations) >= 2,
+			        DIVIDE(CrossProduct, SQRT(SumSquaresX * SumSquaresY)))
+		lineageTag: ca271c85-cbdd-5ca3-ac91-04538e182180
+		displayFolder: Supply and demand
+		formatString: 0.000
+
+	measure 'Heatmap Price EUR per MWh' =
+			[Average Price EUR per MWh]
+		lineageTag: f92f75ae-d038-55a5-a444-b00305cfa801
+		displayFolder: Supply and demand
+		formatString: 0.0
+
+	measure 'Heatmap Price Color' =
+			VAR Price = [Heatmap Price EUR per MWh]
+			RETURN
+			    SWITCH(TRUE(),
+			        ISBLANK(Price), BLANK(),
+			        Price < 0, "#8EC5FF",
+			        Price < 50, "#E9F2FF",
+			        Price < 100, "#D2E8EF",
+			        Price < 150, "#F8D995",
+			        "#ED8B82")
+		lineageTag: 52644f8f-e307-59cb-930f-50a42212d41e
+		displayFolder: Supply and demand
+
 	column time_key
 		dataType: int64
 		formatString: 0
