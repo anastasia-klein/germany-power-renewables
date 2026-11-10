@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -284,14 +284,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_time_hour"
+                      "Entity": "report_month"
                     }
                   },
-                  "Property": "month"
+                  "Property": "month_name"
                 }
               },
-              "queryRef": "dim_time_hour.month",
-              "nativeQueryRef": "month",
+              "queryRef": "report_month.month_name",
+              "nativeQueryRef": "month_name",
               "active": true
             }
           ]
@@ -333,7 +333,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -353,7 +353,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -404,10 +404,10 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "dim_time_hour"
+                "Entity": "report_month"
               }
             },
-            "Property": "month"
+            "Property": "month_name"
           }
         },
         "type": "Categorical",
@@ -416,7 +416,7 @@
           "From": [
             {
               "Name": "s",
-              "Entity": "dim_time_hour",
+              "Entity": "report_month",
               "Type": 0
             }
           ],
@@ -434,7 +434,7 @@
                                 "Source": "s"
                               }
                             },
-                            "Property": "month"
+                            "Property": "month_name"
                           }
                         }
                       ],

@@ -18,3 +18,6 @@ ref table dim_time_hour
 ref table fact_generation_hour
 ref table fact_market_hour
 
+ref table report_month
+ref table report_axis
+ref table report_source

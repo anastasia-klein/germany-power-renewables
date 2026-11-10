@@ -1,0 +1,49 @@
+/// Static presentation metadata for the 2025 research report.
+table report_source
+	lineageTag: accdfe2d-6cbb-585d-9449-efcf20f9dc56
+
+	column source_code
+		dataType: string
+		lineageTag: fa4c0abc-5959-5df7-afd6-d418fdcf5348
+		summarizeBy: none
+		sourceColumn: [source_code]
+
+	column source_label
+		dataType: string
+		lineageTag: 6e3e528c-8643-5dc1-b365-668b85a0defb
+		summarizeBy: none
+		sourceColumn: [source_label]
+
+	column source_color
+		dataType: string
+		lineageTag: e153bf0b-e6db-5db9-a07e-2c936dc301b0
+		summarizeBy: none
+		sourceColumn: [source_color]
+
+	column source_icon
+		dataType: string
+		lineageTag: a3e48b32-be94-5c04-8482-6139f4257c97
+		summarizeBy: none
+		sourceColumn: [source_icon]
+		dataCategory: ImageUrl
+
+	partition report_source = calculated
+		mode: import
+		source =
+			DATATABLE(
+				"source_code", STRING, "source_label", STRING, "source_color", STRING, "source_icon", STRING,
+				{
+					{"biomass", "Biomass", "#65B87C", "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2365B87C%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M27%204C10%201%202%2010%207%2022%2019%2029%2028%2020%2027%204ZM4%2029%2023%209m-9%2010v-8m0%208h8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"},
+					{"hydropower", "Hydropower", "#4A9DE3", "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%234A9DE3%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M16%202C13%209%206%2015%206%2021a10%2010%200%200%200%2020%200c0-6-7-12-10-19Z%22%2F%3E%3Cpath%20d%3D%22M11%2021c0%204%203%205%205%205%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"},
+					{"wind_offshore", "Wind offshore", "#56BED7", "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2356BED7%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M16%209v16m0-16L8%203m8%206%2010-3m-10%203-3%2010M3%2027q4-4%208%200t8%200%2010%200%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%229%22%20r%3D%222%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"},
+					{"wind_onshore", "Wind onshore", "#12A89D", "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2312A89D%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M3%2012h18c7%200%207-9%201-9-3%200-4%202-4%204M3%2017h23c5%200%205%208%200%208-2%200-3-1-3-3M3%2022h10c5%200%205%207%200%207%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"},
+					{"solar", "Solar (photovoltaics)", "#F1B63D", "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23F1B63D%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%225%22%2F%3E%3Cpath%20d%3D%22M16%202v4m0%2020v4M2%2016h4m20%200h4M6%206l3%203m14%2014%203%203M6%2026l3-3M23%209l3-3%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"},
+					{"other_renewable", "Other renewable", "#A0CD8C", "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23A0CD8C%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M16%2029V15M16%2020C3%2021%203%209%203%209c10-2%2014%203%2013%2011Zm0-7C16%202%2029%203%2029%203s1%2012-13%2010Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"},
+					{"nuclear", "Nuclear", "#9C91C7", "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%239C91C7%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cellipse%20cx%3D%2216%22%20cy%3D%2216%22%20rx%3D%2214%22%20ry%3D%225%22%2F%3E%3Cellipse%20cx%3D%2216%22%20cy%3D%2216%22%20rx%3D%2214%22%20ry%3D%225%22%20transform%3D%22rotate%2860%2016%2016%29%22%2F%3E%3Cellipse%20cx%3D%2216%22%20cy%3D%2216%22%20rx%3D%2214%22%20ry%3D%225%22%20transform%3D%22rotate%28120%2016%2016%29%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%221%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"},
+					{"lignite", "Lignite", "#B29378", "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23B29378%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m4%2023%203-12%208-6%2012%208%201%2013H8Zm3-12%209%205%2011-3m-11%203-2%2010%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"},
+					{"hard_coal", "Hard coal", "#71859B", "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2371859B%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m4%2023%203-12%208-6%2012%208%201%2013H8Zm3-12%209%205%2011-3m-11%203-2%2010%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"},
+					{"fossil_gas", "Fossil gas", "#F39A70", "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23F39A70%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M17%202c3%2010-5%2010-3%2016%204-1%207-6%207-6%2010%2011%204%2018-5%2018S1%2020%208%2013c0%207%204%207%204%207C7%2012%2014%208%2017%202Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"},
+					{"pumped_storage", "Pumped storage", "#9D8DE5", "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%239D8DE5%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M4%2024h24M7%207h18v12H7ZM12%203h8m-4%208v5m-3-2%203%203%203-3M5%2029h22%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"},
+					{"other_conventional", "Other conventional", "#A9B8CA", "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23A9B8CA%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M3%2029V15l8%204v-8l8%207V8h6l2%2021ZM8%2024h2m5%200h2m5%200h2M20%203h4%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"}
+				}
+			)

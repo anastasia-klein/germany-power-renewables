@@ -1,0 +1,96 @@
+{
+  "font": "'Avenir Next', Arial, sans-serif",
+  "colors": {
+    "canvas": "#F5F8FC",
+    "panel": "#FFFFFF",
+    "edge": "#E0E8F3",
+    "text": "#203349",
+    "muted": "#65768A",
+    "blue": "#397FE5",
+    "teal": "#12A89D",
+    "amber": "#F1B63D",
+    "red": "#EA6C73",
+    "green": "#65B87C",
+    "slate": "#8298B0"
+  },
+  "sources": [
+    {
+      "code": "biomass",
+      "label": "Biomass",
+      "color": "#65B87C",
+      "icon": "leaf"
+    },
+    {
+      "code": "hydropower",
+      "label": "Hydropower",
+      "color": "#4A9DE3",
+      "icon": "water"
+    },
+    {
+      "code": "wind_offshore",
+      "label": "Wind offshore",
+      "color": "#56BED7",
+      "icon": "offshore"
+    },
+    {
+      "code": "wind_onshore",
+      "label": "Wind onshore",
+      "color": "#12A89D",
+      "icon": "wind"
+    },
+    {
+      "code": "solar",
+      "label": "Solar (photovoltaics)",
+      "color": "#F1B63D",
+      "icon": "sun"
+    },
+    {
+      "code": "other_renewable",
+      "label": "Other renewable",
+      "color": "#A0CD8C",
+      "icon": "sprout"
+    },
+    {
+      "code": "nuclear",
+      "label": "Nuclear",
+      "color": "#9C91C7",
+      "icon": "atom"
+    },
+    {
+      "code": "lignite",
+      "label": "Lignite",
+      "color": "#B29378",
+      "icon": "coal"
+    },
+    {
+      "code": "hard_coal",
+      "label": "Hard coal",
+      "color": "#71859B",
+      "icon": "coal"
+    },
+    {
+      "code": "fossil_gas",
+      "label": "Fossil gas",
+      "color": "#F39A70",
+      "icon": "flame"
+    },
+    {
+      "code": "pumped_storage",
+      "label": "Pumped storage",
+      "color": "#9D8DE5",
+      "icon": "storage"
+    },
+    {
+      "code": "other_conventional",
+      "label": "Other conventional",
+      "color": "#A9B8CA",
+      "icon": "plant"
+    }
+  ],
+  "axis_policy": "One selected month: daily; otherwise monthly. Fixed 2025 scope.",
+  "helper_tables": {
+    "report_month": 12,
+    "report_axis": 377,
+    "report_source": 12
+  }
+}

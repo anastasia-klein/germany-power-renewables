@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "3857370bf33c50a5a9ed",
   "position": {
-    "x": 420,
+    "x": 812,
     "y": 211,
     "width": 370,
     "height": 103,
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Load-weighted · EUR/MWh'"
+                  "Value": "'Grid load · TWh'"
                 }
               }
             },
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Load-weighted · EUR/MWh'"
+                  "Value": "'Grid load · TWh'"
                 }
               }
             },
@@ -287,11 +287,11 @@
                       "Entity": "fact_market_hour"
                     }
                   },
-                  "Property": "Load Weighted Price EUR per MWh"
+                  "Property": "Grid Load TWh"
                 }
               },
-              "queryRef": "fact_market_hour.Load Weighted Price EUR per MWh",
-              "nativeQueryRef": "Load Weighted Price EUR per MWh",
+              "queryRef": "fact_market_hour.Grid Load TWh",
+              "nativeQueryRef": "Grid Load TWh",
               "active": true
             }
           ]
@@ -307,7 +307,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#278B87'"
+                      "Value": "'#8298B0'"
                     }
                   }
                 }
@@ -316,7 +316,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },

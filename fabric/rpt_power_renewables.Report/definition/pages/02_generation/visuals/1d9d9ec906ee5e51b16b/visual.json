@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "1d9d9ec906ee5e51b16b",
   "position": {
-    "x": 28,
+    "x": 420,
     "y": 211,
     "width": 370,
     "height": 103,
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Selected generation · TWh'"
+                  "Value": "'Capture price · EUR/MWh'"
                 }
               }
             },
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Selected generation · TWh'"
+                  "Value": "'Capture price · EUR/MWh'"
                 }
               }
             },
@@ -287,11 +287,11 @@
                       "Entity": "fact_generation_hour"
                     }
                   },
-                  "Property": "Generation TWh"
+                  "Property": "Capture Price EUR per MWh"
                 }
               },
-              "queryRef": "fact_generation_hour.Generation TWh",
-              "nativeQueryRef": "Generation TWh",
+              "queryRef": "fact_generation_hour.Capture Price EUR per MWh",
+              "nativeQueryRef": "Capture Price EUR per MWh",
               "active": true
             }
           ]
@@ -306,8 +306,13 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#C3933D'"
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact_generation_hour"
+                        }
+                      },
+                      "Property": "Generation Source Color"
                     }
                   }
                 }
@@ -316,7 +321,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },

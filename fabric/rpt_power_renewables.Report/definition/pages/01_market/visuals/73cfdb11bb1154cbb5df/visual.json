@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "73cfdb11bb1154cbb5df",
   "position": {
-    "x": 28,
+    "x": 420,
     "y": 211,
     "width": 370,
     "height": 103,
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Market average · EUR/MWh'"
+                  "Value": "'Load-weighted · EUR/MWh'"
                 }
               }
             },
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Market average · EUR/MWh'"
+                  "Value": "'Load-weighted · EUR/MWh'"
                 }
               }
             },
@@ -287,11 +287,11 @@
                       "Entity": "fact_market_hour"
                     }
                   },
-                  "Property": "Average Price EUR per MWh"
+                  "Property": "Load Weighted Price EUR per MWh"
                 }
               },
-              "queryRef": "fact_market_hour.Average Price EUR per MWh",
-              "nativeQueryRef": "Average Price EUR per MWh",
+              "queryRef": "fact_market_hour.Load Weighted Price EUR per MWh",
+              "nativeQueryRef": "Load Weighted Price EUR per MWh",
               "active": true
             }
           ]
@@ -307,7 +307,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#416A9C'"
+                      "Value": "'#12A89D'"
                     }
                   }
                 }
@@ -316,7 +316,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },

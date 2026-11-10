@@ -3,9 +3,9 @@
   "name": "00c5b6ca7c9f5d88b20e",
   "position": {
     "x": 28,
-    "y": 332,
+    "y": 628,
     "width": 1008,
-    "height": 278,
+    "height": 212,
     "z": 13000,
     "tabOrder": 13000
   },
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Monthly price · time average vs load-weighted · EUR/MWh'"
+                  "Value": "'Wind + solar / grid load · ratio of energy sums'"
                 }
               }
             },
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Monthly price · time average vs load-weighted · EUR/MWh'"
+                  "Value": "'Wind + solar / grid load · ratio of energy sums'"
                 }
               }
             },
@@ -284,14 +284,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_time_hour"
+                      "Entity": "report_axis"
                     }
                   },
-                  "Property": "month"
+                  "Property": "axis_label"
                 }
               },
-              "queryRef": "dim_time_hour.month",
-              "nativeQueryRef": "month",
+              "queryRef": "report_axis.axis_label",
+              "nativeQueryRef": "axis_label",
               "active": true
             }
           ]
@@ -306,26 +306,11 @@
                       "Entity": "fact_market_hour"
                     }
                   },
-                  "Property": "Average Price EUR per MWh"
+                  "Property": "Timeline Wind Solar Load Ratio"
                 }
               },
-              "queryRef": "fact_market_hour.Average Price EUR per MWh",
-              "nativeQueryRef": "Average Price EUR per MWh",
-              "active": true
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "fact_market_hour"
-                    }
-                  },
-                  "Property": "Load Weighted Price EUR per MWh"
-                }
-              },
-              "queryRef": "fact_market_hour.Load Weighted Price EUR per MWh",
-              "nativeQueryRef": "Load Weighted Price EUR per MWh",
+              "queryRef": "fact_market_hour.Timeline Wind Solar Load Ratio",
+              "nativeQueryRef": "Timeline Wind Solar Load Ratio",
               "active": true
             }
           ]
@@ -338,10 +323,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "dim_time_hour"
+                    "Entity": "report_axis"
                   }
                 },
-                "Property": "month"
+                "Property": "axis_order"
               }
             },
             "direction": "Ascending"
@@ -359,7 +344,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#64746E'"
+                      "Value": "'#65768A'"
                     }
                   }
                 }
@@ -368,7 +353,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -404,7 +389,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#64746E'"
+                      "Value": "'#65768A'"
                     }
                   }
                 }
@@ -413,7 +398,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -436,7 +421,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -458,7 +443,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -474,7 +459,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -483,7 +468,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -512,7 +497,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -521,7 +506,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -579,7 +564,7 @@
       "dataPoint": [
         {
           "selector": {
-            "metadata": "fact_market_hour.Average Price EUR per MWh"
+            "metadata": "fact_market_hour.Timeline Wind Solar Load Ratio"
           },
           "properties": {
             "fill": {
@@ -587,25 +572,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#416A9C'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "selector": {
-            "metadata": "fact_market_hour.Load Weighted Price EUR per MWh"
-          },
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#278B87'"
+                      "Value": "'#F1B63D'"
                     }
                   }
                 }

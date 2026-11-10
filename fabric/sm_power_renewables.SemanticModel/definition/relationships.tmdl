@@ -18,3 +18,10 @@ relationship eb901f80-15e5-c769-f860-7d7dadecb2cc
 	fromColumn: fact_generation_hour.generation_source_code
 	toColumn: dim_generation_source.generation_source_code
 
+relationship 2d41f48c-71b9-5979-818e-92ca0394ad37
+	fromColumn: dim_time_hour.month
+	toColumn: report_month.month_number
+
+relationship 285a2e73-1b46-5c8c-b48f-d094d801b07d
+	fromColumn: dim_generation_source.generation_source_code
+	toColumn: report_source.source_code

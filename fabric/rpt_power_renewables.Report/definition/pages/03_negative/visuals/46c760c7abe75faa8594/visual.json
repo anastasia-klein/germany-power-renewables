@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "46c760c7abe75faa8594",
   "position": {
-    "x": 812,
+    "x": 1204,
     "y": 211,
     "width": 370,
     "height": 103,
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Wind + solar / grid load'"
+                  "Value": "'Valid physical hours'"
                 }
               }
             },
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Wind + solar / grid load'"
+                  "Value": "'Valid physical hours'"
                 }
               }
             },
@@ -287,11 +287,11 @@
                       "Entity": "fact_market_hour"
                     }
                   },
-                  "Property": "Wind Solar Load Ratio"
+                  "Property": "Valid Price Hours"
                 }
               },
-              "queryRef": "fact_market_hour.Wind Solar Load Ratio",
-              "nativeQueryRef": "Wind Solar Load Ratio",
+              "queryRef": "fact_market_hour.Valid Price Hours",
+              "nativeQueryRef": "Valid Price Hours",
               "active": true
             }
           ]
@@ -307,7 +307,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#278B87'"
+                      "Value": "'#8298B0'"
                     }
                   }
                 }
@@ -316,7 +316,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },

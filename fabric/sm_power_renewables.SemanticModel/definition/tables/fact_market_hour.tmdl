@@ -99,6 +99,96 @@ table fact_market_hour
 		formatString: 0.00
 		lineageTag: 14826d16-5e8a-451f-8f71-35d8e02bcfe1
 
+	measure 'Timeline Average Price' =
+			VAR SingleMonth = HASONEVALUE('report_month'[month_number])
+			VAR Grain = SELECTEDVALUE('report_axis'[grain])
+			VAR AxisMonth = SELECTEDVALUE('report_axis'[month_number])
+			VAR AxisDay = SELECTEDVALUE('report_axis'[day_number])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        SingleMonth && Grain = "Day" && AxisMonth = SELECTEDVALUE('report_month'[month_number]),
+			            CALCULATE([Average Price EUR per MWh], TREATAS({DATE(2025, AxisMonth, AxisDay)}, 'dim_time_hour'[local_date])),
+			        NOT SingleMonth && Grain = "Month" && AxisMonth IN VALUES('report_month'[month_number]),
+			            CALCULATE([Average Price EUR per MWh], TREATAS({AxisMonth}, 'dim_time_hour'[month])),
+			        BLANK()
+			    )
+		lineageTag: e379f051-77e6-5e7e-a97b-fa8473038d70
+		displayFolder: Report presentation
+		formatString: 0.00
+
+	measure 'Timeline Load Weighted Price' =
+			VAR SingleMonth = HASONEVALUE('report_month'[month_number])
+			VAR Grain = SELECTEDVALUE('report_axis'[grain])
+			VAR AxisMonth = SELECTEDVALUE('report_axis'[month_number])
+			VAR AxisDay = SELECTEDVALUE('report_axis'[day_number])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        SingleMonth && Grain = "Day" && AxisMonth = SELECTEDVALUE('report_month'[month_number]),
+			            CALCULATE([Load Weighted Price EUR per MWh], TREATAS({DATE(2025, AxisMonth, AxisDay)}, 'dim_time_hour'[local_date])),
+			        NOT SingleMonth && Grain = "Month" && AxisMonth IN VALUES('report_month'[month_number]),
+			            CALCULATE([Load Weighted Price EUR per MWh], TREATAS({AxisMonth}, 'dim_time_hour'[month])),
+			        BLANK()
+			    )
+		lineageTag: c730579f-9c49-53b9-a514-0fd85f5d504d
+		displayFolder: Report presentation
+		formatString: 0.00
+
+	measure 'Timeline Wind Solar Load Ratio' =
+			VAR SingleMonth = HASONEVALUE('report_month'[month_number])
+			VAR Grain = SELECTEDVALUE('report_axis'[grain])
+			VAR AxisMonth = SELECTEDVALUE('report_axis'[month_number])
+			VAR AxisDay = SELECTEDVALUE('report_axis'[day_number])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        SingleMonth && Grain = "Day" && AxisMonth = SELECTEDVALUE('report_month'[month_number]),
+			            CALCULATE([Wind Solar Load Ratio], TREATAS({DATE(2025, AxisMonth, AxisDay)}, 'dim_time_hour'[local_date])),
+			        NOT SingleMonth && Grain = "Month" && AxisMonth IN VALUES('report_month'[month_number]),
+			            CALCULATE([Wind Solar Load Ratio], TREATAS({AxisMonth}, 'dim_time_hour'[month])),
+			        BLANK()
+			    )
+		lineageTag: 03531015-637c-599e-953e-847e4b1597e4
+		displayFolder: Report presentation
+		formatString: 0.00%
+
+	measure 'Timeline Negative Price Hours' =
+			VAR SingleMonth = HASONEVALUE('report_month'[month_number])
+			VAR Grain = SELECTEDVALUE('report_axis'[grain])
+			VAR AxisMonth = SELECTEDVALUE('report_axis'[month_number])
+			VAR AxisDay = SELECTEDVALUE('report_axis'[day_number])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        SingleMonth && Grain = "Day" && AxisMonth = SELECTEDVALUE('report_month'[month_number]),
+			            CALCULATE([Negative Price Hours], TREATAS({DATE(2025, AxisMonth, AxisDay)}, 'dim_time_hour'[local_date])),
+			        NOT SingleMonth && Grain = "Month" && AxisMonth IN VALUES('report_month'[month_number]),
+			            CALCULATE([Negative Price Hours], TREATAS({AxisMonth}, 'dim_time_hour'[month])),
+			        BLANK()
+			    )
+		lineageTag: 1d5e8aa9-0e47-544d-ac95-a1700f03a850
+		displayFolder: Report presentation
+		formatString: #,##0
+
+	measure 'Timeline Negative Price Share' =
+			VAR SingleMonth = HASONEVALUE('report_month'[month_number])
+			VAR Grain = SELECTEDVALUE('report_axis'[grain])
+			VAR AxisMonth = SELECTEDVALUE('report_axis'[month_number])
+			VAR AxisDay = SELECTEDVALUE('report_axis'[day_number])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        SingleMonth && Grain = "Day" && AxisMonth = SELECTEDVALUE('report_month'[month_number]),
+			            CALCULATE([Negative Price Hour Share], TREATAS({DATE(2025, AxisMonth, AxisDay)}, 'dim_time_hour'[local_date])),
+			        NOT SingleMonth && Grain = "Month" && AxisMonth IN VALUES('report_month'[month_number]),
+			            CALCULATE([Negative Price Hour Share], TREATAS({AxisMonth}, 'dim_time_hour'[month])),
+			        BLANK()
+			    )
+		lineageTag: cad12299-15eb-5b08-9275-94e6d309fa26
+		displayFolder: Report presentation
+		formatString: 0.00%
+
 	column time_key
 		dataType: int64
 		formatString: 0

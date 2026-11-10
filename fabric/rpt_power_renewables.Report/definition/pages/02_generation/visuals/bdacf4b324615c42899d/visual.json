@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "99ba22cbf8a75010a8c1",
+  "name": "bdacf4b324615c42899d",
   "position": {
     "x": 28,
-    "y": 628,
-    "width": 1008,
-    "height": 212,
+    "y": 640,
+    "width": 850,
+    "height": 200,
     "z": 14000,
     "tabOrder": 14000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "clusteredColumnChart",
     "visualContainerObjects": {
       "background": [
         {
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Wind + solar / grid load · ratio of monthly energy sums'"
+                  "Value": "'Selected source · capture rate'"
                 }
               }
             },
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Wind + solar / grid load · ratio of monthly energy sums'"
+                  "Value": "'Selected source · capture rate'"
                 }
               }
             },
@@ -284,14 +284,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_time_hour"
+                      "Entity": "report_axis"
                     }
                   },
-                  "Property": "month"
+                  "Property": "axis_label"
                 }
               },
-              "queryRef": "dim_time_hour.month",
-              "nativeQueryRef": "month",
+              "queryRef": "report_axis.axis_label",
+              "nativeQueryRef": "axis_label",
               "active": true
             }
           ]
@@ -303,14 +303,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fact_market_hour"
+                      "Entity": "fact_generation_hour"
                     }
                   },
-                  "Property": "Wind Solar Load Ratio"
+                  "Property": "Timeline Capture Rate"
                 }
               },
-              "queryRef": "fact_market_hour.Wind Solar Load Ratio",
-              "nativeQueryRef": "Wind Solar Load Ratio",
+              "queryRef": "fact_generation_hour.Timeline Capture Rate",
+              "nativeQueryRef": "Timeline Capture Rate",
               "active": true
             }
           ]
@@ -323,10 +323,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "dim_time_hour"
+                    "Entity": "report_axis"
                   }
                 },
-                "Property": "month"
+                "Property": "axis_order"
               }
             },
             "direction": "Ascending"
@@ -344,7 +344,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#64746E'"
+                      "Value": "'#65768A'"
                     }
                   }
                 }
@@ -353,7 +353,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -370,13 +370,6 @@
                   "Value": "false"
                 }
               }
-            },
-            "axisType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Categorical'"
-                }
-              }
             }
           }
         }
@@ -389,7 +382,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#64746E'"
+                      "Value": "'#65768A'"
                     }
                   }
                 }
@@ -398,7 +391,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -421,7 +414,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -459,7 +452,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -468,7 +461,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -497,7 +490,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -506,7 +499,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -520,59 +513,29 @@
           }
         }
       ],
-      "lineStyles": [
-        {
-          "properties": {
-            "showMarker": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "showMarkerByDefault": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "markerSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "4D"
-                }
-              }
-            },
-            "strokeWidth": {
-              "expr": {
-                "Literal": {
-                  "Value": "2.5D"
-                }
-              }
-            },
-            "lineChartType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'linear'"
-                }
-              }
-            }
-          }
-        }
-      ],
       "dataPoint": [
         {
           "selector": {
-            "metadata": "fact_market_hour.Wind Solar Load Ratio"
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
           },
           "properties": {
             "fill": {
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#C3933D'"
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact_generation_hour"
+                        }
+                      },
+                      "Property": "Generation Source Color"
                     }
                   }
                 }

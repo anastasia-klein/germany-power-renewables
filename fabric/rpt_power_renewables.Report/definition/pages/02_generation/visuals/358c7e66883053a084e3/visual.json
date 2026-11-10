@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -285,10 +285,10 @@
                   {
                     "value": "When does generation capture market value?",
                     "textStyle": {
-                      "fontFamily": "Arial",
+                      "fontFamily": "'Avenir Next', Arial, sans-serif",
                       "fontSize": "26pt",
                       "fontWeight": "bold",
-                      "color": "#20332D"
+                      "color": "#203349"
                     }
                   }
                 ],

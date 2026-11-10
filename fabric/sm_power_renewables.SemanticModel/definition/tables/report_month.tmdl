@@ -1,0 +1,44 @@
+/// Static presentation metadata for the 2025 research report.
+table report_month
+	lineageTag: a1de0eb3-c78c-5025-8c49-81df49a89464
+
+	column month_number
+		dataType: int64
+		lineageTag: 31d03429-73b1-5322-bca1-eba290577a55
+		summarizeBy: none
+		sourceColumn: [month_number]
+
+	column month_name
+		dataType: string
+		lineageTag: 279debf7-b042-5c64-a04e-4b09c05e8d28
+		summarizeBy: none
+		sourceColumn: [month_name]
+		sortByColumn: month_number
+
+	column month_short
+		dataType: string
+		lineageTag: fa3f9a90-f2f8-5999-b05a-b87a3ba82c8f
+		summarizeBy: none
+		sourceColumn: [month_short]
+		sortByColumn: month_number
+
+	partition report_month = calculated
+		mode: import
+		source =
+			DATATABLE(
+				"month_number", INTEGER, "month_name", STRING, "month_short", STRING,
+				{
+					{1, "January", "Jan"},
+					{2, "February", "Feb"},
+					{3, "March", "Mar"},
+					{4, "April", "Apr"},
+					{5, "May", "May"},
+					{6, "June", "Jun"},
+					{7, "July", "Jul"},
+					{8, "August", "Aug"},
+					{9, "September", "Sep"},
+					{10, "October", "Oct"},
+					{11, "November", "Nov"},
+					{12, "December", "Dec"}
+				}
+			)

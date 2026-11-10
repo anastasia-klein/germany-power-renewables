@@ -1,39 +1,39 @@
 {
   "name": "Germany Power · Mineral",
   "dataColors": [
-    "#416A9C",
-    "#C3933D",
-    "#278B87",
-    "#758296",
-    "#527D58",
-    "#BC6657"
+    "#397FE5",
+    "#F1B63D",
+    "#12A89D",
+    "#8298B0",
+    "#65B87C",
+    "#EA6C73"
   ],
-  "background": "#F1F4F1",
-  "foreground": "#20332D",
-  "tableAccent": "#278B87",
-  "good": "#278B87",
-  "neutral": "#C3933D",
-  "bad": "#BC6657",
+  "background": "#F5F8FC",
+  "foreground": "#203349",
+  "tableAccent": "#12A89D",
+  "good": "#12A89D",
+  "neutral": "#F1B63D",
+  "bad": "#EA6C73",
   "textClasses": {
     "callout": {
-      "fontFace": "Arial",
+      "fontFace": "'Avenir Next', Arial, sans-serif",
       "fontSize": 28,
-      "color": "#20332D"
+      "color": "#203349"
     },
     "title": {
-      "fontFace": "Arial",
+      "fontFace": "'Avenir Next', Arial, sans-serif",
       "fontSize": 14,
-      "color": "#20332D"
+      "color": "#203349"
     },
     "header": {
-      "fontFace": "Arial",
+      "fontFace": "'Avenir Next', Arial, sans-serif",
       "fontSize": 12,
-      "color": "#20332D"
+      "color": "#203349"
     },
     "label": {
-      "fontFace": "Arial",
+      "fontFace": "'Avenir Next', Arial, sans-serif",
       "fontSize": 10,
-      "color": "#64746E"
+      "color": "#65768A"
     }
   }
 }

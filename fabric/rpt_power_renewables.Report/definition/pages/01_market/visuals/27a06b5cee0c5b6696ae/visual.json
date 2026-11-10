@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "3640e981c1865a789af9",
+  "name": "27a06b5cee0c5b6696ae",
   "position": {
     "x": 1054,
     "y": 332,
     "width": 520,
     "height": 508,
-    "z": 15000,
-    "tabOrder": 15000
+    "z": 14000,
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -284,14 +284,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_generation_source"
+                      "Entity": "report_source"
                     }
                   },
-                  "Property": "generation_source_name"
+                  "Property": "source_label"
                 }
               },
-              "queryRef": "dim_generation_source.generation_source_name",
-              "nativeQueryRef": "generation_source_name",
+              "queryRef": "report_source.source_label",
+              "nativeQueryRef": "source_label",
               "active": true
             }
           ]
@@ -344,7 +344,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#64746E'"
+                      "Value": "'#65768A'"
                     }
                   }
                 }
@@ -353,7 +353,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -382,7 +382,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#64746E'"
+                      "Value": "'#65768A'"
                     }
                   }
                 }
@@ -391,7 +391,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -414,7 +414,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -452,7 +452,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -461,7 +461,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -490,7 +490,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -499,7 +499,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -525,133 +525,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_generation_source"
+                            "Entity": "report_source"
                           }
                         },
-                        "Property": "generation_source_name"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Wind onshore'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          },
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#278B87'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "dim_generation_source"
-                          }
-                        },
-                        "Property": "generation_source_name"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Wind offshore'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          },
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#79AEBA'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "dim_generation_source"
-                          }
-                        },
-                        "Property": "generation_source_name"
-                      }
-                    },
-                    "Right": {
-                      "Literal": {
-                        "Value": "'Photovoltaics'"
-                      }
-                    }
-                  }
-                }
-              }
-            ]
-          },
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#C3933D'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "selector": {
-            "data": [
-              {
-                "scopeId": {
-                  "Comparison": {
-                    "ComparisonKind": 0,
-                    "Left": {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Entity": "dim_generation_source"
-                          }
-                        },
-                        "Property": "generation_source_name"
+                        "Property": "source_label"
                       }
                     },
                     "Right": {
@@ -670,7 +547,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#527D58'"
+                      "Value": "'#65B87C'"
                     }
                   }
                 }
@@ -689,10 +566,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_generation_source"
+                            "Entity": "report_source"
                           }
                         },
-                        "Property": "generation_source_name"
+                        "Property": "source_label"
                       }
                     },
                     "Right": {
@@ -711,7 +588,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#416A9C'"
+                      "Value": "'#4A9DE3'"
                     }
                   }
                 }
@@ -730,10 +607,133 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_generation_source"
+                            "Entity": "report_source"
                           }
                         },
-                        "Property": "generation_source_name"
+                        "Property": "source_label"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Wind offshore'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#56BED7'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "report_source"
+                          }
+                        },
+                        "Property": "source_label"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Wind onshore'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#12A89D'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "report_source"
+                          }
+                        },
+                        "Property": "source_label"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Solar (photovoltaics)'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F1B63D'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "report_source"
+                          }
+                        },
+                        "Property": "source_label"
                       }
                     },
                     "Right": {
@@ -752,7 +752,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#9EB99A'"
+                      "Value": "'#A0CD8C'"
                     }
                   }
                 }
@@ -771,10 +771,51 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_generation_source"
+                            "Entity": "report_source"
                           }
                         },
-                        "Property": "generation_source_name"
+                        "Property": "source_label"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Nuclear'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#9C91C7'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "report_source"
+                          }
+                        },
+                        "Property": "source_label"
                       }
                     },
                     "Right": {
@@ -793,7 +834,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#776C65'"
+                      "Value": "'#B29378'"
                     }
                   }
                 }
@@ -812,10 +853,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_generation_source"
+                            "Entity": "report_source"
                           }
                         },
-                        "Property": "generation_source_name"
+                        "Property": "source_label"
                       }
                     },
                     "Right": {
@@ -834,7 +875,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#515D67'"
+                      "Value": "'#71859B'"
                     }
                   }
                 }
@@ -853,10 +894,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_generation_source"
+                            "Entity": "report_source"
                           }
                         },
-                        "Property": "generation_source_name"
+                        "Property": "source_label"
                       }
                     },
                     "Right": {
@@ -875,7 +916,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#A89081'"
+                      "Value": "'#F39A70'"
                     }
                   }
                 }
@@ -894,15 +935,15 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_generation_source"
+                            "Entity": "report_source"
                           }
                         },
-                        "Property": "generation_source_name"
+                        "Property": "source_label"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Hydro pumped storage'"
+                        "Value": "'Pumped storage'"
                       }
                     }
                   }
@@ -916,7 +957,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8277A2'"
+                      "Value": "'#9D8DE5'"
                     }
                   }
                 }
@@ -935,10 +976,10 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_generation_source"
+                            "Entity": "report_source"
                           }
                         },
-                        "Property": "generation_source_name"
+                        "Property": "source_label"
                       }
                     },
                     "Right": {
@@ -957,7 +998,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#A5AEB4'"
+                      "Value": "'#A9B8CA'"
                     }
                   }
                 }

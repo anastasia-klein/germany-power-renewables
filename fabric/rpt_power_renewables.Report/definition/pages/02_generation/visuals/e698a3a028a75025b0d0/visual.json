@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "a6cda954b2ef54feb437",
+  "name": "e698a3a028a75025b0d0",
   "position": {
-    "x": 1204,
+    "x": 28,
     "y": 211,
     "width": 370,
     "height": 103,
-    "z": 12000,
-    "tabOrder": 12000
+    "z": 9000,
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "card",
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Valid physical hours'"
+                  "Value": "'Selected generation · TWh'"
                 }
               }
             },
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Valid physical hours'"
+                  "Value": "'Selected generation · TWh'"
                 }
               }
             },
@@ -284,14 +284,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fact_market_hour"
+                      "Entity": "fact_generation_hour"
                     }
                   },
-                  "Property": "Valid Price Hours"
+                  "Property": "Generation TWh"
                 }
               },
-              "queryRef": "fact_market_hour.Valid Price Hours",
-              "nativeQueryRef": "Valid Price Hours",
+              "queryRef": "fact_generation_hour.Generation TWh",
+              "nativeQueryRef": "Generation TWh",
               "active": true
             }
           ]
@@ -306,8 +306,13 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#758296'"
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact_generation_hour"
+                        }
+                      },
+                      "Property": "Generation Source Color"
                     }
                   }
                 }
@@ -316,7 +321,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },

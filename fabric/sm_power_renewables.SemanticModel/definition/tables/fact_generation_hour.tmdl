@@ -85,6 +85,57 @@ table fact_generation_hour
 		formatString: 0.00%
 		lineageTag: 5305f23c-1853-4ddc-b553-82809e0862eb
 
+	measure 'Timeline Capture Price' =
+			VAR SingleMonth = HASONEVALUE('report_month'[month_number])
+			VAR Grain = SELECTEDVALUE('report_axis'[grain])
+			VAR AxisMonth = SELECTEDVALUE('report_axis'[month_number])
+			VAR AxisDay = SELECTEDVALUE('report_axis'[day_number])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        SingleMonth && Grain = "Day" && AxisMonth = SELECTEDVALUE('report_month'[month_number]),
+			            CALCULATE([Capture Price EUR per MWh], TREATAS({DATE(2025, AxisMonth, AxisDay)}, 'dim_time_hour'[local_date])),
+			        NOT SingleMonth && Grain = "Month" && AxisMonth IN VALUES('report_month'[month_number]),
+			            CALCULATE([Capture Price EUR per MWh], TREATAS({AxisMonth}, 'dim_time_hour'[month])),
+			        BLANK()
+			    )
+		lineageTag: a5d4fb9e-238e-512b-84f6-b99b294aaa6d
+		displayFolder: Report presentation
+		formatString: 0.00
+
+	measure 'Timeline Capture Rate' =
+			VAR SingleMonth = HASONEVALUE('report_month'[month_number])
+			VAR Grain = SELECTEDVALUE('report_axis'[grain])
+			VAR AxisMonth = SELECTEDVALUE('report_axis'[month_number])
+			VAR AxisDay = SELECTEDVALUE('report_axis'[day_number])
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        SingleMonth && Grain = "Day" && AxisMonth = SELECTEDVALUE('report_month'[month_number]),
+			            CALCULATE([Capture Rate], TREATAS({DATE(2025, AxisMonth, AxisDay)}, 'dim_time_hour'[local_date])),
+			        NOT SingleMonth && Grain = "Month" && AxisMonth IN VALUES('report_month'[month_number]),
+			            CALCULATE([Capture Rate], TREATAS({AxisMonth}, 'dim_time_hour'[month])),
+			        BLANK()
+			    )
+		lineageTag: 3d15149b-71d1-5bca-8491-543b7e5d5f81
+		displayFolder: Report presentation
+		formatString: 0.00%
+
+	measure 'Generation Source Color' =
+			VAR SourceCode = SELECTEDVALUE('dim_generation_source'[generation_source_code])
+			RETURN
+			    LOOKUPVALUE('report_source'[source_color], 'report_source'[source_code], SourceCode)
+		lineageTag: 39019472-ad18-5d7f-9722-60f52c8348b5
+		displayFolder: Report presentation
+
+	measure 'Generation Source Icon' =
+			VAR SourceCode = SELECTEDVALUE('dim_generation_source'[generation_source_code])
+			RETURN
+			    LOOKUPVALUE('report_source'[source_icon], 'report_source'[source_code], SourceCode)
+		lineageTag: d75ceb6d-3915-5516-a9d3-2a85b358e86c
+		displayFolder: Report presentation
+		dataCategory: ImageUrl
+
 	column time_key
 		dataType: int64
 		formatString: 0

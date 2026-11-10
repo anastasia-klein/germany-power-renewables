@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -305,7 +305,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -328,7 +328,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#64746E'"
+                      "Value": "'#65768A'"
                     }
                   }
                 }
@@ -344,7 +344,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -367,7 +367,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#2463A9'"
                     }
                   }
                 }
@@ -419,7 +419,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#E2EEFF'"
                     }
                   }
                 }
@@ -447,14 +447,14 @@
             "tileShape": {
               "expr": {
                 "Literal": {
-                  "Value": "'roundRect'"
+                  "Value": "'pill'"
                 }
               }
             },
             "rectangleRoundedCurve": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "24D"
                 }
               }
             }

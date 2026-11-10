@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "fa14428ff2bd5b5a91c4",
+  "name": "a6e44cbb2fb25a61bc65",
   "position": {
-    "x": 810,
-    "y": 332,
+    "x": 28,
+    "y": 638,
     "width": 764,
-    "height": 288,
+    "height": 202,
     "z": 14000,
     "tabOrder": 14000
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "lineChart",
     "visualContainerObjects": {
       "background": [
         {
@@ -58,7 +58,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Negative-price frequency by local hour · share of observed hours'"
+                  "Value": "'Negative-price frequency · share of observed hours'"
                 }
               }
             },
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Negative-price frequency by local hour · share of observed hours'"
+                  "Value": "'Negative-price frequency · share of observed hours'"
                 }
               }
             },
@@ -284,14 +284,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_time_hour"
+                      "Entity": "report_axis"
                     }
                   },
-                  "Property": "local_hour"
+                  "Property": "axis_label"
                 }
               },
-              "queryRef": "dim_time_hour.local_hour",
-              "nativeQueryRef": "local_hour",
+              "queryRef": "report_axis.axis_label",
+              "nativeQueryRef": "axis_label",
               "active": true
             }
           ]
@@ -306,11 +306,11 @@
                       "Entity": "fact_market_hour"
                     }
                   },
-                  "Property": "Negative Price Hour Share"
+                  "Property": "Timeline Negative Price Share"
                 }
               },
-              "queryRef": "fact_market_hour.Negative Price Hour Share",
-              "nativeQueryRef": "Negative Price Hour Share",
+              "queryRef": "fact_market_hour.Timeline Negative Price Share",
+              "nativeQueryRef": "Timeline Negative Price Share",
               "active": true
             }
           ]
@@ -323,10 +323,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "dim_time_hour"
+                    "Entity": "report_axis"
                   }
                 },
-                "Property": "local_hour"
+                "Property": "axis_order"
               }
             },
             "direction": "Ascending"
@@ -344,7 +344,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#64746E'"
+                      "Value": "'#65768A'"
                     }
                   }
                 }
@@ -353,7 +353,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -370,6 +370,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "axisType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Categorical'"
+                }
+              }
             }
           }
         }
@@ -382,7 +389,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#64746E'"
+                      "Value": "'#65768A'"
                     }
                   }
                 }
@@ -391,7 +398,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -414,7 +421,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#DFE6E4'"
+                      "Value": "'#E0E8F3'"
                     }
                   }
                 }
@@ -452,7 +459,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -461,7 +468,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -490,7 +497,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#20332D'"
+                      "Value": "'#203349'"
                     }
                   }
                 }
@@ -499,7 +506,7 @@
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arial'"
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
                 }
               }
             },
@@ -513,15 +520,59 @@
           }
         }
       ],
+      "lineStyles": [
+        {
+          "properties": {
+            "showMarker": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showMarkerByDefault": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "markerSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "2.5D"
+                }
+              }
+            },
+            "lineChartType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'linear'"
+                }
+              }
+            }
+          }
+        }
+      ],
       "dataPoint": [
         {
+          "selector": {
+            "metadata": "fact_market_hour.Timeline Negative Price Share"
+          },
           "properties": {
             "fill": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#BC6657'"
+                      "Value": "'#EA6C73'"
                     }
                   }
                 }
