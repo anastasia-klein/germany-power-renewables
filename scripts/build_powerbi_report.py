@@ -56,7 +56,7 @@ def field(table, name, measure=False):
 
 def projection(table, name, measure=False):
     return {'field': field(table, name, measure), 'queryRef': table + '.' + name,
-            'nativeQueryRef': name, 'active': True}
+            'nativeQueryRef': name, 'displayName': {'Timeline Average Price':'Market average','Timeline Load Weighted Price':'Load-weighted','Timeline Capture Price':'Source capture','Timeline Capture Rate':'Capture rate','Timeline Negative Price Hours':'Negative hours','Timeline Negative Price Share':'Negative-hour share','Timeline Wind Solar Load Ratio':'Wind + solar / load'}.get(name,name), 'active': True}
 
 
 def measure(name, table=M):
@@ -66,8 +66,13 @@ def measure(name, table=M):
 class Page:
     def __init__(self, name, title, question, subtitle, footnote):
         self.name, self.title, self.visuals, self.overrides = name, title, [], []
-        self.text(28, 14, 590, 45, 'Germany Power & Renewables', 25, True)
-        self.text(29, 60, 570, 25, 'POWER MARKET RESEARCH  ·  SMARD  ·  2025', 10)
+        self.text(28, 14, 590, 62, 'Germany Power & Renewables', 25, True)
+        self.text(29, 72, 570, 25, 'POWER MARKET RESEARCH  ·  SMARD  ·  2025', 10)
+        for index,(page_name,_) in enumerate(PAGES):
+            panel=self.add('shape',650+index*310,24,302,48,objects={'shape':props(tileShape=lit('rectangle')),'fill':props(show=lit(False)),'outline':props(show=lit(False))})
+            panel['visual']['visualContainerObjects']['background']=props(show=lit(True),color=color('#E2EEFF' if page_name==name else C['panel']),transparency=lit(0))
+            panel['visual']['visualContainerObjects']['border']=props(show=lit(True),color=color('#D8E7FA' if page_name==name else C['edge']),radius=lit(24),width=lit(1))
+            panel['visual']['visualContainerObjects']['dropShadow']=props(show=lit(False))
         self.add('pageNavigator', 650, 24, 922, 48, transparent=True, objects={
             'layout': props(orientation=lit(2), cellPadding=lit(8)),
             'text': [{'selector': {'id': state}, 'properties': {
@@ -75,9 +80,9 @@ class Page:
                 'fontColor': color('#2463A9' if state == 'selected' else C['muted'])}}
                      for state in ['default', 'selected']],
             'fill': [{'selector': {'id': state}, 'properties': {
-                'show': lit(True), 'fillColor': color('#E2EEFF' if state == 'selected' else C['panel'])}}
+                'show': lit(False), 'fillColor': color('#FFFFFF'), 'transparency': lit(100)}}
                      for state in ['default', 'selected']],
-            'outline': props(show=lit(False)), 'shape': props(tileShape=lit('pill'), rectangleRoundedCurve=lit(24))})
+            'outline': props(show=lit(False)), 'shape': props(tileShape=lit('rectangleRoundedByPixel'), rectangleRoundedCurve=lit(24))})
         self.text(28, 101, 800, 48, question, 26, True)
         self.text(29, 153, 800, 36, subtitle, 10)
         self.slicer(1220, 101, 352, 'Month · 2025', MONTH, 'month_name')
@@ -215,7 +220,7 @@ def build():
         'values':props(fontColor=color(C['text']),backColorPrimary=color(C['panel']),backColorSecondary=color('#F5F7F5'),fontFamily=lit(FONT),fontSize=lit(10),wordWrap=lit(True)),
         'columnHeaders':props(fontColor=color(C['text']),backColor=color(C['panel']),fontFamily=lit(FONT),fontSize=lit(10),bold=lit(True),wordWrap=lit(True)),
         'grid':props(gridHorizontal=lit(True),gridHorizontalColor=color(C['edge']),gridVertical=lit(False),rowPadding=lit(5),imageHeight=lit(22),imageWidth=lit(24)), 'total':props(totals=lit(False))})
-    for item,label in zip(table['visual']['query']['queryState']['Values']['projections'],['','Source','TWh','Capture EUR/MWh','Capture rate']):item['displayName']=label
+    for item,label in zip(table['visual']['query']['queryState']['Values']['projections'],['Icon','Source','TWh','Capture EUR/MWh','Capture rate']):item['displayName']=label
     p.overrides.append({'source':selector['name'],'target':table['name'],'type':'NoFilter'})
     p.finish()
     p=Page(*PAGES[2],'When did power prices turn negative?', 'Frequency of negative hourly prices · Compare calendar patterns and generation exposure',

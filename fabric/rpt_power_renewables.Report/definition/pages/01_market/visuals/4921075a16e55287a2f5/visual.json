@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "4921075a16e55287a2f5",
   "position": {
-    "x": 1204,
+    "x": 28,
     "y": 211,
     "width": 370,
     "height": 103,
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Renewables / reported generation'"
+                  "Value": "'Market average · EUR/MWh'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Renewables / reported generation'"
+                  "Value": "'Market average · EUR/MWh'"
                 }
               }
             },
@@ -284,14 +284,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fact_generation_hour"
+                      "Entity": "fact_market_hour"
                     }
                   },
-                  "Property": "Renewable Share of Reported Generation"
+                  "Property": "Average Price EUR per MWh"
                 }
               },
-              "queryRef": "fact_generation_hour.Renewable Share of Reported Generation",
-              "nativeQueryRef": "Renewable Share of Reported Generation",
+              "queryRef": "fact_market_hour.Average Price EUR per MWh",
+              "nativeQueryRef": "Average Price EUR per MWh",
+              "displayName": "Average Price EUR per MWh",
               "active": true
             }
           ]
@@ -307,7 +308,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#65B87C'"
+                      "Value": "'#397FE5'"
                     }
                   }
                 }

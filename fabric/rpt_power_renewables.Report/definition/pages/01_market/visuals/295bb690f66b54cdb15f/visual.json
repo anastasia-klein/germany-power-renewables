@@ -3,9 +3,9 @@
   "name": "295bb690f66b54cdb15f",
   "position": {
     "x": 28,
-    "y": 856,
-    "width": 1050,
-    "height": 38,
+    "y": 101,
+    "width": 800,
+    "height": 48,
     "z": 6000,
     "tabOrder": 6000
   },
@@ -283,12 +283,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "Hourly export · Local calendar: Europe/Berlin · UTC preserves repeated DST hours · Descriptive analysis",
+                    "value": "How did the German power market move?",
                     "textStyle": {
                       "fontFamily": "'Avenir Next', Arial, sans-serif",
-                      "fontSize": "9pt",
-                      "fontWeight": "normal",
-                      "color": "#65768A"
+                      "fontSize": "26pt",
+                      "fontWeight": "bold",
+                      "color": "#203349"
                     }
                   }
                 ],

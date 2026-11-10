@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "ed36616b7113588da0b5",
   "position": {
-    "x": 1100,
-    "y": 854,
-    "width": 472,
-    "height": 22,
+    "x": 29,
+    "y": 153,
+    "width": 800,
+    "height": 36,
     "z": 7000,
     "tabOrder": 7000
   },
@@ -283,16 +283,16 @@
               {
                 "textRuns": [
                   {
-                    "value": "Bundesnetzagentur | SMARD.de · CC BY 4.0",
+                    "value": "Germany load & generation · DE/LU day-ahead price · Select one month for daily detail",
                     "textStyle": {
                       "fontFamily": "'Avenir Next', Arial, sans-serif",
-                      "fontSize": "9pt",
+                      "fontSize": "10pt",
                       "fontWeight": "normal",
                       "color": "#65768A"
                     }
                   }
                 ],
-                "horizontalTextAlignment": "right"
+                "horizontalTextAlignment": "left"
               }
             ]
           }

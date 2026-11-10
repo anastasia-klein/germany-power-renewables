@@ -3,9 +3,9 @@
   "name": "1c71c2bec09a5f1a92ec",
   "position": {
     "x": 28,
-    "y": 856,
-    "width": 1050,
-    "height": 38,
+    "y": 101,
+    "width": 800,
+    "height": 48,
     "z": 6000,
     "tabOrder": 6000
   },
@@ -283,12 +283,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "Photovoltaics = solar · Pumped storage is storage output · Nuclear unavailable · Capture requires complete source coverage",
+                    "value": "When does generation capture market value?",
                     "textStyle": {
                       "fontFamily": "'Avenir Next', Arial, sans-serif",
-                      "fontSize": "9pt",
-                      "fontWeight": "normal",
-                      "color": "#65768A"
+                      "fontSize": "26pt",
+                      "fontWeight": "bold",
+                      "color": "#203349"
                     }
                   }
                 ],

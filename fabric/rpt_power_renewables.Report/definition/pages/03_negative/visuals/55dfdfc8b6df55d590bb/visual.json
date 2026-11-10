@@ -3,9 +3,9 @@
   "name": "55dfdfc8b6df55d590bb",
   "position": {
     "x": 28,
-    "y": 856,
-    "width": 1050,
-    "height": 38,
+    "y": 101,
+    "width": 800,
+    "height": 48,
     "z": 6000,
     "tabOrder": 6000
   },
@@ -283,12 +283,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "Negative hourly averages, not negative quarter-hours · High solar output does not always imply negative prices",
+                    "value": "When did power prices turn negative?",
                     "textStyle": {
                       "fontFamily": "'Avenir Next', Arial, sans-serif",
-                      "fontSize": "9pt",
-                      "fontWeight": "normal",
-                      "color": "#65768A"
+                      "fontSize": "26pt",
+                      "fontWeight": "bold",
+                      "color": "#203349"
                     }
                   }
                 ],

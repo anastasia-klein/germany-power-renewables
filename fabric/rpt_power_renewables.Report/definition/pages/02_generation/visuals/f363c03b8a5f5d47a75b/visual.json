@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "f363c03b8a5f5d47a75b",
   "position": {
-    "x": 1204,
+    "x": 28,
     "y": 211,
     "width": 370,
     "height": 103,
@@ -180,7 +180,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'MWh in negative-price hours'"
+                  "Value": "'Selected generation · TWh'"
                 }
               }
             },
@@ -259,7 +259,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'MWh in negative-price hours'"
+                  "Value": "'Selected generation · TWh'"
                 }
               }
             },
@@ -287,11 +287,12 @@
                       "Entity": "fact_generation_hour"
                     }
                   },
-                  "Property": "Negative Price Generation Share"
+                  "Property": "Generation TWh"
                 }
               },
-              "queryRef": "fact_generation_hour.Negative Price Generation Share",
-              "nativeQueryRef": "Negative Price Generation Share",
+              "queryRef": "fact_generation_hour.Generation TWh",
+              "nativeQueryRef": "Generation TWh",
+              "displayName": "Generation TWh",
               "active": true
             }
           ]
