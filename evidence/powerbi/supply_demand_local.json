@@ -38,5 +38,13 @@
     "fossil_gas": 0.138269044952577,
     "pumped_storage": 0.022593406879528523,
     "other_conventional": 0.032825503752025025
+  },
+  "june_filter": {
+    "physical_hours": 720,
+    "raw_correlations": {
+      "residual_load_mwh": 0.9255735338646205,
+      "wind_mwh": -0.15438235204296416,
+      "solar_mwh": -0.7482213808524938
+    }
   }
 }

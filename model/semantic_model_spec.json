@@ -158,5 +158,8 @@
   },
   "gold_storage": "Five gold tables remain in Direct Lake mode; three fixed presentation tables use Import calculated partitions without referencing Direct Lake data",
   "presentation_measure_count": 9,
-  "core_measure_count": 19
+  "core_measure_count": 19,
+  "descriptive_measure_count": 8,
+  "descriptive_measure_source": "scripts/build_supply_demand.py",
+  "source_share_denominator": "Removes filters from both dim_generation_source and report_source, preserving month and market filters"
 }
