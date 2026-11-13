@@ -322,9 +322,13 @@ def build():
                     'selector':{'metadata':M+'.Hourly Median Price'},
                     'properties':{'enabled':lit(True),'barShow':lit(False),'markerShow':lit(False),
                         'shadeShow':lit(True),'shadeBandStyle':lit('fill'),
-                        'shadeMatchSeriesColor':lit(False),'shadeColor':color('#A4C7F2'),'shadeTransparency':lit(80),
-                        'errorRange':{'explicit':{'lowerBound':{'expr':field(M,'Hourly Price P10',True)},
-                            'upperBound':{'expr':field(M,'Hourly Price P90',True)}}}}}]
+                        'shadeMatchSeriesColor':lit(False),'shadeColor':color('#A4C7F2'),'shadeTransparency':lit(80)}},
+                    {'selector':{'data':[{'dataViewWildcard':{'matchingOption':0}}],
+                        'metadata':M+'.Hourly Median Price','highlightMatching':1},
+                     'properties':{'errorRange':{'kind':'ErrorRange','explicit':{
+                        'isRelative':lit(False),
+                        'lowerBound':{'expr':field(M,'Hourly Price P10',True)},
+                        'upperBound':{'expr':field(M,'Hourly Price P90',True)}}}}}]
             chart['filterConfig']={'filters':[{'name':'profile_day_type','field':field(T,'is_weekend'),'type':'Categorical','filter':{
                 'Version':2,'From':[{'Name':'s','Entity':T,'Type':0}], 'Where':[{'Condition':{'In':{
                     'Expressions':[{'Column':{'Expression':{'SourceRef':{'Source':'s'}},'Property':'is_weekend'}}],

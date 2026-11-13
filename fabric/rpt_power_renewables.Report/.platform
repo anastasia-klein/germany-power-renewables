@@ -2,7 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Report",
-    "displayName": "Germany Power & Renewables"
+    "displayName": "Germany Power & Renewables",
+    "description": "Hourly 2025 market overview, generation value and negative-price exposure; connected to sm_power_renewables."
   },
   "config": {
     "version": "2.0",

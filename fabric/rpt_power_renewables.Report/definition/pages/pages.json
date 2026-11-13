@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
   "pageOrder": [
     "01_market",
     "02_generation",
@@ -7,5 +7,5 @@
     "04_supply",
     "05_hourly"
   ],
-  "activePageName": "05_hourly"
+  "activePageName": "01_market"
 }

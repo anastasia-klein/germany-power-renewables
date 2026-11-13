@@ -1,16 +1,280 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "5b537f6cdcc75a6380a1",
   "position": {
     "x": 810,
     "y": 244,
-    "z": 17000,
-    "height": 286,
     "width": 764,
+    "height": 286,
+    "z": 17000,
     "tabOrder": 17000
   },
   "visual": {
     "visualType": "lineChart",
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E0E8F3'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#435B53'"
+                    }
+                  }
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Custom'"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "94D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Weekends · Saturday–Sunday · price EUR/MWh'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#203349'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Avenir Next'', Arial, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Weekends · Saturday–Sunday · price EUR/MWh'"
+                }
+              }
+            },
+            "keepLayerOrder": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
         "Category": {
@@ -28,28 +292,8 @@
               },
               "queryRef": "dim_time_hour.local_hour",
               "nativeQueryRef": "local_hour",
-              "active": true,
-              "displayName": "local_hour"
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "fact_market_hour"
-                    }
-                  },
-                  "Property": "Valid Price Hours"
-                }
-              },
-              "queryRef": "fact_market_hour.Valid Price Hours",
-              "nativeQueryRef": "Valid Price Hours",
-              "active": true,
-              "displayName": "Valid Price Hours"
+              "displayName": "local_hour",
+              "active": true
             }
           ]
         },
@@ -68,8 +312,8 @@
               },
               "queryRef": "fact_market_hour.Average Price EUR per MWh",
               "nativeQueryRef": "Average Price EUR per MWh",
-              "active": true,
-              "displayName": "Mean"
+              "displayName": "Mean",
+              "active": true
             },
             {
               "field": {
@@ -84,8 +328,8 @@
               },
               "queryRef": "fact_market_hour.Hourly Median Price",
               "nativeQueryRef": "Hourly Median Price",
-              "active": true,
-              "displayName": "Median"
+              "displayName": "Median",
+              "active": true
             },
             {
               "field": {
@@ -100,8 +344,8 @@
               },
               "queryRef": "fact_market_hour.Hourly Price P10",
               "nativeQueryRef": "Hourly Price P10",
-              "active": true,
-              "displayName": "P10"
+              "displayName": "P10",
+              "active": true
             },
             {
               "field": {
@@ -116,8 +360,28 @@
               },
               "queryRef": "fact_market_hour.Hourly Price P90",
               "nativeQueryRef": "Hourly Price P90",
-              "active": true,
-              "displayName": "P90"
+              "displayName": "P90",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_market_hour"
+                    }
+                  },
+                  "Property": "Valid Price Hours"
+                }
+              },
+              "queryRef": "fact_market_hour.Valid Price Hours",
+              "nativeQueryRef": "Valid Price Hours",
+              "displayName": "Valid Price Hours",
+              "active": true
             }
           ]
         }
@@ -419,6 +683,9 @@
           }
         },
         {
+          "selector": {
+            "metadata": "fact_market_hour.Hourly Price P10"
+          },
           "properties": {
             "lineStyle": {
               "expr": {
@@ -441,12 +708,12 @@
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "fact_market_hour.Hourly Price P10"
           }
         },
         {
+          "selector": {
+            "metadata": "fact_market_hour.Hourly Price P90"
+          },
           "properties": {
             "lineStyle": {
               "expr": {
@@ -469,14 +736,14 @@
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "fact_market_hour.Hourly Price P90"
           }
         }
       ],
       "dataPoint": [
         {
+          "selector": {
+            "metadata": "fact_market_hour.Average Price EUR per MWh"
+          },
           "properties": {
             "fill": {
               "solid": {
@@ -489,12 +756,12 @@
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "fact_market_hour.Average Price EUR per MWh"
           }
         },
         {
+          "selector": {
+            "metadata": "fact_market_hour.Hourly Median Price"
+          },
           "properties": {
             "fill": {
               "solid": {
@@ -507,30 +774,12 @@
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "fact_market_hour.Hourly Median Price"
           }
         },
         {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#A4C7F2'"
-                    }
-                  }
-                }
-              }
-            }
-          },
           "selector": {
             "metadata": "fact_market_hour.Hourly Price P10"
-          }
-        },
-        {
+          },
           "properties": {
             "fill": {
               "solid": {
@@ -543,14 +792,32 @@
                 }
               }
             }
-          },
+          }
+        },
+        {
           "selector": {
             "metadata": "fact_market_hour.Hourly Price P90"
+          },
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A4C7F2'"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       ],
       "error": [
         {
+          "selector": {
+            "metadata": "fact_market_hour.Hourly Median Price"
+          },
           "properties": {
             "enabled": {
               "expr": {
@@ -612,277 +879,61 @@
                 }
               }
             }
-          },
+          }
+        },
+        {
           "selector": {
-            "metadata": "fact_market_hour.Hourly Median Price"
-          }
-        }
-      ]
-    },
-    "visualContainerObjects": {
-      "background": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
                 }
               }
-            },
-            "color": {
-              "solid": {
-                "color": {
+            ],
+            "metadata": "fact_market_hour.Hourly Median Price",
+            "highlightMatching": 1
+          },
+          "properties": {
+            "errorRange": {
+              "kind": "ErrorRange",
+              "explicit": {
+                "isRelative": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "false"
                     }
                   }
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
+                },
+                "lowerBound": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#E0E8F3'"
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact_market_hour"
+                        }
+                      },
+                      "Property": "Hourly Price P10"
                     }
                   }
-                }
-              }
-            },
-            "radius": {
-              "expr": {
-                "Literal": {
-                  "Value": "18D"
-                }
-              }
-            },
-            "width": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "dropShadow": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
+                },
+                "upperBound": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#435B53'"
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact_market_hour"
+                        }
+                      },
+                      "Property": "Hourly Price P90"
                     }
                   }
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Outer'"
-                }
-              }
-            },
-            "preset": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Custom'"
-                }
-              }
-            },
-            "shadowBlur": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "shadowDistance": {
-              "expr": {
-                "Literal": {
-                  "Value": "2D"
-                }
-              }
-            },
-            "shadowSpread": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "angle": {
-              "expr": {
-                "Literal": {
-                  "Value": "90D"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "94D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "visualHeader": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Weekends · Saturday–Sunday · price EUR/MWh'"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#203349'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Avenir Next'', Arial, sans-serif'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "padding": [
-        {
-          "properties": {
-            "top": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "bottom": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
-                }
-              }
-            },
-            "left": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
-                }
-              }
-            },
-            "right": {
-              "expr": {
-                "Literal": {
-                  "Value": "12D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "general": [
-        {
-          "properties": {
-            "altText": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Weekends · Saturday–Sunday · price EUR/MWh'"
-                }
-              }
-            },
-            "keepLayerOrder": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   },
   "filterConfig": {
     "filters": [
