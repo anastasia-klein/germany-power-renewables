@@ -1,29 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.4.0/schema.json",
   "themeCollection": {
     "customTheme": {
       "name": "GermanyPowerMineral",
       "reportVersionAtImport": {
-        "visual": "2.5.0",
-        "page": "2.0.0",
-        "report": "3.0.0"
+        "visual": "2.15.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
       },
       "type": "RegisteredResources"
     }
   },
-  "resourcePackages": [
-    {
-      "name": "RegisteredResources",
-      "type": "RegisteredResources",
-      "items": [
-        {
-          "name": "GermanyPowerMineral",
-          "path": "GermanyPowerMineral.json",
-          "type": "CustomTheme"
-        }
-      ]
-    }
-  ],
   "objects": {
     "outspacePane": [
       {
