@@ -289,6 +289,100 @@ table fact_market_hour
 		lineageTag: 52644f8f-e307-59cb-930f-50a42212d41e
 		displayFolder: Supply and demand
 
+	measure 'Hourly Median Price' =
+			MEDIANX(FILTER('fact_market_hour', NOT ISBLANK('fact_market_hour'[day_ahead_price_eur_mwh])), 'fact_market_hour'[day_ahead_price_eur_mwh])
+		lineageTag: c5451ef4-4b02-56bb-9b2d-d95af5280445
+		displayFolder: Hourly profiles
+		formatString: 0.00
+
+	measure 'Hourly Price P10' =
+			PERCENTILEX.INC(FILTER('fact_market_hour', NOT ISBLANK('fact_market_hour'[day_ahead_price_eur_mwh])), 'fact_market_hour'[day_ahead_price_eur_mwh], 0.1)
+		lineageTag: 68ab2e0f-4954-5b44-a90c-bcdf8fe0def9
+		displayFolder: Hourly profiles
+		formatString: 0.00
+
+	measure 'Hourly Price P90' =
+			PERCENTILEX.INC(FILTER('fact_market_hour', NOT ISBLANK('fact_market_hour'[day_ahead_price_eur_mwh])), 'fact_market_hour'[day_ahead_price_eur_mwh], 0.9)
+		lineageTag: bbd19ed9-a5de-597c-891a-a77b1d1504a7
+		displayFolder: Hourly profiles
+		formatString: 0.00
+
+	measure 'Average Grid Load GW' =
+			DIVIDE(AVERAGE('fact_market_hour'[grid_load_mwh]), 1000)
+		lineageTag: 99b772e9-8e46-5314-9c16-9d13b0b00e71
+		displayFolder: Hourly profiles
+		formatString: 0.00
+
+	measure 'Hourly Price Axis Minimum' =
+			CALCULATE(
+			VAR Groups = CALCULATETABLE(
+			        SUMMARIZE('dim_time_hour', 'dim_time_hour'[local_hour], 'dim_time_hour'[is_weekend]),
+			        REMOVEFILTERS('dim_time_hour'[local_hour]),
+			        REMOVEFILTERS('dim_time_hour'[is_weekend])
+			    )
+			VAR Bounds = ADDCOLUMNS(Groups, "ProfileBound", CALCULATE(MIN([Hourly Price P10], MIN([Average Price EUR per MWh], [Hourly Median Price]))))
+			RETURN MINX(Bounds, [ProfileBound]) - 10,
+			    REMOVEFILTERS('dim_time_hour'[is_weekend]),
+			    REMOVEFILTERS('dim_time_hour'[local_hour])
+			)
+		lineageTag: 6030d556-151b-584c-a364-cba8388bf63c
+		displayFolder: Hourly profiles
+		formatString: 0.00
+		isHidden
+
+	measure 'Hourly Price Axis Maximum' =
+			CALCULATE(
+			VAR Groups = CALCULATETABLE(
+			        SUMMARIZE('dim_time_hour', 'dim_time_hour'[local_hour], 'dim_time_hour'[is_weekend]),
+			        REMOVEFILTERS('dim_time_hour'[local_hour]),
+			        REMOVEFILTERS('dim_time_hour'[is_weekend])
+			    )
+			VAR Bounds = ADDCOLUMNS(Groups, "ProfileBound", CALCULATE(MAX([Hourly Price P90], MAX([Average Price EUR per MWh], [Hourly Median Price]))))
+			RETURN MAXX(Bounds, [ProfileBound]) + 10,
+			    REMOVEFILTERS('dim_time_hour'[is_weekend]),
+			    REMOVEFILTERS('dim_time_hour'[local_hour])
+			)
+		lineageTag: cca05e41-6f63-5e00-ba7a-bc0062057eb9
+		displayFolder: Hourly profiles
+		formatString: 0.00
+		isHidden
+
+	measure 'Hourly Power Axis Maximum' =
+			CALCULATE(
+			    VAR Groups = CALCULATETABLE(
+			        SUMMARIZE('dim_time_hour', 'dim_time_hour'[local_hour], 'dim_time_hour'[is_weekend]),
+			        REMOVEFILTERS('dim_time_hour'[local_hour]),
+			        REMOVEFILTERS('dim_time_hour'[is_weekend])
+			    )
+			    VAR Bounds = ADDCOLUMNS(Groups, "ProfileBound",
+			        MAX(MAX([Average Grid Load GW], [Average Residual Load GW]),
+			            MAX([Average Wind GW], [Average Solar GW])))
+			    RETURN MAXX(Bounds, [ProfileBound]) + 3,
+			    REMOVEFILTERS('dim_time_hour'[is_weekend]),
+			    REMOVEFILTERS('dim_time_hour'[local_hour])
+			)
+		lineageTag: 0426063d-d1e6-5158-b989-0ddaaa82d79e
+		displayFolder: Hourly profiles
+		formatString: 0.00
+		isHidden
+
+	measure 'Hourly Power Axis Minimum' =
+			CALCULATE(
+			    VAR Groups = CALCULATETABLE(
+			        SUMMARIZE('dim_time_hour', 'dim_time_hour'[local_hour], 'dim_time_hour'[is_weekend]),
+			        REMOVEFILTERS('dim_time_hour'[local_hour]),
+			        REMOVEFILTERS('dim_time_hour'[is_weekend])
+			    )
+			    VAR Bounds = ADDCOLUMNS(Groups, "ProfileBound", [Average Residual Load GW])
+			    RETURN MIN(0, MINX(Bounds, [ProfileBound]) - 2),
+			    REMOVEFILTERS('dim_time_hour'[is_weekend]),
+			    REMOVEFILTERS('dim_time_hour'[local_hour])
+			)
+		lineageTag: 458f10df-d0ff-566c-b179-f220c2cefcd6
+		displayFolder: Hourly profiles
+		formatString: 0.00
+		isHidden
+
 	column time_key
 		dataType: int64
 		formatString: 0

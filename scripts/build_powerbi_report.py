@@ -16,7 +16,7 @@ FONT = DESIGN['font']
 R = 'report_source'
 MONTH = 'report_month'
 AXIS = 'report_axis'
-PAGES = [('01_market', 'Market overview'), ('02_generation', 'Generation & value'), ('03_negative', 'Negative prices'), ('04_supply', 'Supply & demand')]
+PAGES = [('01_market', 'Market overview'), ('02_generation', 'Generation & value'), ('03_negative', 'Negative prices'), ('04_supply', 'Supply & demand'), ('05_hourly', 'Hourly profiles')]
 M = 'fact_market_hour'
 G = 'fact_generation_hour'
 T = 'dim_time_hour'
@@ -91,7 +91,9 @@ class Page:
 
 
     def add(self, kind, x, y, w, h, title='', roles=None, objects=None, transparent=False):
-        name = ident(self.name + '/' + str(len(self.visuals)) + '/' + kind).replace('-', '')[:20]
+        # Keep existing visual identities when adding the fifth navigation button.
+        slot = 'nav5' if len(self.visuals) == 6 and kind == 'shape' else str(len(self.visuals) - (1 if len(self.visuals) >= 7 else 0))
+        name = ident(self.name + '/' + slot + '/' + kind).replace('-', '')[:20]
         container = {
             'background': props(show=lit(not transparent), color=color(C['panel']), transparency=lit(100 if transparent else 0)),
             'border': props(show=lit(not transparent), color=color(C['edge']), radius=lit(18), width=lit(1)),
@@ -290,7 +292,31 @@ def build():
         p.text(1178,618+index*28,360,24,label,10)
     p.text(1142,783,416,44,'Blue means a negative mean price, not the frequency of negative hours.',9)
     p.finish()
-    print('Built four-page native PBIR report connected to sm_power_renewables')
+    p=Page(*PAGES[4],'How does the typical day change?',
+           'Compare Monday–Friday with Saturday–Sunday · Month filter applies to all four profiles',
+           'Europe/Berlin local hour · Both repeated DST hours retained · P10–P90 describes observed prices, not uncertainty of the mean')
+    p.text(28,188,1544,48,'Price: mean and median, with P10 and P90 boundaries · Power: average GW per physical one-hour interval',11)
+    for weekend,x,label in [(False,28,'Weekdays · Monday–Friday'),(True,810,'Weekends · Saturday–Sunday')]:
+        for power,y,h in [(False,244,286),(True,548,292)]:
+            metrics = ([measure('Average Grid Load GW'),measure('Average Residual Load GW'),measure('Average Wind GW'),measure('Average Solar GW')] if power else
+                       [measure('Average Price EUR per MWh'),measure('Hourly Median Price'),measure('Hourly Price P10'),measure('Hourly Price P90')])
+            palette = [C['slate'],C['blue'],C['teal'],C['amber']] if power else [C['blue'],C['red'],'#A4C7F2','#A4C7F2']
+            chart=p.chart('lineChart',x,y,764,h,label+(' · average GW' if power else ' · price EUR/MWh'),(T,'local_hour',False),metrics,palette)
+            for item,caption in zip(chart['visual']['query']['queryState']['Y']['projections'],
+                                    ['Grid load','Residual load','Wind','Solar (Photovoltaics)'] if power else ['Mean','Median','P10','P90']):
+                item['displayName']=caption
+            chart['visual']['query']['queryState']['Tooltips']={'projections':[projection(M,'Valid Price Hours',True)]}
+            chart['visual']['objects']['valueAxis'][0]['properties'].update(
+                start={'expr':field(M,'Hourly Power Axis Minimum' if power else 'Hourly Price Axis Minimum',True)},
+                end={'expr':field(M,'Hourly Power Axis Maximum' if power else 'Hourly Price Axis Maximum',True)},
+                labelDisplayUnits=lit(1),labelPrecision=lit(0))
+            chart['visual']['objects']['lineStyles']=props(showMarker=lit(False),strokeWidth=lit(2.5),lineChartType=lit('linear'))
+            chart['filterConfig']={'filters':[{'name':'profile_day_type','field':field(T,'is_weekend'),'type':'Categorical','filter':{
+                'Version':2,'From':[{'Name':'s','Entity':T,'Type':0}], 'Where':[{'Condition':{'In':{
+                    'Expressions':[{'Column':{'Expression':{'SourceRef':{'Source':'s'}},'Property':'is_weekend'}}],
+                    'Values':[[{'Literal':{'Value':'true' if weekend else 'false'}}]]}}}]},'howCreated':'User','isHiddenInViewMode':True}]}
+    p.finish()
+    print('Built five-page native PBIR report connected to sm_power_renewables')
 
 
 if __name__ == '__main__':
