@@ -155,3 +155,5 @@ For June at 13:00, the 21 weekday observations have a mean of -2.63, median -1.0
 Independent checks for all 624 year/month × day-type × hour groups are retained in [hourly_profiles_local.json](../evidence/powerbi/hourly_profiles_local.json).
 
 ![Hourly price and power profiles rendered in Fabric](../evidence/powerbi/06_hourly_profiles.png)
+
+The lower panels use native line-and-stacked-column charts: Solar (Photovoltaics), combined Wind and Residual load form the columns, with Grid load overlaid as a line. All four series share the same GW scale. The dynamic scale includes the positive stack and any negative residual load for both day types. Because stacking separates positive and negative values, the top of the positive column can exceed the Grid load line when residual load is negative; the signed sum remains equal to Grid load within source rounding. The maximum imbalance across the 624 independently computed profile groups is 0.000006 GW. The grid-load line is therefore a net-demand reference, not an additional stacked component.

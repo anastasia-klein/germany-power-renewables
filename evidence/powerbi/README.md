@@ -40,7 +40,7 @@ The generation-mix page now shows source percentages and full source labels, whi
 
 ## Hourly profiles
 
-Price mean, median and P10/P90 boundaries are shown separately for weekdays and weekends, followed by average grid load, residual load, wind and Solar (Photovoltaics) in GW. The common month filter recomputes all statistics from physical-hour observations. Holidays are classified by their day of week. The two price panels share one dynamic scale, as do the power panels.
+Price mean, median and P10/P90 boundaries are shown separately for weekdays and weekends, followed by stacked Solar (Photovoltaics), Wind and Residual load columns with an overlaid Grid load line in GW. The common month filter recomputes all statistics from physical-hour observations. Holidays are classified by their day of week. The two price panels share one dynamic scale, as do the power panels.
 
 ![Hourly profiles in Fabric](06_hourly_profiles.png)
 
@@ -49,3 +49,5 @@ Independent numerical checks for every year/month, day-type and local-hour group
 ![June hourly profiles in Fabric](07_hourly_profiles_june.png)
 
 The hourly-profile styling uses circular markers and monotone smooth interpolation. P10 and P90 are dashed in light blue (#A4C7F2), with a matching native error band at 80% transparency. The native band uses the inclusive percentile measures as absolute bounds on the median series; it does not shade down to zero. All profile statistics and month filters retain their original definitions.
+
+Lower profile panels now use a single shared scale for the stacked columns and the Grid load line. Negative residual load extends below zero; the line tracks the signed sum, while the positive stack alone can be higher. Month and weekday/weekend definitions are unchanged.

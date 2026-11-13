@@ -33,13 +33,18 @@
     "Month filter returned to All after verification; annual and June screenshots captured",
     "Hourly profile styling: circle markers, monotone smoothing and dashed P10/P90 boundaries rendered on both weekday and weekend panels",
     "Native absolute P10/P90 band rendered in matching #A4C7F2 with 80% transparency; no shading below the lower bound",
-    "Annual and June selections checked after styling; both bands follow month filters, paired scales preserved"
+    "Annual and June selections checked after styling; both bands follow month filters, paired scales preserved",
+    "Lower hourly-profile panels render native lineStackedColumnComboChart: Solar, Wind, Residual load as columns and Grid load as line",
+    "Shared GW scale confirmed for stacked columns and line; both day types use the same dynamic limits",
+    "June weekend 13:00 checked via accessible chart points: Solar 36.38 GW, Wind 9.41 GW, Residual load -0.87 GW, Grid load 44.92 GW",
+    "Negative residual extends below zero; positive stack can exceed the net Grid load line",
+    "Month filter preserved and returned to All; annual and June evidence screenshots refreshed"
   ],
   "public_access": "Not enabled; workspace-authenticated report only",
   "reference_design": "https://github.com/anastasia-klein/global-critical-materials-intelligence",
-  "deployed_report_source_commit": "fe757ac",
+  "deployed_report_source_commit": "b437e28",
   "pending_report_changes": null,
-  "fabric_synced_git_commit": "fe757ac",
+  "fabric_synced_git_commit": "b437e28",
   "conflict_resolution": "The report update was applied using the previously authorized report-only incoming version; notebook and Test report changes were not committed or overwritten.",
   "presentation_tables": {
     "report_month": 12,
@@ -78,5 +83,18 @@
     "band_transparency_percent": 80,
     "band_binding": "Fabric-native errorRange explicit absolute bounds on Hourly Median Price",
     "style_schema": "Microsoft reportThemeSchema-2.159.json; native binding captured from Fabric authoring"
+  },
+  "hourly_power_chart": {
+    "visual_type": "lineStackedColumnComboChart",
+    "column_measures": [
+      "Average Solar GW",
+      "Average Wind GW",
+      "Average Residual Load GW"
+    ],
+    "line_measure": "Average Grid Load GW",
+    "secondary_axis_shown": false,
+    "scale": "Shared between line and columns, and across weekday/weekend panels",
+    "max_grouped_balance_error_gw": 6e-06,
+    "positive_stack_included_in_axis_maximum": true
   }
 }
