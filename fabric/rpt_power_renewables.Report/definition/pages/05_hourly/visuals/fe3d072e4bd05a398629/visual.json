@@ -283,7 +283,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Price: mean and median, with P10 and P90 boundaries · Power: average GW per physical one-hour interval",
+                    "value": "Price: mean and median, with P10 and P90 boundaries · Power: stacked Solar + Wind + Residual load, with Grid load line · GW",
                     "textStyle": {
                       "fontFamily": "'Avenir Next', Arial, sans-serif",
                       "fontSize": "11pt",

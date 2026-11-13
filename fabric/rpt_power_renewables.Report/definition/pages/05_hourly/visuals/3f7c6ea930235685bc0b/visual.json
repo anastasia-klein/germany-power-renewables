@@ -10,7 +10,7 @@
     "tabOrder": 16000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "lineStackedColumnComboChart",
     "visualContainerObjects": {
       "background": [
         {
@@ -307,28 +307,12 @@
                       "Entity": "fact_market_hour"
                     }
                   },
-                  "Property": "Average Grid Load GW"
+                  "Property": "Average Solar GW"
                 }
               },
-              "queryRef": "fact_market_hour.Average Grid Load GW",
-              "nativeQueryRef": "Average Grid Load GW",
-              "displayName": "Grid load",
-              "active": true
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "fact_market_hour"
-                    }
-                  },
-                  "Property": "Average Residual Load GW"
-                }
-              },
-              "queryRef": "fact_market_hour.Average Residual Load GW",
-              "nativeQueryRef": "Average Residual Load GW",
-              "displayName": "Residual load",
+              "queryRef": "fact_market_hour.Average Solar GW",
+              "nativeQueryRef": "Average Solar GW",
+              "displayName": "Solar (Photovoltaics)",
               "active": true
             },
             {
@@ -355,12 +339,12 @@
                       "Entity": "fact_market_hour"
                     }
                   },
-                  "Property": "Average Solar GW"
+                  "Property": "Average Residual Load GW"
                 }
               },
-              "queryRef": "fact_market_hour.Average Solar GW",
-              "nativeQueryRef": "Average Solar GW",
-              "displayName": "Solar (Photovoltaics)",
+              "queryRef": "fact_market_hour.Average Residual Load GW",
+              "nativeQueryRef": "Average Residual Load GW",
+              "displayName": "Residual load",
               "active": true
             }
           ]
@@ -381,6 +365,26 @@
               "queryRef": "fact_market_hour.Valid Price Hours",
               "nativeQueryRef": "Valid Price Hours",
               "displayName": "Valid Price Hours",
+              "active": true
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_market_hour"
+                    }
+                  },
+                  "Property": "Average Grid Load GW"
+                }
+              },
+              "queryRef": "fact_market_hour.Average Grid Load GW",
+              "nativeQueryRef": "Average Grid Load GW",
+              "displayName": "Grid load",
               "active": true
             }
           ]
@@ -445,6 +449,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'Categorical'"
+                }
+              }
+            },
+            "innerPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "25D"
                 }
               }
             }
@@ -539,6 +550,44 @@
               "expr": {
                 "Literal": {
                   "Value": "0D"
+                }
+              }
+            },
+            "secShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "secStart": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_market_hour"
+                    }
+                  },
+                  "Property": "Hourly Power Axis Minimum"
+                }
+              }
+            },
+            "secEnd": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_market_hour"
+                    }
+                  },
+                  "Property": "Hourly Power Axis Maximum"
+                }
+              }
+            },
+            "alignZeros": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -679,17 +728,19 @@
                   "Value": "'monotoneX'"
                 }
               }
-            }
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "selector": {
-            "metadata": "fact_market_hour.Average Grid Load GW"
-          },
-          "properties": {
-            "fill": {
+            },
+            "strokeColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#8298B0'"
+                    }
+                  }
+                }
+              }
+            },
+            "markerColor": {
               "solid": {
                 "color": {
                   "expr": {
@@ -701,10 +752,12 @@
               }
             }
           }
-        },
+        }
+      ],
+      "dataPoint": [
         {
           "selector": {
-            "metadata": "fact_market_hour.Average Residual Load GW"
+            "metadata": "fact_market_hour.Average Solar GW"
           },
           "properties": {
             "fill": {
@@ -712,7 +765,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#397FE5'"
+                      "Value": "'#F1B63D'"
                     }
                   }
                 }
@@ -740,7 +793,7 @@
         },
         {
           "selector": {
-            "metadata": "fact_market_hour.Average Solar GW"
+            "metadata": "fact_market_hour.Average Residual Load GW"
           },
           "properties": {
             "fill": {
@@ -748,9 +801,47 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F1B63D'"
+                      "Value": "'#397FE5'"
                     }
                   }
+                }
+              }
+            }
+          }
+        },
+        {
+          "selector": {
+            "metadata": "fact_market_hour.Average Grid Load GW"
+          },
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#8298B0'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "visualType1": {
+              "expr": {
+                "Literal": {
+                  "Value": "'columnChart'"
+                }
+              }
+            },
+            "visualType2": {
+              "expr": {
+                "Literal": {
+                  "Value": "'lineChart'"
                 }
               }
             }

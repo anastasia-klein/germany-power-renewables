@@ -189,7 +189,7 @@ class Page:
             if self.name == '03_negative' and kind == 'clusteredBarChart':
                 visual['objects']['dataPoint']=[{'selector':{'data':[{'dataViewWildcard':{'matchingOption':1}}]},'properties':{'fill':{'solid':{'color':{'expr':field(G,'Generation Source Color',True)}}}}}]
         # Slicers filter the page. Charts do not change the meaning of other KPIs.
-        charts=[v for v in self.visuals if v['visual']['visualType'] in ['lineChart','clusteredBarChart','clusteredColumnChart','tableEx','scatterChart','pivotTable']]
+        charts=[v for v in self.visuals if v['visual']['visualType'] in ['lineChart','clusteredBarChart','clusteredColumnChart','tableEx','scatterChart','pivotTable','lineStackedColumnComboChart']]
         targets=[v for v in self.visuals if v['visual']['visualType'] != 'textbox']
         interactions=[{'source':a['name'],'target':b['name'],'type':'NoFilter'} for a in charts for b in targets if a!=b]
         interactions += self.overrides
@@ -294,16 +294,16 @@ def build():
     p.finish()
     p=Page(*PAGES[4],'How does the typical day change?',
            'Compare Monday–Friday with Saturday–Sunday · Month filter applies to all four profiles',
-           'Europe/Berlin local hour · Both repeated DST hours retained · P10–P90 describes observed prices, not uncertainty of the mean')
-    p.text(28,188,1544,48,'Price: mean and median, with P10 and P90 boundaries · Power: average GW per physical one-hour interval',11)
+           'Europe/Berlin local hour · Stacks separate positive and negative values; Grid load shows their signed sum · P10–P90: observed prices')
+    p.text(28,188,1544,48,'Price: mean and median, with P10 and P90 boundaries · Power: stacked Solar + Wind + Residual load, with Grid load line · GW',11)
     for weekend,x,label in [(False,28,'Weekdays · Monday–Friday'),(True,810,'Weekends · Saturday–Sunday')]:
         for power,y,h in [(False,244,286),(True,548,292)]:
-            metrics = ([measure('Average Grid Load GW'),measure('Average Residual Load GW'),measure('Average Wind GW'),measure('Average Solar GW')] if power else
+            metrics = ([measure('Average Solar GW'),measure('Average Wind GW'),measure('Average Residual Load GW'),measure('Average Grid Load GW')] if power else
                        [measure('Average Price EUR per MWh'),measure('Hourly Median Price'),measure('Hourly Price P10'),measure('Hourly Price P90')])
-            palette = [C['slate'],C['blue'],C['teal'],C['amber']] if power else [C['blue'],C['red'],'#A4C7F2','#A4C7F2']
+            palette = [C['amber'],C['teal'],C['blue'],C['slate']] if power else [C['blue'],C['red'],'#A4C7F2','#A4C7F2']
             chart=p.chart('lineChart',x,y,764,h,label+(' · average GW' if power else ' · price EUR/MWh'),(T,'local_hour',False),metrics,palette)
             for item,caption in zip(chart['visual']['query']['queryState']['Y']['projections'],
-                                    ['Grid load','Residual load','Wind','Solar (Photovoltaics)'] if power else ['Mean','Median','P10','P90']):
+                                    ['Solar (Photovoltaics)','Wind','Residual load','Grid load'] if power else ['Mean','Median','P10','P90']):
                 item['displayName']=caption
             chart['visual']['query']['queryState']['Tooltips']={'projections':[projection(M,'Valid Price Hours',True)]}
             chart['visual']['objects']['valueAxis'][0]['properties'].update(
@@ -313,6 +313,17 @@ def build():
             chart['visual']['objects']['lineStyles']=props(
                 showMarker=lit(True),showMarkerByDefault=lit(True),markerShape=lit('circle'),markerSize=lit(4),
                 strokeWidth=lit(2.5),lineChartType=lit('smooth'),interpolationSmooth=lit('monotoneX'))
+            if power:
+                chart['visual']['visualType']='lineStackedColumnComboChart'
+                query=chart['visual']['query']['queryState']
+                query['Y2']={'projections':query['Y']['projections'][3:]}
+                query['Y']['projections']=query['Y']['projections'][:3]
+                chart['visual']['objects']['valueAxis'][0]['properties'].update(
+                    secShow=lit(False),secStart={'expr':field(M,'Hourly Power Axis Minimum',True)},
+                    secEnd={'expr':field(M,'Hourly Power Axis Maximum',True)},alignZeros=lit(True))
+                chart['visual']['objects']['categoryAxis'][0]['properties'].update(axisType=lit('Categorical'),innerPadding=lit(25))
+                chart['visual']['objects']['lineStyles'][0]['properties'].update(strokeColor=color(C['slate']),markerColor=color(C['slate']))
+                chart['visual']['objects']['general']=props(visualType1=lit('columnChart'),visualType2=lit('lineChart'))
             if not power:
                 for bound in ['Hourly Price P10','Hourly Price P90']:
                     chart['visual']['objects']['lineStyles'].append({

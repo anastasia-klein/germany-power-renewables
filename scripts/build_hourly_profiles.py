@@ -35,8 +35,8 @@ RETURN {aggregator}(Bounds, [ProfileBound]) {padding}'''
     measures.append(('Hourly Power Axis Maximum', f'''CALCULATE(
     VAR Groups = {groups}
     VAR Bounds = ADDCOLUMNS(Groups, "ProfileBound",
-        MAX(MAX([Average Grid Load GW], [Average Residual Load GW]),
-            MAX([Average Wind GW], [Average Solar GW])))
+        MAX([Average Grid Load GW],
+            [Average Solar GW] + [Average Wind GW] + MAX(0, [Average Residual Load GW])))
     RETURN MAXX(Bounds, [ProfileBound]) + 3,
     REMOVEFILTERS('dim_time_hour'[is_weekend]),
     REMOVEFILTERS('dim_time_hour'[local_hour])

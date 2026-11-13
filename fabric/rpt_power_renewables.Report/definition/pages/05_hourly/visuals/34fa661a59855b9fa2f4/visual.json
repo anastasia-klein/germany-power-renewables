@@ -283,7 +283,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Europe/Berlin local hour · Both repeated DST hours retained · P10–P90 describes observed prices, not uncertainty of the mean",
+                    "value": "Europe/Berlin local hour · Stacks separate positive and negative values; Grid load shows their signed sum · P10–P90: observed prices",
                     "textStyle": {
                       "fontFamily": "'Avenir Next', Arial, sans-serif",
                       "fontSize": "9pt",
