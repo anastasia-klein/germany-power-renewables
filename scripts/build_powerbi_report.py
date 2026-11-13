@@ -310,7 +310,21 @@ def build():
                 start={'expr':field(M,'Hourly Power Axis Minimum' if power else 'Hourly Price Axis Minimum',True)},
                 end={'expr':field(M,'Hourly Power Axis Maximum' if power else 'Hourly Price Axis Maximum',True)},
                 labelDisplayUnits=lit(1),labelPrecision=lit(0))
-            chart['visual']['objects']['lineStyles']=props(showMarker=lit(False),strokeWidth=lit(2.5),lineChartType=lit('linear'))
+            chart['visual']['objects']['lineStyles']=props(
+                showMarker=lit(True),showMarkerByDefault=lit(True),markerShape=lit('circle'),markerSize=lit(4),
+                strokeWidth=lit(2.5),lineChartType=lit('smooth'),interpolationSmooth=lit('monotoneX'))
+            if not power:
+                for bound in ['Hourly Price P10','Hourly Price P90']:
+                    chart['visual']['objects']['lineStyles'].append({
+                        'selector':{'metadata':M+'.'+bound},
+                        'properties':{'lineStyle':lit('dashed'),'strokeWidth':lit(1.5),'markerSize':lit(3)}})
+                chart['visual']['objects']['error']=[{
+                    'selector':{'metadata':M+'.Hourly Median Price'},
+                    'properties':{'enabled':lit(True),'barShow':lit(False),'markerShow':lit(False),
+                        'shadeShow':lit(True),'shadeBandStyle':lit('fill'),
+                        'shadeMatchSeriesColor':lit(False),'shadeColor':color('#A4C7F2'),'shadeTransparency':lit(80),
+                        'errorRange':{'explicit':{'lowerBound':{'expr':field(M,'Hourly Price P10',True)},
+                            'upperBound':{'expr':field(M,'Hourly Price P90',True)}}}}}]
             chart['filterConfig']={'filters':[{'name':'profile_day_type','field':field(T,'is_weekend'),'type':'Categorical','filter':{
                 'Version':2,'From':[{'Name':'s','Entity':T,'Type':0}], 'Where':[{'Condition':{'In':{
                     'Expressions':[{'Column':{'Expression':{'SourceRef':{'Source':'s'}},'Property':'is_weekend'}}],
