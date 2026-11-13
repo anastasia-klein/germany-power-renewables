@@ -124,7 +124,7 @@ The day-ahead price is formed before actual delivery. Actual generation and actu
 
 ## Interactive report: questions and interpretation
 
-The report separates market context, source timing value, negative-price exposure and supply-and-demand associations across four pages. They answer different questions rather than presenting a causal price model. The market page compares price and load profiles with the full reported generation mix. The value page compares technologies against the same market-price benchmark. The negative-price page separates frequency in time from exposure weighted by source energy.
+The report separates market context, source timing value, negative-price exposure and supply-and-demand associations across five pages. They answer different questions rather than presenting a causal price model. The market page compares price and load profiles with the full reported generation mix. The value page compares technologies against the same market-price benchmark. The negative-price page separates frequency in time from exposure weighted by source energy.
 
 The annual load-weighted price of 92.42 EUR/MWh exceeds the time average of 89.32 by 3.10 EUR/MWh: consumption is relatively concentrated in more expensive hours. Solar captures 46.07 EUR/MWh, or 51.58% of the benchmark; combined wind captures 78.93, or approximately 88.37%. These describe profile value and are not profit margins. Negative prices occur in 6.54% of hours, but coincide with 24.13% of solar generation, indicating concentrated solar exposure. Pumped-storage output captures a high price, but pumping input costs, round-trip losses and operating costs are missing, so profitability cannot be inferred.
 
@@ -140,4 +140,18 @@ The price heatmap contains 12 calendar months and 24 local hours. Each cell is t
 
 The generation-mix chart now plots each source as a share of all reported generation. Both the original source dimension and the presentation source dimension are removed from the denominator; month and market filters remain. This prevents each bar becoming 100% when the presentation source dimension drives the axis. Percentages can differ from 100% in the displayed sum due to rounding; TWh remains in tooltips.
 
-Additional hour-of-day views remain candidates, not implemented features: a typical-day mean price profile with percentile bands; average wind, solar, load and residual-load profiles; a daily date-by-hour price heatmap for the selected month; and generation-weighted negative-price exposure by hour. These distinguish calendar patterns, within-month variation and the timing of source volumes.
+The Hourly profiles page implements the price and average-power profiles described below. A daily date-by-hour price heatmap and generation-weighted negative-price exposure by hour remain candidates.
+
+## Hourly profiles: weekdays and weekends
+
+The fifth report page compares Monday–Friday with Saturday–Sunday in adjacent panels, using a shared month selector. Local hours run from 0 to 23 in Europe/Berlin. All selected physical hours contribute equally within each local-hour/day-type group. Public holidays are not separated from weekdays. A repeated autumn hour contributes two observations; the missing spring hour contributes none.
+
+Price lines show the arithmetic mean, median, and the P10 and P90 boundaries. Percentiles use inclusive linear interpolation (`PERCENTILEX.INC`) on nonblank hourly prices in the selected group. The interval describes the middle 80% of the empirical distribution, subject to interpolation and ties; it is neither a forecast interval nor a confidence interval for the mean. Bounds are drawn as light-blue lines. Month selections recompute statistics from hourly observations rather than averaging monthly percentiles.
+
+Power profiles use the mean hourly MWh divided by 1,000, equivalent to mean GW because each physical interval lasts one hour. Grid load uses the existing `grid_load_mwh` measure without adding pumping consumption. Wind combines onshore and offshore. Residual load remains the supplied SMARD series; it may be negative and is not floored at zero. Solar retains the caption Solar (Photovoltaics). Paired price panels share a dynamic range covering all four statistics; paired power panels share a range that also includes negative residual load.
+
+For June at 13:00, the 21 weekday observations have a mean of -2.63, median -1.04, P10 -26.45 and P90 12.78 EUR/MWh. The nine weekend observations have a mean of -27.51, median -20.10, P10 -51.79 and P90 -1.61. These are descriptive calendar comparisons, with no adjustment for weather, forecasts or outages.
+
+Independent checks for all 624 year/month × day-type × hour groups are retained in [hourly_profiles_local.json](../evidence/powerbi/hourly_profiles_local.json).
+
+![Hourly price and power profiles rendered in Fabric](../evidence/powerbi/06_hourly_profiles.png)

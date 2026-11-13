@@ -1,6 +1,6 @@
 # Germany Power & Renewables
 
-An applied research project examining how renewable generation and electricity demand align with German day-ahead prices. Microsoft Fabric provides the data preparation and validation environment; the Fabric-backed semantic model and four-page Power BI report are implemented, while unauthenticated public publication remains planned.
+An applied research project examining how renewable generation and electricity demand align with German day-ahead prices. Microsoft Fabric provides the data preparation and validation environment; the Fabric-backed semantic model and five-page Power BI report are implemented, while unauthenticated public publication remains planned.
 
 ## Research questions
 
@@ -40,7 +40,7 @@ The notebook collection separates source profiling, silver preparation, explorat
 
 The workspace is connected to GitHub. The `fabric/` directory contains the authoritative Fabric item definitions; `notebooks/` contains portable, output-free exports derived from that source. Captured outputs remain in `evidence/`, because Fabric Git integration versions source rather than notebook outputs. Source profiling and exploration are separate from the build flow. The silver build contains only input validation, transformation, quality gates and table publication; every code cell is part of the job.
 
-The semantic model `sm_power_renewables` contains five gold-model relationships and nineteen core measures, plus presentation metadata, nine report measures for the adaptive axis/colors/icons, and eight descriptive supply-and-demand measures. The author confirmed the headline values in Fabric, and browser checks of the connected report verified annual totals, solar capture metrics, source selection and a June date filter. The [native report definition](fabric/rpt_power_renewables.Report) contains four pages: Market overview, Generation & value, Negative prices, and Supply & demand. The Supply & demand page compares hourly price with residual load, wind and solar, and includes a month-by-local-hour mean-price heatmap. Its raw Pearson correlations are descriptive and recalculate for the month filter.
+The semantic model `sm_power_renewables` contains five gold-model relationships and nineteen core measures, plus presentation metadata, nine report measures for the adaptive axis/colors/icons, eight descriptive supply-and-demand measures, and eight hourly-profile measures (including four hidden common-axis helpers). The author confirmed the headline values in Fabric, and browser checks of the connected report verified annual totals, solar capture metrics, source selection and a June date filter. The [native report definition](fabric/rpt_power_renewables.Report) contains five pages: Market overview, Generation & value, Negative prices, Supply & demand, and Hourly profiles. The Supply & demand page compares hourly price with residual load, wind and solar, and includes a month-by-local-hour mean-price heatmap. Its raw Pearson correlations are descriptive and recalculate for the month filter.
 
 The visual style follows the author's Global Critical Materials report, with a cool white canvas, blue price series, gold solar output, teal wind and coral negative-price frequency.
 
@@ -57,3 +57,5 @@ The full generation mix, now figure 5 in notebook 03, provides context beyond wi
 Data: [Bundesnetzagentur | SMARD.de](https://www.smard.de/en/downloadcenter/download-market-data/), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). This project converts file formats and numeric fields, resolves timestamps and derives analytical metrics. The source does not endorse the analysis.
 
 Time handling follows [SMARD's explanation of CET/CEST and clock changes](https://www.smard.de/en/change-from-summer-to-winter-time-218202). Raw downloads were retrieved on 6 November 2026; file hashes and initial quality profiles are recorded with the data.
+
+The Hourly profiles page compares weekdays (Monday–Friday) and weekends (Saturday–Sunday), with one common month selector. Price profiles show the mean, median, P10 and P90 at each local hour. The lower panels show average grid load, residual load, combined wind and Solar (Photovoltaics) in GW. Paired panels share filter-aware scales. Holidays are classified by their weekday; percentiles describe observed hourly prices and are not confidence intervals.

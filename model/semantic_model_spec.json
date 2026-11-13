@@ -161,5 +161,9 @@
   "core_measure_count": 19,
   "descriptive_measure_count": 8,
   "descriptive_measure_source": "scripts/build_supply_demand.py",
-  "source_share_denominator": "Removes filters from both dim_generation_source and report_source, preserving month and market filters"
+  "source_share_denominator": "Removes filters from both dim_generation_source and report_source, preserving month and market filters",
+  "hourly_profile_measure_count": 8,
+  "hourly_profile_hidden_axis_measure_count": 4,
+  "hourly_profile_measure_source": "scripts/build_hourly_profiles.py",
+  "total_measure_count": 44
 }

@@ -1,16 +1,10 @@
 {
-  "date": "2026-11-11",
+  "date": "2026-11-13",
   "report_id": "5b92ecf0-ba8f-4e3e-8fdd-26476b3747fc",
   "semantic_model_id": "2ac8afba-a766-46be-b606-b3009a1ef41a",
-  "report_pages": 4,
-  "static_validation": {
-    "schema_files": 106,
-    "visuals": 97,
-    "model_field_references": 65,
-    "native_formatting_properties": 656
-  },
+  "report_pages": 5,
   "browser_checks": [
-    "All four report pages rendered against the existing model",
+    "Five-page report synchronized with the existing Direct Lake model; new hourly-profile page rendered",
     "Annual overview: 89.32, 92.42, 465.82 TWh, 58.86%",
     "Solar: 73.78 TWh, capture 46.07 EUR/MWh, rate 51.58%, negative volume exposure 24.13%",
     "Biomass source selection: capture 92.85 EUR/MWh and rate 103.95%; market benchmark and all-source table retained",
@@ -31,13 +25,18 @@
     "Generation mix uses percentages of all observed generation; complete source labels visible, with Solar (Photovoltaics) caption",
     "Generation and value page: wider line chart, narrower right table; all twelve source rows and numerical values fit",
     "Rectangular navigation with modest corners, raised cards and separate filter labels verified",
-    "Four current page screenshots captured on 11 November 2026"
+    "Four current page screenshots captured on 11 November 2026",
+    "Hourly profiles: both weekday and weekend panels display all 24 local-hour categories",
+    "One June selection recomputes four profile charts; paired price scales match, paired power scales match",
+    "June at 13:00: weekday mean -2.63 and P90 12.78 EUR/MWh, weekend mean -27.51 EUR/MWh, checked via accessible chart points",
+    "June power profile retains negative weekend residual load",
+    "Month filter returned to All after verification; annual and June screenshots captured"
   ],
   "public_access": "Not enabled; workspace-authenticated report only",
   "reference_design": "https://github.com/anastasia-klein/global-critical-materials-intelligence",
-  "deployed_report_source_commit": "00b15f5",
+  "deployed_report_source_commit": "607c796",
   "pending_report_changes": null,
-  "fabric_synced_git_commit": "00b15f5",
+  "fabric_synced_git_commit": "607c796",
   "conflict_resolution": "The report update was applied using the previously authorized report-only incoming version; notebook and Test report changes were not committed or overwritten.",
   "presentation_tables": {
     "report_month": 12,
@@ -47,5 +46,25 @@
   "core_measure_count": 19,
   "presentation_measure_count": 9,
   "descriptive_measure_count": 8,
-  "total_measure_count": 36
+  "total_measure_count": 44,
+  "previous_static_validation": {
+    "schema_files": 106,
+    "visuals": 97,
+    "model_field_references": 65,
+    "native_formatting_properties": 656
+  },
+  "hourly_profile_measure_count": 8,
+  "static_validation": {
+    "visuals": 120,
+    "checks": [
+      "All native visual bounds within 1600 by 900",
+      "All referenced columns and measures exist in the model",
+      "Original fact_market_hour columns and Direct Lake partition unchanged",
+      "Hourly-profile measure generator is idempotent",
+      "Independent raw-source checks cover all 624 year/month, weekday/weekend, local-hour groups",
+      "All price groups satisfy P10 <= median <= P90",
+      "Annual day-type coverage totals 8760 physical hours"
+    ],
+    "official_schema_validation": "Prior four-page schema results retained separately; current additions verified structurally and by Fabric rendering"
+  }
 }

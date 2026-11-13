@@ -37,3 +37,13 @@ The fourth page shows raw hourly associations between price and residual load, w
 ![Supply and demand in Fabric](05_supply_demand.png)
 
 The generation-mix page now shows source percentages and full source labels, while TWh is available on hover. The second page gives more width to its price chart and retains all values in the narrower source table. Source captions are consistently Solar (Photovoltaics). Filter labels have no enclosing panel; the value fields retain a light, slightly rounded border.
+
+## Hourly profiles
+
+Price mean, median and P10/P90 boundaries are shown separately for weekdays and weekends, followed by average grid load, residual load, wind and Solar (Photovoltaics) in GW. The common month filter recomputes all statistics from physical-hour observations. Holidays are classified by their day of week. The two price panels share one dynamic scale, as do the power panels.
+
+![Hourly profiles in Fabric](06_hourly_profiles.png)
+
+Independent numerical checks for every year/month, day-type and local-hour group are in [hourly_profiles_local.json](hourly_profiles_local.json). The file contains 624 groups; annual coverage is 6,264 weekday and 2,496 weekend physical hours. June contains 504 weekday and 216 weekend hours.
+
+![June hourly profiles in Fabric](07_hourly_profiles_june.png)
