@@ -16,7 +16,7 @@ FONT = DESIGN['font']
 R = 'report_source'
 MONTH = 'report_month'
 AXIS = 'report_axis'
-PAGES = [('01_market', 'Market overview'), ('02_generation', 'Generation & value'), ('03_negative', 'Negative prices'), ('04_supply', 'Supply & demand'), ('05_hourly', 'Hourly profiles')]
+PAGES = [('01_market', 'Market overview'), ('02_generation', 'Generation & value'), ('05_hourly', 'Hourly profiles'), ('04_supply', 'Supply & demand'), ('03_negative', 'Negative prices')]
 M = 'fact_market_hour'
 G = 'fact_generation_hour'
 T = 'dim_time_hour'
@@ -219,7 +219,7 @@ def build():
         'objects':{'outspacePane':props(expanded=lit(False))},'settings':{'useStylableVisualContainerHeader':True,'exportDataMode':'AllowSummarized','useEnhancedTooltips':False}})
     save(REPORT/'definition/pages/pages.json',{'$schema':BASE+'item/report/definition/pagesMetadata/1.0.0/schema.json','pageOrder':[p[0] for p in PAGES],'activePageName':PAGES[0][0]})
     month=(AXIS,'axis_label',False)
-    p=Page(*PAGES[0],'How did the German power market move?', 'Germany load & generation · DE/LU day-ahead price · Select one month for daily detail',
+    p=Page(*next(page for page in PAGES if page[0] == '01_market'),'How did the German power market move?', 'Germany load & generation · DE/LU day-ahead price · Select one month for daily detail',
            'Hourly export · Local calendar: Europe/Berlin · UTC preserves repeated DST hours · Descriptive analysis')
     for x,label,name,accent in [(28,'Market average · EUR/MWh','Average Price EUR per MWh','blue'),(420,'Load-weighted · EUR/MWh','Load Weighted Price EUR per MWh','teal'),(812,'Grid load · TWh','Grid Load TWh','slate')]:p.card(x,label,name,accent=accent)
     p.card(1204,'Renewables / reported generation','Renewable Share of Reported Generation',G,'green')
@@ -233,7 +233,7 @@ def build():
     source_colors={source['label']:source['color'] for source in DESIGN['sources']}
     mix['visual']['objects']['dataPoint']=[{'selector':{'data':[{'scopeId':{'Comparison':{'ComparisonKind':0,'Left':field(R,'source_label'),'Right':{'Literal':{'Value':"'"+label+"'"}}}}}]},'properties':{'fill':color(c)}} for label,c in source_colors.items()]
     p.finish()
-    p=Page(*PAGES[1],'When does generation capture market value?', 'Source-weighted prices describe timing exposure · They do not measure generator revenue or profit',
+    p=Page(*next(page for page in PAGES if page[0] == '02_generation'),'When does generation capture market value?', 'Source-weighted prices describe timing exposure · They do not measure generator revenue or profit',
            'Pumped storage is storage output · Nuclear unavailable · Capture requires complete source coverage')
     selector=p.slicer(850,96,352,'Selected generation source',R,'source_label','Solar (Photovoltaics)')
     for x,label,name,accent in [(28,'Selected generation · TWh','Generation TWh','amber'),(420,'Capture price · EUR/MWh','Capture Price EUR per MWh','amber'),(812,'Capture / market average','Capture Rate','teal'),(1204,'MWh in negative-price hours','Negative Price Generation Share','red')]:p.card(x,label,name,G,accent)
@@ -246,7 +246,7 @@ def build():
     for item,label in zip(table['visual']['query']['queryState']['Values']['projections'],['Icon','Source','TWh','Capture EUR/MWh','Capture rate']):item['displayName']=label
     p.overrides.append({'source':selector['name'],'target':table['name'],'type':'NoFilter'})
     p.finish()
-    p=Page(*PAGES[2],'When did power prices turn negative?', 'Frequency of negative hourly prices · Compare calendar patterns and generation exposure',
+    p=Page(*next(page for page in PAGES if page[0] == '03_negative'),'When did power prices turn negative?', 'Frequency of negative hourly prices · Compare calendar patterns and generation exposure',
            'Negative hourly averages, not negative quarter-hours · High solar output does not always imply negative prices')
     for x,label,name,table,accent in [(28,'Negative-price hours','Negative Price Hours',M,'red'),(420,'Share of valid hours','Negative Price Hour Share',M,'red'),(812,'Wind + solar / grid load','Wind Solar Load Ratio',M,'teal'),(1204,'Valid physical hours','Valid Price Hours',M,'slate')]:p.card(x,label,name,table,accent)
     p.chart('clusteredColumnChart',28,302,764,304,'Negative-price hours · selected period',month,[measure('Timeline Negative Price Hours')],[C['red']])
@@ -259,7 +259,7 @@ def build():
             'Values':[[{'Literal':{'Value':"'"+code+"'"}}] for code in ['solar','wind_onshore','wind_offshore']]}}}]}, 'howCreated':'User', 'isHiddenInViewMode':True}]}
 
     p.finish()
-    p=Page(*PAGES[3],'What aligns with the hourly price?',
+    p=Page(*next(page for page in PAGES if page[0] == '04_supply'),'What aligns with the hourly price?',
            'Each point is one physical hour · Raw Pearson correlations · Month filter applies',
            'Hourly associations, not causal effects · Scatter may sample overlapping points · Heatmap: mean price in each month × local-hour cell')
     for x,label,name,accent in [(28,'Price / residual load · Pearson r','Price Correlation Residual Load','blue'),(420,'Price / wind · Pearson r','Price Correlation Wind','teal'),(812,'Price / solar · Pearson r','Price Correlation Solar','amber'),(1204,'Matched physical hours','Valid Price Hours','slate')]:p.card(x,label,name,M,accent)
@@ -292,7 +292,7 @@ def build():
         p.text(1178,618+index*28,360,24,label,10)
     p.text(1142,783,416,44,'Blue means a negative mean price, not the frequency of negative hours.',9)
     p.finish()
-    p=Page(*PAGES[4],'How does the typical day change?',
+    p=Page(*next(page for page in PAGES if page[0] == '05_hourly'),'How does the typical day change?',
            'Compare Monday–Friday with Saturday–Sunday · Month filter applies to all four profiles',
            'Europe/Berlin local hour · Stacks separate positive and negative values; Grid load shows their signed sum · P10–P90: observed prices')
     p.text(28,188,1544,48,'Price: mean and median, with P10 and P90 boundaries · Power: stacked Solar + Wind + Residual load, with Grid load line · GW',11)
