@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-13",
+  "date": "2026-11-17",
   "report_id": "5b92ecf0-ba8f-4e3e-8fdd-26476b3747fc",
   "semantic_model_id": "2ac8afba-a766-46be-b606-b3009a1ef41a",
   "report_pages": 5,
@@ -38,13 +38,14 @@
     "Shared GW scale confirmed for stacked columns and line; both day types use the same dynamic limits",
     "June weekend 13:00 checked via accessible chart points: Solar 36.38 GW, Wind 9.41 GW, Residual load -0.87 GW, Grid load 44.92 GW",
     "Negative residual extends below zero; positive stack can exceed the net Grid load line",
-    "Month filter preserved and returned to All; annual and June evidence screenshots refreshed"
+    "Month filter preserved and returned to All; annual and June evidence screenshots refreshed",
+    "17 November: page tabs and native page navigator verified in requested narrative order; Hourly profiles selected in third position and Negative prices last"
   ],
   "public_access": "Not enabled; workspace-authenticated report only",
   "reference_design": "https://github.com/anastasia-klein/global-critical-materials-intelligence",
-  "deployed_report_source_commit": "b437e28",
+  "deployed_report_source_commit": "f89808d",
   "pending_report_changes": null,
-  "fabric_synced_git_commit": "b437e28",
+  "fabric_synced_git_commit": "f89808d",
   "conflict_resolution": "The report update was applied using the previously authorized report-only incoming version; notebook and Test report changes were not committed or overwritten.",
   "presentation_tables": {
     "report_month": 12,
@@ -96,5 +97,12 @@
     "scale": "Shared between line and columns, and across weekday/weekend panels",
     "max_grouped_balance_error_gw": 6e-06,
     "positive_stack_included_in_axis_maximum": true
-  }
+  },
+  "page_order": [
+    "Market overview",
+    "Generation & value",
+    "Hourly profiles",
+    "Supply & demand",
+    "Negative prices"
+  ]
 }

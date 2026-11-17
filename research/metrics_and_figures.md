@@ -144,7 +144,7 @@ The Hourly profiles page implements the price and average-power profiles describ
 
 ## Hourly profiles: weekdays and weekends
 
-The fifth report page compares Monday–Friday with Saturday–Sunday in adjacent panels, using a shared month selector. Local hours run from 0 to 23 in Europe/Berlin. All selected physical hours contribute equally within each local-hour/day-type group. Public holidays are not separated from weekdays. A repeated autumn hour contributes two observations; the missing spring hour contributes none.
+The third report page compares Monday–Friday with Saturday–Sunday in adjacent panels, using a shared month selector. Local hours run from 0 to 23 in Europe/Berlin. All selected physical hours contribute equally within each local-hour/day-type group. Public holidays are not separated from weekdays. A repeated autumn hour contributes two observations; the missing spring hour contributes none.
 
 Price lines show the arithmetic mean, median, and the P10 and P90 boundaries. Percentiles use inclusive linear interpolation (`PERCENTILEX.INC`) on nonblank hourly prices in the selected group. The interval describes the middle 80% of the empirical distribution, subject to interpolation and ties; it is neither a forecast interval nor a confidence interval for the mean. Bounds are drawn as dashed light-blue lines with a matching fill at 80% transparency between P10 and P90. Circular markers show observed hour-category statistics. Monotone interpolation smooths the connecting lines without changing the 24 computed values. Month selections recompute statistics from hourly observations rather than averaging monthly percentiles.
 

@@ -51,3 +51,9 @@ Independent numerical checks for every year/month, day-type and local-hour group
 The hourly-profile styling uses circular markers and monotone smooth interpolation. P10 and P90 are dashed in light blue (#A4C7F2), with a matching native error band at 80% transparency. The native band uses the inclusive percentile measures as absolute bounds on the median series; it does not shade down to zero. All profile statistics and month filters retain their original definitions.
 
 Lower profile panels now use a single shared scale for the stacked columns and the Grid load line. Negative residual load extends below zero; the line tracks the signed sum, while the positive stack alone can be higher. Month and weekday/weekend definitions are unchanged.
+
+## Page order, 17 November 2026
+
+The report now follows Market overview → Generation & value → Hourly profiles → Supply & demand → Negative prices. Both the page tabs and the native navigation use this sequence.
+
+![Verified report page order](08_page_order.jpg)
