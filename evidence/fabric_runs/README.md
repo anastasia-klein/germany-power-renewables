@@ -13,4 +13,6 @@ The gold run confirms 8,760 time-dimension rows, one market, twelve generation s
 
 [output_inventory.json](output_inventory.json) records file hashes, execution counts and output/error coverage across the source notebooks and captured evidence. The `historical/` directory preserves the earlier combined `01_prepare_smard` notebook and its HTML export unchanged. Historical and independent local EDA evidence are not presented as current Fabric executions.
 
-Fabric Git synchronization does not retain notebook cell outputs. These exports provide a separate execution archive; future source synchronization should not overwrite them. Notebook outputs do not constitute a physical backup of OneLake Delta table files or transaction logs.
+The additional [05_archive_onelake](2026-11-18/05_archive_onelake.ipynb) contains the successful physical-export run output for all nine silver/gold tables, the ZIP size and checksum. Its source is retained in [archive_onelake.py](../../scripts/archive_onelake.py). The downloaded [physical archive](../onelake/) was independently validated locally.
+
+Fabric Git synchronization does not retain notebook cell outputs. These exports provide a separate execution archive; future source synchronization should not overwrite them. Notebook outputs alone do not constitute a physical backup of OneLake Delta table files or transaction logs; the separate physical archive now addresses that requirement.

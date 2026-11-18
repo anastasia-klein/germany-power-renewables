@@ -1,0 +1,171 @@
+{
+  "report_url": "https://app.fabric.microsoft.com/groups/af058716-784e-466d-b01b-06f7413c9fdb/reports/5b92ecf0-ba8f-4e3e-8fdd-26476b3747fc",
+  "captured_on": "2026-11-18",
+  "source": "Actual live Power BI report, captured through the browser",
+  "capture_method": "Sampled browser screenshots; not a continuous high-frame-rate desktop recording",
+  "editing": "Idle gaps between commands compressed; report canvas cropped; no chart reconstruction or simulated values",
+  "audio": "None",
+  "captured_frames": 89,
+  "encoded_fps": 25,
+  "width": 1238,
+  "height": 700,
+  "duration_seconds_approx": 56.742,
+  "chapters": [
+    {
+      "scene": "Market overview \u00b7 full year",
+      "start_seconds": 0.0
+    },
+    {
+      "scene": "Market overview \u00b7 month selector",
+      "start_seconds": 5.605
+    },
+    {
+      "scene": "Market overview \u00b7 June daily detail",
+      "start_seconds": 6.905
+    },
+    {
+      "scene": "Generation & value \u00b7 Solar",
+      "start_seconds": 11.455
+    },
+    {
+      "scene": "Generation & value \u00b7 source selector",
+      "start_seconds": 16.005
+    },
+    {
+      "scene": "Generation & value \u00b7 Biomass",
+      "start_seconds": 17.305
+    },
+    {
+      "scene": "Generation & value \u00b7 Biomass result",
+      "start_seconds": 21.205
+    },
+    {
+      "scene": "Hourly profiles \u00b7 full year",
+      "start_seconds": 24.455
+    },
+    {
+      "scene": "Hourly profiles \u00b7 month selector",
+      "start_seconds": 29.005
+    },
+    {
+      "scene": "Hourly profiles \u00b7 June weekdays and weekends",
+      "start_seconds": 30.305
+    },
+    {
+      "scene": "Supply & demand \u00b7 full year",
+      "start_seconds": 34.855
+    },
+    {
+      "scene": "Supply & demand \u00b7 month selector",
+      "start_seconds": 40.592
+    },
+    {
+      "scene": "Supply & demand \u00b7 June",
+      "start_seconds": 41.892
+    },
+    {
+      "scene": "Negative prices \u00b7 full year",
+      "start_seconds": 45.142
+    },
+    {
+      "scene": "Negative prices \u00b7 month selector",
+      "start_seconds": 49.692
+    },
+    {
+      "scene": "Negative prices \u00b7 June daily detail",
+      "start_seconds": 50.992
+    }
+  ],
+  "sha256": "679e29ca0ffb6eacffb7d7e50c344a788f2808bf0a482b976346dabf17dda6fb",
+  "captured_frame_hashes": [
+    "8bbf7ad7f83db294a349081217fb91084bdd1f2a13ae825e833a42e107686ec3",
+    "8bbf7ad7f83db294a349081217fb91084bdd1f2a13ae825e833a42e107686ec3",
+    "8bbf7ad7f83db294a349081217fb91084bdd1f2a13ae825e833a42e107686ec3",
+    "8bbf7ad7f83db294a349081217fb91084bdd1f2a13ae825e833a42e107686ec3",
+    "8bbf7ad7f83db294a349081217fb91084bdd1f2a13ae825e833a42e107686ec3",
+    "8bbf7ad7f83db294a349081217fb91084bdd1f2a13ae825e833a42e107686ec3",
+    "8bbf7ad7f83db294a349081217fb91084bdd1f2a13ae825e833a42e107686ec3",
+    "8bbf7ad7f83db294a349081217fb91084bdd1f2a13ae825e833a42e107686ec3",
+    "8bbf7ad7f83db294a349081217fb91084bdd1f2a13ae825e833a42e107686ec3",
+    "8bbf7ad7f83db294a349081217fb91084bdd1f2a13ae825e833a42e107686ec3",
+    "8bbf7ad7f83db294a349081217fb91084bdd1f2a13ae825e833a42e107686ec3",
+    "8bbf7ad7f83db294a349081217fb91084bdd1f2a13ae825e833a42e107686ec3",
+    "6482a9977bce0ea4f610886b547196971c5d8fed4a727b5617b2868a88974ccb",
+    "cf9143e15607edcc87bf6170bb02bbe0c1fdafe363aaf472b4b094d5c1bf335b",
+    "f935e1aa7e91a0b0ab696f3f776daea9398cbe35b0b6b8c6710d9134ff29c5ac",
+    "73904d56eb6a7bf2df13045a6ca2264d082a9a1f62c813148f608c21ea1cf1e8",
+    "647c8a9df6a962567557db10496c2ed2d300ba021e9bf6f1edd09233b152c81a",
+    "c7e49a7ee4b7a8164649a33f3e530f507f6aa9c978a3eab2ec3c417d7522bb31",
+    "c7e49a7ee4b7a8164649a33f3e530f507f6aa9c978a3eab2ec3c417d7522bb31",
+    "c7e49a7ee4b7a8164649a33f3e530f507f6aa9c978a3eab2ec3c417d7522bb31",
+    "c7e49a7ee4b7a8164649a33f3e530f507f6aa9c978a3eab2ec3c417d7522bb31",
+    "706a1df0c5518de6c0840b4f4dc6559a31279608400144b5c8456afa33c29eab",
+    "6609999077b4339e9773de8dedbf9c7cd72a96ccb2c915d4d117345b3e038f9e",
+    "6609999077b4339e9773de8dedbf9c7cd72a96ccb2c915d4d117345b3e038f9e",
+    "6609999077b4339e9773de8dedbf9c7cd72a96ccb2c915d4d117345b3e038f9e",
+    "6609999077b4339e9773de8dedbf9c7cd72a96ccb2c915d4d117345b3e038f9e",
+    "6609999077b4339e9773de8dedbf9c7cd72a96ccb2c915d4d117345b3e038f9e",
+    "6609999077b4339e9773de8dedbf9c7cd72a96ccb2c915d4d117345b3e038f9e",
+    "5b7a55eb5edb3fcd85fa49bd70b5d1f6f070bd136129932093d1170c84d31052",
+    "d7c0c45d4dd3f58c9f3958d46cb9b0123f69111cd95da69f670ad3da335da16a",
+    "b15136256889225105c0997fa81d1af6b04d15fd1270f54f15fc7cfa3b660cf2",
+    "2d91b9c941a1fc7e999148161b61e4b5838b55a9140c12241cd03753bd1b0841",
+    "2d91b9c941a1fc7e999148161b61e4b5838b55a9140c12241cd03753bd1b0841",
+    "2d91b9c941a1fc7e999148161b61e4b5838b55a9140c12241cd03753bd1b0841",
+    "2d91b9c941a1fc7e999148161b61e4b5838b55a9140c12241cd03753bd1b0841",
+    "2d91b9c941a1fc7e999148161b61e4b5838b55a9140c12241cd03753bd1b0841",
+    "06190d9c5d6b79e83bba8becb2f53fad888d9d6282c0e4777a26bce646f602e0",
+    "06190d9c5d6b79e83bba8becb2f53fad888d9d6282c0e4777a26bce646f602e0",
+    "06190d9c5d6b79e83bba8becb2f53fad888d9d6282c0e4777a26bce646f602e0",
+    "06190d9c5d6b79e83bba8becb2f53fad888d9d6282c0e4777a26bce646f602e0",
+    "06190d9c5d6b79e83bba8becb2f53fad888d9d6282c0e4777a26bce646f602e0",
+    "9527b9d8d587f2db2a79aa5c36a2adafdd984fb48d2828b6f4e8b42f0729e2e3",
+    "22c7db060d2d64ae39cf282d60b04805cfcb3f82a05e1c8c3ead4e9c79fcebc2",
+    "22c7db060d2d64ae39cf282d60b04805cfcb3f82a05e1c8c3ead4e9c79fcebc2",
+    "22c7db060d2d64ae39cf282d60b04805cfcb3f82a05e1c8c3ead4e9c79fcebc2",
+    "22c7db060d2d64ae39cf282d60b04805cfcb3f82a05e1c8c3ead4e9c79fcebc2",
+    "22c7db060d2d64ae39cf282d60b04805cfcb3f82a05e1c8c3ead4e9c79fcebc2",
+    "22c7db060d2d64ae39cf282d60b04805cfcb3f82a05e1c8c3ead4e9c79fcebc2",
+    "497306b3c69e54c8183cee4254884277cf20b9171edd7d4a62e94f94a4e49271",
+    "497306b3c69e54c8183cee4254884277cf20b9171edd7d4a62e94f94a4e49271",
+    "25db4dc9dd0b147148454f40f58df48ccbf32c7cbadc3da8879dce4654a232eb",
+    "d67a1d248b28675913ec44baa3727fcd4d7e1739033826e921cfdaac5794cff0",
+    "9b4aac4b68ddfdf4f09cbb10b558ae9a21bbb3f33075a59f1f012982ec890d65",
+    "d065875870fd98e3691a3fe8e9cedc67169556a2b4721e9d259630105e371b60",
+    "d065875870fd98e3691a3fe8e9cedc67169556a2b4721e9d259630105e371b60",
+    "d065875870fd98e3691a3fe8e9cedc67169556a2b4721e9d259630105e371b60",
+    "d065875870fd98e3691a3fe8e9cedc67169556a2b4721e9d259630105e371b60",
+    "4742b7cf9fc997375f5420e3d0b813f02402eba175c81e73f1aab1a94c2bfe0d",
+    "bb96725a1ee1b1622160a68f21f86b37af57b5b2dea4d0f9009a28c80d81f8f9",
+    "bb96725a1ee1b1622160a68f21f86b37af57b5b2dea4d0f9009a28c80d81f8f9",
+    "bb96725a1ee1b1622160a68f21f86b37af57b5b2dea4d0f9009a28c80d81f8f9",
+    "bb96725a1ee1b1622160a68f21f86b37af57b5b2dea4d0f9009a28c80d81f8f9",
+    "bb96725a1ee1b1622160a68f21f86b37af57b5b2dea4d0f9009a28c80d81f8f9",
+    "bb96725a1ee1b1622160a68f21f86b37af57b5b2dea4d0f9009a28c80d81f8f9",
+    "bb96725a1ee1b1622160a68f21f86b37af57b5b2dea4d0f9009a28c80d81f8f9",
+    "bb96725a1ee1b1622160a68f21f86b37af57b5b2dea4d0f9009a28c80d81f8f9",
+    "bb96725a1ee1b1622160a68f21f86b37af57b5b2dea4d0f9009a28c80d81f8f9",
+    "84ea4c0c20e86fa28fc05984b1b88c31b9da09b6c57f32c644bbc60039281fb8",
+    "10c188002cc3c6a555c116c9ab21c37dacc6fc1424cdce3386391f426a2e171c",
+    "06709e885e9fcbdc97a010253ae9f2e6d735f5f956ba13f344a3124a762cc63c",
+    "c7362e370aaf270c2d6f6928510137c55b64f491ac4fbd8a558e462b7fb3ac9a",
+    "120ad60f34fffc31a0c43f2799078c411c941285d1de2e7f58e9dd75a663265d",
+    "120ad60f34fffc31a0c43f2799078c411c941285d1de2e7f58e9dd75a663265d",
+    "120ad60f34fffc31a0c43f2799078c411c941285d1de2e7f58e9dd75a663265d",
+    "f610266091aa29a6864fdb0c9ae64d26ee0e0b8b678082f47c91980786442581",
+    "d4bb57d37973356c73d6909eb9fd2eb327bcb2e7271b2042f3d78b786a5ab819",
+    "b8924cf4901612dc2f54fbffc285ebec720c4d2a18b0d8d2a837a01c285f19aa",
+    "b8924cf4901612dc2f54fbffc285ebec720c4d2a18b0d8d2a837a01c285f19aa",
+    "b8924cf4901612dc2f54fbffc285ebec720c4d2a18b0d8d2a837a01c285f19aa",
+    "b8924cf4901612dc2f54fbffc285ebec720c4d2a18b0d8d2a837a01c285f19aa",
+    "b8924cf4901612dc2f54fbffc285ebec720c4d2a18b0d8d2a837a01c285f19aa",
+    "e080e4604ddb527c9c1a71134011b8656c17d97cde0efede12610506a5a39a6a",
+    "a28dca6a476a0ab1858bff6f567bc17a69e36ade2ebd8918f4397263c1e6c871",
+    "43a7e2a847e4caf7419e9a9a90971dafc9d5f704081be8ccbee4ae9e7419ab0f",
+    "f2071f1c46cc7fb816500382139c9bff22572022b593c14dea6f8d2472c5fede",
+    "f2071f1c46cc7fb816500382139c9bff22572022b593c14dea6f8d2472c5fede",
+    "f2071f1c46cc7fb816500382139c9bff22572022b593c14dea6f8d2472c5fede",
+    "f2071f1c46cc7fb816500382139c9bff22572022b593c14dea6f8d2472c5fede",
+    "f2071f1c46cc7fb816500382139c9bff22572022b593c14dea6f8d2472c5fede"
+  ]
+}

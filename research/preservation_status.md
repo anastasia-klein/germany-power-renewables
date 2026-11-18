@@ -9,14 +9,17 @@
 - The five-page native PBIR report, TMDL semantic model, relationships, core and presentation measures, source colours/icons and lakehouse item metadata.
 - Existing report screenshots and numerical controls, together with the public SVG web counterpart and its validated 8,760-hour snapshot. The web snapshot was derived from source CSVs; it is not a direct OneLake export.
 - Public-site analytical tests covering headline controls, filters, missing-value rules, physical DST hours, correlations and all 624 hourly-profile groups.
+- [Physical OneLake archive](../evidence/onelake/README.md): nine original Delta directories with transaction logs, version-pinned Parquet snapshots, schemas, history and file hashes. All 2,530 payload files verified; every current Delta table reopened locally and every row compared with its Parquet snapshot. Fabric's unavailable auxiliary virtual Iceberg metadata is explicitly excluded and recorded.
+- [Original Power BI PDF and silent walkthrough](../evidence/powerbi/archive_2026-11-18/): all five default-value pages exported directly to PDF, visually checked; approximately 57-second sampled browser walkthrough covers all pages and filters. Capture method and its frame-rate limitations are documented.
+- The authentic executed `05_archive_onelake` notebook, retaining the successful physical-export output. Its completed Spark session has expired.
 
 ## Still dependent on, or not exported from, Fabric
 
-**Physical lakehouse data backup.** Git stores lakehouse definitions and metadata, not the silver/gold Delta files or `_delta_log` history. A direct Parquet/Delta export of the silver and gold tables would preserve the exact materialized lakehouse snapshot. The original data and build logic are retained for reconstruction, but this archive does not claim to contain the physical OneLake tables.
+**Full workspace restoration.** Physical silver/gold data is now archived independently of OneLake and locally verified. Live SQL endpoints, workspace configuration and identities are not restored by copying Delta files. The auxiliary virtual Iceberg metadata was not backed up; the current Delta snapshots were verified without it. Older retained Delta versions were not individually tested.
 
 **Offline Power BI package.** Native PBIR/TMDL definitions are retained. An independently opened, data-containing Import-mode PBIX has not been archived or validated. A thin Direct Lake report package alone would still depend on the unavailable lakehouse.
 
-**Walkthrough recording and PDF.** Static report screenshots are retained. A complete walkthrough video and a PDF export of all report pages have not been captured in this preservation pass. The live HTML/SVG counterpart remains independently usable.
+**Continuous screen recording.** The saved MP4 is an actual sampled browser walkthrough with compressed idle gaps, not a high-frame-rate desktop recording; native QuickTime recording failed. The direct PDF and independent interactive HTML/SVG counterpart are both retained.
 
 **Pipeline execution.** No Data Factory pipeline was created or executed in this project; no pipeline-run evidence is claimed. The notebook build flow is versioned.
 

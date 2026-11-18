@@ -93,6 +93,15 @@
       "error_outputs": 0
     },
     {
+      "path": "evidence/fabric_runs/2026-11-18/05_archive_onelake.ipynb",
+      "code_matches_versioned_source": null,
+      "sha256": "b783adb3236b7c48684b8ad77b7034d1c17aed698de1c41c7e7b5c0b21e7dc1a",
+      "code_cells": 1,
+      "cells_with_output": 1,
+      "executed_cells": 1,
+      "error_outputs": 0
+    },
+    {
       "path": "evidence/fabric_runs/historical/01_prepare_smard.ipynb",
       "code_matches_versioned_source": null,
       "sha256": "0938598a534e145053419fadd449e920c214708f2be6fcc402ce7b30c9e9800f",

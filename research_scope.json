@@ -43,12 +43,17 @@
     },
     {
       "item": "Dashboard walkthrough video and static snapshot",
-      "status": "Planned before trial expiration; live public availability after expiration is not assumed"
+      "status": "Archived direct five-page Power BI PDF and approximately 57-second silent sampled browser walkthrough; all pages and selected filters retained; capture limitations documented"
     },
     {
       "item": "Public HTML/CSS/JavaScript/SVG web dashboard",
       "status": "Published on GitHub Pages; five pages and filters, validated physical-hour snapshot and numerical parity tests",
       "url": "https://anastasia-klein.github.io/germany-power-renewables/"
+    },
+    {
+      "item": "Physical OneLake table archive",
+      "status": "Nine original silver/gold Delta directories, logs, current Parquet snapshots and schemas archived; 2530 payload file hashes verified; all current Delta rows matched locally to snapshots",
+      "path": "evidence/onelake/"
     }
   ],
   "publication": {

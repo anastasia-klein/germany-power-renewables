@@ -54,5 +54,15 @@
     "executed_code_cells": 31,
     "error_outputs": 0,
     "inventory": "evidence/fabric_runs/output_inventory.json"
+  },
+  "physical_archive": {
+    "date": "2026-11-18",
+    "path": "evidence/onelake/2026-11-18/",
+    "tables": 9,
+    "files_hash_verified": 2530,
+    "all_current_delta_tables_reopened_locally": true,
+    "all_rows_compared_with_parquet_snapshots": true,
+    "executed_export_notebook": "evidence/fabric_runs/2026-11-18/05_archive_onelake.ipynb",
+    "export_notebook_error_outputs": 0
   }
 }
