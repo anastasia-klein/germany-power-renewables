@@ -11,6 +11,7 @@
 - Public-site analytical tests covering headline controls, filters, missing-value rules, physical DST hours, correlations and all 624 hourly-profile groups.
 - [Physical OneLake archive](../evidence/onelake/README.md): nine original Delta directories with transaction logs, version-pinned Parquet snapshots, schemas, history and file hashes. All 2,530 payload files verified; every current Delta table reopened locally and every row compared with its Parquet snapshot. Fabric's unavailable auxiliary virtual Iceberg metadata is explicitly excluded and recorded.
 - [Original Power BI PDF and silent walkthrough](../evidence/powerbi/archive_2026-11-18/): all five default-value pages exported directly to PDF, visually checked; approximately 57-second sampled browser walkthrough covers all pages and filters. Capture method and its frame-rate limitations are documented.
+- A second, preferred walkthrough retains the Power BI Service application badge, report ribbon and left navigation throughout, with a native page-pane opening. Its capture comes from the authenticated `app.powerbi.com` report. The original canvas-only video remains archived.
 - The authentic executed `05_archive_onelake` notebook, retaining the successful physical-export output. Its completed Spark session has expired.
 
 ## Still dependent on, or not exported from, Fabric

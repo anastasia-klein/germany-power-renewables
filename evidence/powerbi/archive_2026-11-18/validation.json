@@ -23,14 +23,40 @@
       "sha256": "8813540a238ffe7c7500c418b59743e6ff2990c0e918c4f609a7387cd54a1b78"
     },
     {
+      "name": "germany_power_renewables_powerbi_ui.mp4",
+      "bytes": 1659446,
+      "sha256": "65385846bfa339a7ef1ce3be0904de66080ee8ae20bf114fd611dea04d0c6479"
+    },
+    {
       "name": "germany_power_renewables_walkthrough.mp4",
       "bytes": 1414063,
       "sha256": "679e29ca0ffb6eacffb7d7e50c344a788f2808bf0a482b976346dabf17dda6fb"
+    },
+    {
+      "name": "powerbi_ui_contact_sheet.jpg",
+      "bytes": 336983,
+      "sha256": "660fe8528f8d3756a99abbc2017d126ace0eb9a01f7292a109714ed266cdb9c7"
+    },
+    {
+      "name": "powerbi_ui_preview.jpg",
+      "bytes": 115926,
+      "sha256": "52193371f5923ed6b31e7cadb965b92c4150484eedf8a65aa24f485bcf322f8f"
     },
     {
       "name": "video_contact_sheet.jpg",
       "bytes": 281121,
       "sha256": "cf9385bb493dba0fb09a370b53c28e8efc7137aeb151b69e71827f1b62419be3"
     }
-  ]
+  ],
+  "powerbi_ui_video": {
+    "full_decode_passed": true,
+    "sample_frames_reviewed": 9,
+    "service_ui_visible_throughout": true,
+    "encoded_frames_from_browser_captures": 82,
+    "duration_seconds_approx": 53.671,
+    "resolution": [
+      1272,
+      902
+    ]
+  }
 }

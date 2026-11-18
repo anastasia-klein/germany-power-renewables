@@ -7,10 +7,13 @@ import subprocess
 from pathlib import Path
 
 import imageio_ffmpeg
+from PIL import Image
 
 parser = argparse.ArgumentParser()
 parser.add_argument("frames", type=Path)
 parser.add_argument("output", type=Path)
+parser.add_argument("--include-service-ui", action="store_true", help="Keep the full Power BI Service interface in every frame")
+parser.add_argument("--report-url", default="https://app.fabric.microsoft.com/groups/af058716-784e-466d-b01b-06f7413c9fdb/reports/5b92ecf0-ba8f-4e3e-8fdd-26476b3747fc")
 args = parser.parse_args()
 frames = json.loads(args.frames.read_text())
 assert frames
@@ -35,18 +38,21 @@ for index, scene in enumerate(timeline):
     chapter_lines.extend(["[CHAPTER]", "TIMEBASE=1/1000", f"START={round(scene['start_seconds'] * 1000)}",
                           f"END={round(end * 1000)}", f"title={scene['scene']}"])
 chapters.write_text("\n".join(chapter_lines) + "\n")
+width, height = Image.open(frames[0]["path"]).size if args.include_service_ui else (1238, 700)
+video_filter = "pad=ceil(iw/2)*2:ceil(ih/2)*2,format=yuv420p" if args.include_service_ui else "crop=1238:700:0:64,format=yuv420p"
 command = [imageio_ffmpeg.get_ffmpeg_exe(), "-hide_banner", "-y", "-safe", "0", "-i", str(concat),
            "-i", str(chapters), "-map_metadata", "1", "-map_chapters", "1", "-vf",
-           "crop=1238:700:0:64,format=yuv420p", "-c:v", "libx264", "-crf", "18", "-preset", "medium",
+           video_filter, "-c:v", "libx264", "-crf", "18", "-preset", "medium",
            "-r", "25", "-an", "-movflags", "+faststart", str(args.output)]
 subprocess.run(command, check=True)
 metadata = {
-    "report_url": "https://app.fabric.microsoft.com/groups/af058716-784e-466d-b01b-06f7413c9fdb/reports/5b92ecf0-ba8f-4e3e-8fdd-26476b3747fc",
+    "report_url": args.report_url,
     "captured_on": "2026-11-18", "source": "Actual live Power BI report, captured through the browser",
     "capture_method": "Sampled browser screenshots; not a continuous high-frame-rate desktop recording",
-    "editing": "Idle gaps between commands compressed; report canvas cropped; no chart reconstruction or simulated values",
+    "editing": "Idle gaps between commands compressed; full Power BI Service interface retained; no chart reconstruction or simulated values" if args.include_service_ui else "Idle gaps between commands compressed; report canvas cropped; no chart reconstruction or simulated values",
+    "service_ui_visible": args.include_service_ui,
     "audio": "None", "captured_frames": len(frames), "encoded_fps": 25,
-    "width": 1238, "height": 700, "duration_seconds_approx": round(elapsed, 3), "chapters": timeline,
+    "width": width, "height": height, "duration_seconds_approx": round(elapsed, 3), "chapters": timeline,
     "sha256": hashlib.sha256(args.output.read_bytes()).hexdigest(),
     "captured_frame_hashes": [hashlib.sha256(Path(f["path"]).read_bytes()).hexdigest() for f in frames],
 }

@@ -1,0 +1,166 @@
+{
+  "report_url": "https://app.powerbi.com/groups/af058716-784e-466d-b01b-06f7413c9fdb/reports/5b92ecf0-ba8f-4e3e-8fdd-26476b3747fc/01_market?experience=power-bi",
+  "captured_on": "2026-11-18",
+  "source": "Actual live Power BI report, captured through the browser",
+  "capture_method": "Sampled browser screenshots; not a continuous high-frame-rate desktop recording",
+  "editing": "Idle gaps between commands compressed; full Power BI Service interface retained; no chart reconstruction or simulated values; loading waits removed",
+  "service_ui_visible": true,
+  "audio": "None",
+  "captured_frames": 82,
+  "encoded_fps": 25,
+  "width": 1272,
+  "height": 902,
+  "duration_seconds_approx": 53.671,
+  "chapters": [
+    {
+      "scene": "Power BI Service \u00b7 report and page navigator",
+      "start_seconds": 0.0
+    },
+    {
+      "scene": "Market overview \u00b7 full year in Power BI",
+      "start_seconds": 4.371
+    },
+    {
+      "scene": "Market overview \u00b7 Power BI month slicer",
+      "start_seconds": 8.271
+    },
+    {
+      "scene": "Market overview \u00b7 June daily detail",
+      "start_seconds": 9.571
+    },
+    {
+      "scene": "Generation & value \u00b7 source selector",
+      "start_seconds": 13.471
+    },
+    {
+      "scene": "Generation & value \u00b7 Biomass in Power BI",
+      "start_seconds": 14.771
+    },
+    {
+      "scene": "Hourly profiles \u00b7 full year in Power BI",
+      "start_seconds": 18.671
+    },
+    {
+      "scene": "Hourly profiles \u00b7 month selector",
+      "start_seconds": 22.571
+    },
+    {
+      "scene": "Hourly profiles \u00b7 June in Power BI",
+      "start_seconds": 23.871
+    },
+    {
+      "scene": "Supply & demand \u00b7 month selector",
+      "start_seconds": 27.771
+    },
+    {
+      "scene": "Supply & demand \u00b7 full year in Power BI",
+      "start_seconds": 29.071
+    },
+    {
+      "scene": "Supply & demand \u00b7 June in Power BI",
+      "start_seconds": 34.271
+    },
+    {
+      "scene": "Negative prices \u00b7 full year in Power BI",
+      "start_seconds": 39.471
+    },
+    {
+      "scene": "Negative prices \u00b7 month selector",
+      "start_seconds": 44.021
+    },
+    {
+      "scene": "Negative prices \u00b7 June daily detail in Power BI",
+      "start_seconds": 45.321
+    },
+    {
+      "scene": "Power BI Service \u00b7 full-year closing view",
+      "start_seconds": 51.171
+    }
+  ],
+  "sha256": "65385846bfa339a7ef1ce3be0904de66080ee8ae20bf114fd611dea04d0c6479",
+  "captured_frame_hashes": [
+    "338d520e79eb2d97da7bc955979a4157586363ed7d14795541af5fc08dca68c8",
+    "338d520e79eb2d97da7bc955979a4157586363ed7d14795541af5fc08dca68c8",
+    "338d520e79eb2d97da7bc955979a4157586363ed7d14795541af5fc08dca68c8",
+    "338d520e79eb2d97da7bc955979a4157586363ed7d14795541af5fc08dca68c8",
+    "338d520e79eb2d97da7bc955979a4157586363ed7d14795541af5fc08dca68c8",
+    "338d520e79eb2d97da7bc955979a4157586363ed7d14795541af5fc08dca68c8",
+    "338d520e79eb2d97da7bc955979a4157586363ed7d14795541af5fc08dca68c8",
+    "338d520e79eb2d97da7bc955979a4157586363ed7d14795541af5fc08dca68c8",
+    "338d520e79eb2d97da7bc955979a4157586363ed7d14795541af5fc08dca68c8",
+    "52193371f5923ed6b31e7cadb965b92c4150484eedf8a65aa24f485bcf322f8f",
+    "52193371f5923ed6b31e7cadb965b92c4150484eedf8a65aa24f485bcf322f8f",
+    "52193371f5923ed6b31e7cadb965b92c4150484eedf8a65aa24f485bcf322f8f",
+    "52193371f5923ed6b31e7cadb965b92c4150484eedf8a65aa24f485bcf322f8f",
+    "52193371f5923ed6b31e7cadb965b92c4150484eedf8a65aa24f485bcf322f8f",
+    "52193371f5923ed6b31e7cadb965b92c4150484eedf8a65aa24f485bcf322f8f",
+    "049b496d50077ee45acf7840720fb0fed3a7b42898581a5794865690bc00ecf5",
+    "0d297039dfa6a48f387749f95e1bc6a8cf1c3acdca3a5b739f9b5d1c3aea83db",
+    "03b2e6c638264cabee6a1ca33db50fd85eac149654138d917e36f0a4563a2807",
+    "cf6271d0dc412dc38598286f795ce45d9654df720d50139aa956885877de9109",
+    "cf6271d0dc412dc38598286f795ce45d9654df720d50139aa956885877de9109",
+    "cf6271d0dc412dc38598286f795ce45d9654df720d50139aa956885877de9109",
+    "cf6271d0dc412dc38598286f795ce45d9654df720d50139aa956885877de9109",
+    "cf6271d0dc412dc38598286f795ce45d9654df720d50139aa956885877de9109",
+    "d17344a53f10f75b3187115b4bb8913373f1dbc58c2e4a067818a2ccee3fbab7",
+    "95a7c6202d82ae528fdfc01041c47b1ea0b01c350f75c229e7697a839601a92a",
+    "9f7d98bfb7480ba0b1b52af92ab316bbfc930481da957f5d0f936ef8438f64bd",
+    "131b40b4a6062abd571a1eb29d870671439f866b48ad08b1b1c56e793c7a5268",
+    "131b40b4a6062abd571a1eb29d870671439f866b48ad08b1b1c56e793c7a5268",
+    "131b40b4a6062abd571a1eb29d870671439f866b48ad08b1b1c56e793c7a5268",
+    "131b40b4a6062abd571a1eb29d870671439f866b48ad08b1b1c56e793c7a5268",
+    "131b40b4a6062abd571a1eb29d870671439f866b48ad08b1b1c56e793c7a5268",
+    "3e273227e8cac086947560ff54a03c37cbd0794ea26776e809618c960d9ddb6e",
+    "9bd3fd81f66ef965841cfcbb301438c507b5f0178ff182138201b7c244f3c344",
+    "69623fea5fa6cc6633feb08305059be847b5858b9b182e0b64d8f9bb92cbce99",
+    "4089f104b207e53b0562191341643629fee62048f70bca9263d71016d3f0343d",
+    "4089f104b207e53b0562191341643629fee62048f70bca9263d71016d3f0343d",
+    "4089f104b207e53b0562191341643629fee62048f70bca9263d71016d3f0343d",
+    "85a7c9067a06f665899c26518c772497996db562ca6e014002ea811f1eda257b",
+    "85a7c9067a06f665899c26518c772497996db562ca6e014002ea811f1eda257b",
+    "2a83eb114527ba519e386a377667e457616adb84501b214d92a09e596637c00b",
+    "6462cdf8f8f4f3f6d3b1977bb211582a77026d8d4b8929c38d7870722f858f31",
+    "6462cdf8f8f4f3f6d3b1977bb211582a77026d8d4b8929c38d7870722f858f31",
+    "6462cdf8f8f4f3f6d3b1977bb211582a77026d8d4b8929c38d7870722f858f31",
+    "6462cdf8f8f4f3f6d3b1977bb211582a77026d8d4b8929c38d7870722f858f31",
+    "6462cdf8f8f4f3f6d3b1977bb211582a77026d8d4b8929c38d7870722f858f31",
+    "1ae6b6096985f33efa81a5632ab0acbf34a93a6322d53c7b8f498f39a843348c",
+    "8a65207f23a9775ab86f183025ecee763af53804301fc3644238bdc04d212241",
+    "360b843c47fa7f9b85b851aaf8e17c1a6eb1bbd84bd131b5aabf81429d290383",
+    "360b843c47fa7f9b85b851aaf8e17c1a6eb1bbd84bd131b5aabf81429d290383",
+    "360b843c47fa7f9b85b851aaf8e17c1a6eb1bbd84bd131b5aabf81429d290383",
+    "360b843c47fa7f9b85b851aaf8e17c1a6eb1bbd84bd131b5aabf81429d290383",
+    "360b843c47fa7f9b85b851aaf8e17c1a6eb1bbd84bd131b5aabf81429d290383",
+    "360b843c47fa7f9b85b851aaf8e17c1a6eb1bbd84bd131b5aabf81429d290383",
+    "360b843c47fa7f9b85b851aaf8e17c1a6eb1bbd84bd131b5aabf81429d290383",
+    "360b843c47fa7f9b85b851aaf8e17c1a6eb1bbd84bd131b5aabf81429d290383",
+    "4fcf1be3107fd144f155fc7846025c3f5abb264b63cee2e7143106f78ba133f6",
+    "90c522427b1ef8a451d6321d82e12fb222dcec0d6eb50a9b9ec0cbfc4e18ba7d",
+    "40b159b330bcfcd90a31f7c37db8301acea8cb0226b11b323241d164a7961bad",
+    "40b159b330bcfcd90a31f7c37db8301acea8cb0226b11b323241d164a7961bad",
+    "40b159b330bcfcd90a31f7c37db8301acea8cb0226b11b323241d164a7961bad",
+    "40b159b330bcfcd90a31f7c37db8301acea8cb0226b11b323241d164a7961bad",
+    "40b159b330bcfcd90a31f7c37db8301acea8cb0226b11b323241d164a7961bad",
+    "40b159b330bcfcd90a31f7c37db8301acea8cb0226b11b323241d164a7961bad",
+    "6765374f70a197b02539c7aca7bb9de469f687a532f2e010fe6542835c1a68d9",
+    "e3d9ff068d768f06e5d97a0bfb013509cdcbd58a6093181d7bf70a2ea417f5a9",
+    "15ce9b61714cdfb28a8a9dc7cea859675e42d9022cac95b472b4f0135cae3d8a",
+    "15ce9b61714cdfb28a8a9dc7cea859675e42d9022cac95b472b4f0135cae3d8a",
+    "15ce9b61714cdfb28a8a9dc7cea859675e42d9022cac95b472b4f0135cae3d8a",
+    "15ce9b61714cdfb28a8a9dc7cea859675e42d9022cac95b472b4f0135cae3d8a",
+    "15ce9b61714cdfb28a8a9dc7cea859675e42d9022cac95b472b4f0135cae3d8a",
+    "848e9f52c3205eda37546d86d1285a66f1c79c110f6305ef6948f63e78b6b1b8",
+    "848e9f52c3205eda37546d86d1285a66f1c79c110f6305ef6948f63e78b6b1b8",
+    "15ee7b5eb14a353795c2dc27785d618adb01c111928b8775d3640197d6dbc5c2",
+    "9c198ad00905a11cc123c156210a887431a4c2c8a32908749865373dcd13c604",
+    "9c198ad00905a11cc123c156210a887431a4c2c8a32908749865373dcd13c604",
+    "9c198ad00905a11cc123c156210a887431a4c2c8a32908749865373dcd13c604",
+    "9c198ad00905a11cc123c156210a887431a4c2c8a32908749865373dcd13c604",
+    "9c198ad00905a11cc123c156210a887431a4c2c8a32908749865373dcd13c604",
+    "9c198ad00905a11cc123c156210a887431a4c2c8a32908749865373dcd13c604",
+    "9c198ad00905a11cc123c156210a887431a4c2c8a32908749865373dcd13c604",
+    "9c198ad00905a11cc123c156210a887431a4c2c8a32908749865373dcd13c604",
+    "52193371f5923ed6b31e7cadb965b92c4150484eedf8a65aa24f485bcf322f8f"
+  ],
+  "original_browser_capture_frames": 99
+}
