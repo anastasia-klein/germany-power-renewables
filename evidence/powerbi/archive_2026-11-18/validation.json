@@ -41,11 +41,6 @@
       "name": "powerbi_ui_preview.jpg",
       "bytes": 115926,
       "sha256": "52193371f5923ed6b31e7cadb965b92c4150484eedf8a65aa24f485bcf322f8f"
-    },
-    {
-      "name": "video_contact_sheet.jpg",
-      "bytes": 281121,
-      "sha256": "cf9385bb493dba0fb09a370b53c28e8efc7137aeb151b69e71827f1b62419be3"
     }
   ],
   "powerbi_ui_video": {
