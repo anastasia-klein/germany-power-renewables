@@ -1,0 +1,105 @@
+{
+  "audited_on": "2026-11-18",
+  "policy": "Source-only exports, Fabric execution exports and independent local EDA evidence are inventoried separately; no execution outputs are fabricated.",
+  "notebooks": [
+    {
+      "path": "notebooks/01_profile_sources.ipynb",
+      "code_matches_versioned_source": null,
+      "sha256": "d04d5af444d70958f4fa2340e2f52a2bcd9106ae599d156ce1830645ab65ba92",
+      "code_cells": 2,
+      "cells_with_output": 0,
+      "executed_cells": 0,
+      "error_outputs": 0
+    },
+    {
+      "path": "notebooks/02_build_silver.ipynb",
+      "code_matches_versioned_source": null,
+      "sha256": "c786d855bd9780b13a7985942b9924bb3b27ed59e11099bb536d941ea977605d",
+      "code_cells": 7,
+      "cells_with_output": 0,
+      "executed_cells": 0,
+      "error_outputs": 0
+    },
+    {
+      "path": "notebooks/03_explore_power_market.ipynb",
+      "code_matches_versioned_source": null,
+      "sha256": "95e1f3e9453fc4483fc0912e0a0433b49341c54c3d23f1860d555a2ae454e384",
+      "code_cells": 15,
+      "cells_with_output": 0,
+      "executed_cells": 0,
+      "error_outputs": 0
+    },
+    {
+      "path": "notebooks/04_build_gold.ipynb",
+      "code_matches_versioned_source": null,
+      "sha256": "f4ad76fbaf4ec7e7507257b533489fc216a45e5c817952dcae137b41b8e0093a",
+      "code_cells": 7,
+      "cells_with_output": 0,
+      "executed_cells": 0,
+      "error_outputs": 0
+    },
+    {
+      "path": "evidence/03_explore_power_market_snapshot.ipynb",
+      "code_matches_versioned_source": null,
+      "sha256": "5b6e246f9fa39f9d6e6dc4671bec5cf9d48562358b69474e1ccedb132c4f3d91",
+      "code_cells": 2,
+      "cells_with_output": 2,
+      "executed_cells": 2,
+      "error_outputs": 0
+    },
+    {
+      "path": "evidence/eda_2025/03_power_market_eda_local.ipynb",
+      "code_matches_versioned_source": null,
+      "sha256": "268019a7a82f1b926086ab8836a1b0af231fe20ebd0fc0c52252518a6113ce30",
+      "code_cells": 9,
+      "cells_with_output": 8,
+      "executed_cells": 9,
+      "error_outputs": 0
+    },
+    {
+      "path": "evidence/fabric_runs/2026-11-18/01_profile_sources.ipynb",
+      "code_matches_versioned_source": true,
+      "sha256": "eab07278f2b2848110f04daa8801a73e517de9e4c823e0ae429c1d73c1b2d7c6",
+      "code_cells": 2,
+      "cells_with_output": 2,
+      "executed_cells": 2,
+      "error_outputs": 0
+    },
+    {
+      "path": "evidence/fabric_runs/2026-11-18/02_build_silver.ipynb",
+      "code_matches_versioned_source": true,
+      "sha256": "ae20e295b8c055fbb5b6a75fd02e6248709a2076a3f75258d6321e0db1c61b58",
+      "code_cells": 7,
+      "cells_with_output": 7,
+      "executed_cells": 7,
+      "error_outputs": 0
+    },
+    {
+      "path": "evidence/fabric_runs/2026-11-18/03_explore_power_market.ipynb",
+      "code_matches_versioned_source": true,
+      "sha256": "59274f1a11f3aefbf5ab566101c7b5c8e89dfe099c247729c503bba9b117a3a9",
+      "code_cells": 15,
+      "cells_with_output": 15,
+      "executed_cells": 15,
+      "error_outputs": 0
+    },
+    {
+      "path": "evidence/fabric_runs/2026-11-18/04_build_gold.ipynb",
+      "code_matches_versioned_source": true,
+      "sha256": "4de022aebbb0b4411783322a159deda201f5525b8e146ff11eefa7da7f36e62a",
+      "code_cells": 7,
+      "cells_with_output": 7,
+      "executed_cells": 7,
+      "error_outputs": 0
+    },
+    {
+      "path": "evidence/fabric_runs/historical/01_prepare_smard.ipynb",
+      "code_matches_versioned_source": null,
+      "sha256": "0938598a534e145053419fadd449e920c214708f2be6fcc402ce7b30c9e9800f",
+      "code_cells": 16,
+      "cells_with_output": 15,
+      "executed_cells": 15,
+      "error_outputs": 1
+    }
+  ]
+}

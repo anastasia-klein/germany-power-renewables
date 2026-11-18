@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-18",
+  "public_url": "https://anastasia-klein.github.io/germany-power-renewables/",
+  "source_data": "Original validated public SMARD CSV snapshot; not a physical OneLake export",
+  "physical_hours": 8760,
+  "analytical_tests": 7,
+  "independent_hourly_groups_checked": 624,
+  "browser_checks": [
+    "All five pages rendered",
+    "Annual headlines 89.32, 92.42, 465.82 and 58.86%",
+    "June market prices 63.99 and 63.60; 720 hours",
+    "Solar capture 46.07 and rate 51.58%; Biomass source selection 92.85 and 103.95%",
+    "Nuclear remains unavailable rather than zero",
+    "June supply correlations 0.926, -0.154 and -0.748",
+    "June negative-price count 141 and share 19.58%",
+    "Price profiles retain percentile band and demand stacks retain negative residual load",
+    "390px mobile generation page has 12 source rows and no body horizontal overflow",
+    "Published page has no browser console errors"
+  ],
+  "hosting": "GitHub Pages; only web/ is uploaded",
+  "external_runtime_dependencies": []
+}

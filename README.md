@@ -1,6 +1,10 @@
 # Germany Power & Renewables
 
-An applied research project examining how renewable generation and electricity demand align with German day-ahead prices. Microsoft Fabric provides the data preparation and validation environment; the Fabric-backed semantic model and five-page Power BI report are implemented, while unauthenticated public publication remains planned.
+[**Open the interactive web dashboard →**](https://anastasia-klein.github.io/germany-power-renewables/)
+
+A public HTML/CSS/JavaScript/SVG counterpart preserves all five report pages and filters independently of Fabric trial availability.
+
+An applied research project examining how renewable generation and electricity demand align with German day-ahead prices. Microsoft Fabric provides the data preparation and validation environment; the Fabric-backed semantic model and five-page Power BI report are implemented, with a public interactive web counterpart hosted on GitHub Pages.
 
 ## Research questions
 
@@ -48,7 +52,7 @@ The visual style follows the author's Global Critical Materials report, with a c
 
 The report uses the existing Direct Lake model over gold; it contains no embedded copy of the source CSVs. Generation-mix bars show percentages of reported generation, with TWh in tooltips; the denominator includes observed pumped-storage output and retains unavailable nuclear values as missing. Month selectors use calendar names and filter the individual page. A single selected month switches the timeline to days; multiple months use monthly values. Source colors and SVG icons are defined once in three small presentation tables; the five gold tables remain in Direct Lake mode. The generation-source selector changes the selected-source charts and cards, while the comparison table retains all sources for the selected months. Chart clicks do not cross-filter unrelated KPIs. Nuclear remains unavailable and is omitted where every measure is blank. Price exposure is not realized revenue or profit.
 
-Data Factory orchestration, unauthenticated public report publication and video remain planned deliverables. No pipeline execution or public access is claimed. The [semantic specification](model/semantic_model_spec.json), [measure definitions](model/semantic_measures.dax) and browser screenshots document the implemented components.
+Data Factory orchestration and a walkthrough video remain planned deliverables. Unauthenticated Power BI publication has not been verified; the separate public web dashboard is live. No Data Factory pipeline execution is claimed. The [semantic specification](model/semantic_model_spec.json), [measure definitions](model/semantic_measures.dax) and browser screenshots document the implemented components.
 
 The full generation mix, now figure 5 in notebook 03, provides context beyond wind and solar: all twelve categories are retained, with nuclear unavailable rather than replaced by zero. Wind and solar account for 47.21% of reported generation; the six renewable categories together account for 58.86%.
 
@@ -59,3 +63,9 @@ Data: [Bundesnetzagentur | SMARD.de](https://www.smard.de/en/downloadcenter/down
 Time handling follows [SMARD's explanation of CET/CEST and clock changes](https://www.smard.de/en/change-from-summer-to-winter-time-218202). Raw downloads were retrieved on 6 November 2026; file hashes and initial quality profiles are recorded with the data.
 
 The Hourly profiles page compares weekdays (Monday–Friday) and weekends (Saturday–Sunday), with one common month selector. Price profiles show the mean, median, P10 and P90 at each local hour. The lower panels stack average Solar (Photovoltaics), combined Wind and Residual load in GW, with Grid load overlaid as a line on the same scale. Negative residual values extend below zero. Paired panels share filter-aware scales. Holidays are classified by their weekday; percentiles describe observed hourly prices and are not confidence intervals.
+
+## Public web counterpart and preservation
+
+The [web implementation](web/) retains the five-page narrative, month and source filters, adaptive daily/monthly axes, SVG source icons, price percentile bands and signed demand stacks. It computes directly from a public hourly snapshot, validated against Fabric controls and all 624 independent hourly profile groups. It has no API credentials, household data, third-party JavaScript CDN or runtime server.
+
+Authentic Fabric execution exports are retained separately under [evidence/fabric_runs](evidence/fabric_runs/), alongside an output inventory and historical exports. The `notebooks/` directory remains intentionally output-free. Local EDA outputs stay separately labelled. See the [preservation status](research/preservation_status.md) for retained artifacts and remaining trial-dependent items.

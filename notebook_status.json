@@ -46,5 +46,13 @@
   },
   "all_refactored_notebooks_validated_in_fabric": true,
   "source_of_truth": "Fabric item definitions in fabric/; notebooks/ are derived portable exports",
-  "semantic_model": "Five gold-model relationships and nineteen core measures deployed in Fabric; three small presentation tables, two presentation relationships and nine report measures support names, icons, colors and the adaptive axis"
+  "semantic_model": "Five gold Direct Lake tables, presentation tables and 44 measures; native model and report definitions versioned",
+  "fabric_output_archive": {
+    "date": "2026-11-18",
+    "path": "evidence/fabric_runs/2026-11-18/",
+    "execution": "All four current notebooks rerun successfully in Fabric; authentic exported outputs and execution counts retained",
+    "executed_code_cells": 31,
+    "error_outputs": 0,
+    "inventory": "evidence/fabric_runs/output_inventory.json"
+  }
 }

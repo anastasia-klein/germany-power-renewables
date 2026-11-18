@@ -1,6 +1,6 @@
 {
   "project": "Germany Power & Renewables",
-  "updated_on": "2026-11-09",
+  "updated_on": "2026-11-18",
   "format": "Research case study with analysis, methodology, findings, pipelines and Fabric execution evidence; no reproduction tutorial",
   "questions": [
     {
@@ -23,7 +23,7 @@
   "deliverables": [
     {
       "item": "Research notebooks and portable outputs",
-      "status": "Profiling, silver, latest five-figure EDA and five-table gold build confirmed successful in Fabric"
+      "status": "All four current notebooks executed successfully in Fabric on 18 November; authentic outputs exported and retained separately in evidence/fabric_runs/2026-11-18/"
     },
     {
       "item": "Versioned Fabric notebook and pipeline definitions",
@@ -35,7 +35,7 @@
     },
     {
       "item": "Power BI report connected to Fabric",
-      "status": "Three-page Power BI report created in Fabric, connected to sm_power_renewables; browser rendering and source/month filter checks passed"
+      "status": "Five-page report connected to sm_power_renewables; browser checks verified source/month filters, percentile bands, stacked demand profiles and page order"
     },
     {
       "item": "Public interactive Power BI report",
@@ -44,6 +44,11 @@
     {
       "item": "Dashboard walkthrough video and static snapshot",
       "status": "Planned before trial expiration; live public availability after expiration is not assumed"
+    },
+    {
+      "item": "Public HTML/CSS/JavaScript/SVG web dashboard",
+      "status": "Published on GitHub Pages; five pages and filters, validated physical-hour snapshot and numerical parity tests",
+      "url": "https://anastasia-klein.github.io/germany-power-renewables/"
     }
   ],
   "publication": {
