@@ -1,0 +1,23 @@
+// Pure calculations on physical hourly observations; nulls never become zero.
+export const PAGES = ['Market overview','Generation & value','Hourly profiles','Supply & demand','Negative prices'];
+export const SLUGS = ['market-overview','generation-value','hourly-profiles','supply-demand','negative-prices'];
+export const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+export const C = {canvas:'#F5F8FC',panel:'#FFFFFF',edge:'#E0E8F3',text:'#203349',muted:'#65768A',blue:'#397FE5',teal:'#12A89D',amber:'#F1B63D',red:'#EA6C73',green:'#65B87C',slate:'#8298B0',band:'#A4C7F2'};
+export const finite = Number.isFinite;
+export const sum = a => a.filter(finite).reduce((s,x)=>s+x,0);
+export const mean = a => {const b=a.filter(finite); return b.length?sum(b)/b.length:null;};
+export const divide = (a,b)=>finite(a)&&finite(b)&&b!==0?a/b:null;
+export function quantile(a,q){const b=a.filter(finite).toSorted((x,y)=>x-y);if(!b.length)return null;const k=(b.length-1)*q,l=Math.floor(k);return b[l]+(b[Math.ceil(k)]-b[l])*(k-l);}
+export function correlation(a,b){const pairs=a.map((v,i)=>[v,b[i]]).filter(p=>p.every(finite));if(pairs.length<2)return null;const x=mean(pairs.map(p=>p[0])),y=mean(pairs.map(p=>p[1]));return divide(sum(pairs.map(p=>(p[0]-x)*(p[1]-y))),Math.sqrt(sum(pairs.map(p=>(p[0]-x)**2))*sum(pairs.map(p=>(p[1]-y)**2))));}
+export function decode(data){return data.rows.map(r=>({utc:r[0],date:r[1],hour:r[2],weekend:r[3],month:r[4],price:r[5],load:r[6],residual:r[7],g:r[8],wind:finite(r[8][2])&&finite(r[8][3])?r[8][2]+r[8][3]:null,solar:r[8][4]}));}
+export function select(rows,months=[]){return months.length?rows.filter(r=>months.includes(r.month)):rows;}
+export function market(rows){const valid=rows.filter(r=>finite(r.price)),matched=valid.filter(r=>finite(r.load)),negative=valid.filter(r=>r.price<0);const total=sum(rows.flatMap(r=>r.g)),renewable=sum(rows.flatMap(r=>[0,1,2,3,4,5].map(i=>r.g[i])));return {hours:rows.length,valid:valid.length,negative:negative.length,negativeShare:divide(negative.length,valid.length),average:mean(valid.map(r=>r.price)),weighted:divide(sum(matched.map(r=>r.price*r.load)),sum(matched.map(r=>r.load))),load:sum(rows.map(r=>r.load))/1e6,renewable:divide(renewable,total),windSolar:divide(sum(rows.map(r=>r.wind+r.solar)),sum(rows.map(r=>r.load))),generation:total/1e6};}
+export function sourceStats(rows,index){const values=rows.filter(r=>finite(r.g[index])),matched=values.filter(r=>finite(r.price)),volume=sum(values.map(r=>r.g[index])),complete=rows.length>0&&matched.length===rows.length,price=complete?divide(sum(matched.map(r=>r.g[index]*r.price)),volume):null;return {generation:values.length?volume/1e6:null,capture:price,rate:mean(rows.map(r=>r.price))>0?divide(price,mean(rows.map(r=>r.price))):null,exposure:complete?divide(sum(matched.filter(r=>r.price<0).map(r=>r.g[index])),volume):null,coverage:divide(matched.length,rows.length)};}
+export function group(rows,key){const m=new Map();for(const r of rows){const k=key(r);if(!m.has(k))m.set(k,[]);m.get(k).push(r);}return [...m].sort((a,b)=>String(a[0]).localeCompare(String(b[0]),'en',{numeric:true}));}
+export function timeline(rows,months,index=4){return group(rows,r=>months.length===1?r.date:r.month).map(([key,rs])=>({key,label:months.length===1?String(+key.slice(-2)):MONTHS[key-1].slice(0,3),...market(rs),...Object.fromEntries(Object.entries(sourceStats(rs,index)).map(([k,v])=>['source_'+k,v]))}));}
+export function hourly(rows,weekend){return Array.from({length:24},(_,hour)=>{const rs=rows.filter(r=>r.hour===hour&&(weekend===undefined||r.weekend===weekend));return {hour,n:rs.length,mean:mean(rs.map(r=>r.price)),median:quantile(rs.map(r=>r.price),.5),p10:quantile(rs.map(r=>r.price),.1),p90:quantile(rs.map(r=>r.price),.9),load:mean(rs.map(r=>r.load/1000)),residual:mean(rs.map(r=>r.residual/1000)),wind:mean(rs.map(r=>r.wind/1000)),solar:mean(rs.map(r=>r.solar/1000)),negative:divide(rs.filter(r=>finite(r.price)&&r.price<0).length,rs.filter(r=>finite(r.price)).length)};});}
+export function heatmap(rows){return group(rows,r=>r.month).map(([month,rs])=>({month,cells:hourly(rs)}));}
+export function heatColor(p){return !finite(p)?'#f1f4f8':p<0?'#8EC5FF':p<50?'#E9F2FF':p<100?'#D2E8EF':p<150?'#F8D995':'#ED8B82';}
+export const safe = v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function fmt(v,d=2){return finite(v)?v.toLocaleString('en-GB',{minimumFractionDigits:d,maximumFractionDigits:d}):'—';}
+export const pct=(v,d=2)=>finite(v)?fmt(v*100,d)+'%':'—';
