@@ -2,3 +2,52 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 
 .market-grid>.mix{height:100%}.panel svg.horizontal-chart text{font-size:13px}.market-left>.panel:last-child svg{max-height:210px}
+
+/* A shared desktop sheet prevents page changes from changing report height. */
+.fit-report #app{padding:12px;display:flex;justify-content:center}
+.fit-report .report-frame{width:var(--frame-width);height:var(--frame-height);position:relative}
+.fit-report .shell{position:absolute;left:0;top:0;width:1600px;height:960px;max-width:none;margin:0;padding:18px 24px 10px;transform:scale(var(--report-scale));transform-origin:top left;display:flex;flex-direction:column}
+.fit-report .masthead{display:flex;align-items:center;gap:24px;flex:0 0 46px}
+.fit-report .brand{font-size:30px}
+.fit-report .tabs{max-width:960px;margin-top:0}
+.fit-report .tabs a{font-size:13px;padding:12px 8px}
+.fit-report .kicker{flex:none;margin:10px 0;font-size:11px}
+.fit-report .intro{flex:0 0 78px;flex-wrap:nowrap;margin-bottom:14px;align-items:flex-start}
+.fit-report .intro h2{font-size:30px;margin:3px 0 8px}
+.fit-report .filters{margin-left:0}
+.fit-report .filter{width:230px}
+.fit-report #content{flex:1;min-height:0;display:flex;flex-direction:column;gap:14px}
+.fit-report .cards{flex:0 0 88px;margin:0;gap:14px}
+.fit-report .card{min-height:0;padding:12px 14px 10px}
+.fit-report .card h3{font-size:13px}
+.fit-report .card .value{font-size:31px;margin-top:9px}
+.fit-report .panel{min-height:0;display:flex;flex-direction:column;padding:12px 14px 10px;border-radius:15px}
+.fit-report .panel h3{flex:none;font-size:14px;margin-bottom:8px}
+.fit-report .panel>svg{flex:1 1 0;min-height:0;height:0;max-height:none}
+.fit-report .legend,.fit-report .axis-note{flex:none}
+.fit-report .legend{font-size:11px;min-height:22px}
+.fit-report .market-grid,.fit-report .generation-grid,.fit-report #content>.two{flex:1;min-height:0;gap:14px;align-items:stretch}
+.fit-report .market-left,.fit-report .generation-left{min-height:0;grid-template-rows:1fr .8fr;gap:14px}
+.fit-report .market-grid{grid-template-columns:3fr 2fr}
+.fit-report .generation-grid{grid-template-columns:2.1fr 1fr}
+.fit-report #content>.two{grid-template-rows:repeat(2,minmax(0,1fr))}
+.fit-report .source-table-wrap{flex:1;min-height:0;overflow:auto}
+.fit-report .source-table{font-size:12px}
+.fit-report .source-table td{padding:7px 6px}
+.fit-report .hourly{flex:1;min-height:0;display:flex;flex-direction:column}
+.fit-report .description{flex:none;margin:0 0 12px}
+.fit-report .hourly .two{flex:1;min-height:0;gap:14px;grid-template-rows:minmax(0,1fr)}
+.fit-report .hourly .two+.two{margin-top:14px}
+.fit-report .supply{flex:1;min-height:0;display:grid;grid-template-rows:.8fr 1.2fr;gap:14px}
+.fit-report .supply .three{margin:0;min-height:0;gap:14px;grid-template-rows:minmax(0,1fr)}
+.fit-report .heat-grid{min-height:0;gap:14px;grid-template-columns:3fr 1fr;grid-template-rows:minmax(0,1fr)}
+.fit-report .heat-scroll{flex:1;min-height:0;display:flex}
+.fit-report .heat-scroll svg{min-width:0;height:100%}
+.fit-report .heat-legend{display:block}
+.fit-report .heat-legend p{font-size:12px;line-height:1.5;margin:0 0 10px}
+.fit-report .swatch-row{font-size:12px;margin:10px 0;gap:10px}
+.fit-report .footnote{flex:none;padding:11px 0 8px;gap:20px}
+.fit-report .utility{flex:none;align-items:center;padding:8px 0;gap:20px}
+.fit-report .about{flex:none;max-width:none;margin:0;padding:5px 0 0;font-size:12px;line-height:1.5}
+
+.fit-report .market-left>.panel:last-child svg{max-height:none}

@@ -17,3 +17,5 @@ Hourly power panels stack Solar, Wind and Residual load, with a Grid load line o
 ## Verification
 
 The dependency-free JavaScript tests reconcile Fabric headline controls, June filters, source values, correlations, heatmap DST counts and all 624 independently calculated hourly-profile groups. Browser checks cover page navigation, month and source filters, chart rendering and responsive layout. Original Fabric evidence remains under `evidence/` and is distinguished from independently computed web results.
+
+Desktop pages share a 1600 × 960 report sheet fitted to both viewport dimensions. Phones, very short windows and expanded methodology use natural scrolling. Layout checks cover 1280 × 720, 1366 × 768 and 1440 × 900, with all source-table rows visible.

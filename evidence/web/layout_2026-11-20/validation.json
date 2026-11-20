@@ -1,0 +1,346 @@
+{
+  "date": "2026-11-20",
+  "desktop": [
+    {
+      "document": [
+        1366,
+        768
+      ],
+      "frame": {
+        "bottom": 756,
+        "height": 744,
+        "width": 1240
+      },
+      "page": "Market overview \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 744,
+      "tableFits": null,
+      "viewport": [
+        1366,
+        768
+      ]
+    },
+    {
+      "document": [
+        1366,
+        768
+      ],
+      "frame": {
+        "bottom": 756,
+        "height": 744,
+        "width": 1240
+      },
+      "page": "Generation & value \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 744,
+      "tableFits": true,
+      "viewport": [
+        1366,
+        768
+      ]
+    },
+    {
+      "document": [
+        1366,
+        768
+      ],
+      "frame": {
+        "bottom": 756,
+        "height": 744,
+        "width": 1240
+      },
+      "page": "Hourly profiles \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 744,
+      "tableFits": null,
+      "viewport": [
+        1366,
+        768
+      ]
+    },
+    {
+      "document": [
+        1366,
+        768
+      ],
+      "frame": {
+        "bottom": 756,
+        "height": 744,
+        "width": 1240
+      },
+      "page": "Supply & demand \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 744,
+      "tableFits": null,
+      "viewport": [
+        1366,
+        768
+      ]
+    },
+    {
+      "document": [
+        1366,
+        768
+      ],
+      "frame": {
+        "bottom": 756,
+        "height": 744,
+        "width": 1240
+      },
+      "page": "Negative prices \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 744,
+      "tableFits": null,
+      "viewport": [
+        1366,
+        768
+      ]
+    },
+    {
+      "document": [
+        1280,
+        720
+      ],
+      "frame": {
+        "bottom": 708,
+        "height": 696,
+        "width": 1160
+      },
+      "page": "Market overview \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 696,
+      "tableFits": null,
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "document": [
+        1280,
+        720
+      ],
+      "frame": {
+        "bottom": 708,
+        "height": 696,
+        "width": 1160
+      },
+      "page": "Generation & value \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 696,
+      "tableFits": true,
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "document": [
+        1280,
+        720
+      ],
+      "frame": {
+        "bottom": 708,
+        "height": 696,
+        "width": 1160
+      },
+      "page": "Hourly profiles \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 696,
+      "tableFits": null,
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "document": [
+        1280,
+        720
+      ],
+      "frame": {
+        "bottom": 708,
+        "height": 696,
+        "width": 1160
+      },
+      "page": "Supply & demand \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 696,
+      "tableFits": null,
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "document": [
+        1280,
+        720
+      ],
+      "frame": {
+        "bottom": 708,
+        "height": 696,
+        "width": 1160
+      },
+      "page": "Negative prices \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 696,
+      "tableFits": null,
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "document": [
+        1440,
+        900
+      ],
+      "frame": {
+        "bottom": 861.59375,
+        "height": 849.59375,
+        "width": 1416
+      },
+      "page": "Market overview \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 849.5999755859375,
+      "tableFits": null,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "document": [
+        1440,
+        900
+      ],
+      "frame": {
+        "bottom": 861.59375,
+        "height": 849.59375,
+        "width": 1416
+      },
+      "page": "Generation & value \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 849.5999755859375,
+      "tableFits": true,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "document": [
+        1440,
+        900
+      ],
+      "frame": {
+        "bottom": 861.59375,
+        "height": 849.59375,
+        "width": 1416
+      },
+      "page": "Hourly profiles \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 849.5999755859375,
+      "tableFits": null,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "document": [
+        1440,
+        900
+      ],
+      "frame": {
+        "bottom": 861.59375,
+        "height": 849.59375,
+        "width": 1416
+      },
+      "page": "Supply & demand \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 849.5999755859375,
+      "tableFits": null,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "document": [
+        1440,
+        900
+      ],
+      "frame": {
+        "bottom": 861.59375,
+        "height": 849.59375,
+        "width": 1416
+      },
+      "page": "Negative prices \u00b7 Germany Power & Renewables",
+      "panelOverflow": [],
+      "shellHeight": 849.5999755859375,
+      "tableFits": null,
+      "viewport": [
+        1440,
+        900
+      ]
+    }
+  ],
+  "mobile": [
+    {
+      "document": 390,
+      "fitted": false,
+      "page": "Market overview \u00b7 Germany Power & Renewables",
+      "viewport": 390
+    },
+    {
+      "document": 390,
+      "fitted": false,
+      "page": "Generation & value \u00b7 Germany Power & Renewables",
+      "viewport": 390
+    },
+    {
+      "document": 390,
+      "fitted": false,
+      "page": "Hourly profiles \u00b7 Germany Power & Renewables",
+      "viewport": 390
+    },
+    {
+      "document": 390,
+      "fitted": false,
+      "page": "Supply & demand \u00b7 Germany Power & Renewables",
+      "viewport": 390
+    },
+    {
+      "document": 390,
+      "fitted": false,
+      "page": "Negative prices \u00b7 Germany Power & Renewables",
+      "viewport": 390
+    }
+  ],
+  "monthFilterJune": {
+    "cards": [
+      "63.99",
+      "63.60",
+      "35.28",
+      "73.30%"
+    ],
+    "frameHeight": 744,
+    "viewport": [
+      1366,
+      768
+    ]
+  },
+  "aboutDisclosure": {
+    "opensWithNaturalScrolling": true,
+    "closesBackToFittedSheet": true
+  },
+  "applicationConsoleErrors": [],
+  "browserExtensionConsoleErrors": [
+    {
+      "source": "chrome-extension://oboonakemofpalcgghocfoadofidjkkk/content/passkeys-inject.js",
+      "message": "Could not establish connection. Receiving end does not exist."
+    }
+  ]
+}
