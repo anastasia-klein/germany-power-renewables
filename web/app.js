@@ -1,5 +1,5 @@
 import {PAGES,SLUGS,MONTHS,C,decode,select,market,sourceStats,timeline,hourly,heatmap,correlation,fmt,pct,safe,finite} from './core.js';
-import {lines,columns,stacked,horizontal,scatter,heat,icon} from './charts.js?v=20261120';
+import {lines,columns,stacked,horizontal,scatter,heat,icon} from './charts.js?v=20261120-bars';
 import {fitReport} from './layout.js';
 const app=document.querySelector('#app'),tip=document.querySelector('#tooltip');
 const saved=new Map();let page=0,months=[],source='solar',data,rows;
