@@ -28,6 +28,7 @@ These are descriptive relationships, not causal effects. Capture prices measure 
 - [Detailed findings and figures](research/eda_2025_findings.md) · [Metric definitions and chart interpretation](research/metrics_and_figures.md)
 - [Source data dictionary](data/source_dictionary.md) · [Research notebooks with Fabric outputs](evidence/fabric_runs/2026-11-18/)
 - [Technical implementation, validation and archive](research/implementation_and_validation.md)
+- [Tibber Household Lab](https://github.com/anastasia-klein/tibber-household-lab) — a separate local application for household consumption and tariff scenarios. Public code, your own API token, private data stored on your computer.
 
 ## Data source
 
